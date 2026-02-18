@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-0">
+  <div class="w-full px-3 sm:px-4 lg:px-0">
     <!-- Header Section -->
     <div class="mb-6 lg:mb-8">
       <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">إدارة الطلبات</h1>
@@ -23,6 +23,7 @@
       </div>
       <div class="relative flex-1 max-w-md w-full mt-3 xl:mt-0">
         <input
+          v-model="searchQuery"
           type="text"
           placeholder="البحث برقم الطلب، اسم العميل..."
           class="w-full pr-10 pl-4 py-3 rounded-xl bg-white border border-gray-100 shadow-sm focus:ring-2 focus:ring-gray-900 outline-none transition-all placeholder:text-gray-400 text-sm lg:text-base"
@@ -56,7 +57,7 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-50">
-            <tr v-for="order in orders" :key="order.id" class="hover:bg-gray-50 transition-colors">
+            <tr v-for="order in filteredOrders" :key="order.id" class="hover:bg-gray-50 transition-colors">
               <td class="px-4 sm:px-6 py-4 sm:py-5">
                 <span class="text-xs sm:text-sm font-bold text-orange-400">{{ order.id }}</span>
               </td>
@@ -100,6 +101,11 @@
                 </button>
               </td>
             </tr>
+            <tr v-if="filteredOrders.length === 0" class="text-center">
+              <td colspan="8" class="px-4 sm:px-6 py-12 sm:py-16 text-gray-500 text-sm sm:text-base">
+                لا توجد طلبات مطابقة
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -109,6 +115,14 @@
 
 <script setup>
 const activeTab = ref('new')
+const searchQuery = ref('')
+
+const TAB_STATUS_MAP = {
+  new: ['pending_payment'],
+  confirmed: ['confirmed'],
+  completed: ['completed'],
+  cancelled: ['cancelled', 'rejected'],
+}
 
 const tabs = [
   { id: 'new', label: 'جديدة' },
@@ -116,6 +130,29 @@ const tabs = [
   { id: 'completed', label: 'مكتملة' },
   { id: 'cancelled', label: 'ملغاة' },
 ]
+
+const filteredOrders = computed(() => {
+  const allowedStatuses = TAB_STATUS_MAP[activeTab.value] ?? []
+  const query = searchQuery.value.trim().toLowerCase()
+
+  return orders.filter((order) => {
+    const matchesTab = allowedStatuses.includes(order.status)
+    if (!matchesTab) return false
+
+    if (!query) return true
+
+    const searchableFields = [
+      order.id,
+      order.clientName,
+      order.clientPhone,
+      order.serviceType,
+    ].filter(Boolean)
+
+    return searchableFields.some((field) =>
+      String(field).toLowerCase().includes(query)
+    )
+  })
+})
 
 const statusStyles = {
   pending_payment: 'bg-orange-50 text-orange-500',

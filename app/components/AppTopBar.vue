@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full bg-white border-b h-16 flex items-center px-4 lg:px-6 justify-end gap-4 sticky top-0 z-10 shadow-sm rounded-xl ">
+  <header class="w-full bg-white border-b h-16 flex items-center px-4 lg:px-6 gap-2 justify-end sm:gap-3 lg:gap-4 sticky top-0 z-10 shadow-sm rounded-xl">
     <div class="flex items-center gap-4">
       <!-- Hamburger menu mobile -->
       <button @click="toggle" class="p-2 -mr-2 text-gray-500 lg:hidden">

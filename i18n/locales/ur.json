@@ -50,5 +50,8 @@
     "status_completed": "مکمل",
     "status_rejected": "مسترد",
     "status_cancelled": "منسوخ"
+  },
+  "register": {
+    "title": "رجسٹر کریں"
   }
 }

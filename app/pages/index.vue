@@ -114,6 +114,8 @@
 </template>
 
 <script setup>
+definePageMeta({ title: 'orders.title' })
+
 const { t } = useI18n()
 
 const activeTab = ref('new')

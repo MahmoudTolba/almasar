@@ -50,5 +50,8 @@
     "status_completed": "Completed",
     "status_rejected": "Rejected",
     "status_cancelled": "Cancelled"
+  },
+  "register": {
+    "title": "Register"
   }
 }

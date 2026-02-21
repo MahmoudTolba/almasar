@@ -50,5 +50,8 @@
     "status_completed": "مكتملة",
     "status_rejected": "مرفوضة",
     "status_cancelled": "ملغاة"
+  },
+  "register": {
+    "title": "تسجيل جديد"
   }
 }

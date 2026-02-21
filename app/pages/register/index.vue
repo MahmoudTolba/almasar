@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-
+definePageMeta({ title: 'register.title' })
 </script>
 
 <style scoped>

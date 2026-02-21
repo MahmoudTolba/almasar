@@ -15,4 +15,14 @@ export default defineNuxtConfig({
     '@primevue/nuxt-module'
   ],
 
+  i18n: {
+    locales: [
+      { code: 'ar', file: 'ar.json', name: 'اللغة العربية', dir: 'rtl' },
+      { code: 'en', file: 'en.json', name: 'English', dir: 'ltr' },
+      { code: 'ur', file: 'ur.json', name: 'لغة الاردو', dir: 'rtl' },
+    ],
+    defaultLocale: 'ar',
+    langDir: 'locales',
+  },
+
 })

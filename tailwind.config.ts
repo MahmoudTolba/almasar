@@ -20,6 +20,9 @@ export default <Partial<Config>>{
         secondary: {
           DEFAULT: "#6366F1",
         },
+        accent: {
+          DEFAULT: "#AB8740",
+        },
       },
       fontFamily: {
         sans: ["IBMPlexSansArabic", "ui-sans-serif", "system-ui", "sans-serif"],

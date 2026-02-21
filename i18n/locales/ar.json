@@ -1,0 +1,28 @@
+{
+  "common": {
+    "language": "اللغة",
+    "appName": "المسار الذكي"
+  },
+  "languageModal": {
+    "title": "اختيار اللغة",
+    "subtitle": "يرجى اختيار اللغة التي تفضلها",
+    "continue": "متابعة",
+    "arabic": "اللغة العربية",
+    "english": "English",
+    "urdu": "لغة الاردو"
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "subtitle": "الرجاء إدخال بياناتك لتسجيل دخولك.",
+    "phoneLabel": "رقم الجوال",
+    "phonePlaceholder": "رقم الجوال",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "********",
+    "forgotPassword": "نسيت كلمة المرور ؟",
+    "submit": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب في التطبيق ؟",
+    "registerLink": "تسجيل جديد",
+    "passwordShow": "إظهار كلمة المرور",
+    "passwordHide": "إخفاء كلمة المرور"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "common": {
+    "language": "Language",
+    "appName": "Al-Masar Al-Dhaki"
+  },
+  "languageModal": {
+    "title": "Language Selection",
+    "subtitle": "Please choose your preferred language.",
+    "continue": "Continue",
+    "arabic": "Arabic",
+    "english": "English",
+    "urdu": "Urdu"
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Please enter your details to log in.",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Phone Number",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "forgotPassword": "Forgot password?",
+    "submit": "Login",
+    "noAccount": "Don't have an account in the app?",
+    "registerLink": "Register",
+    "passwordShow": "Show password",
+    "passwordHide": "Hide password"
+  }
+}

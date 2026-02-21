@@ -1,0 +1,28 @@
+{
+  "common": {
+    "language": "زبان",
+    "appName": "المسار الذكي"
+  },
+  "languageModal": {
+    "title": "زبان کا انتخاب",
+    "subtitle": "براہ کرم اپنی پسندیدہ زبان منتخب کریں۔",
+    "continue": "جاری رکھیں",
+    "arabic": "اللغة العربية",
+    "english": "English",
+    "urdu": "اردو"
+  },
+  "login": {
+    "title": "لاگ ان",
+    "subtitle": "لاگ ان کرنے کے لیے اپنے ڈیٹا درج کریں۔",
+    "phoneLabel": "فون نمبر",
+    "phonePlaceholder": "فون نمبر",
+    "passwordLabel": "پاس ورڈ",
+    "passwordPlaceholder": "********",
+    "forgotPassword": "پاس ورڈ بھول گئے؟",
+    "submit": "لاگ ان",
+    "noAccount": "ایپ میں اکاؤنٹ نہیں ہے؟",
+    "registerLink": "رجسٹر کریں",
+    "passwordShow": "پاس ورڈ دکھائیں",
+    "passwordHide": "پاس ورڈ چھپائیں"
+  }
+}

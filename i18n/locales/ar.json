@@ -23,7 +23,16 @@
     "noAccount": "ليس لديك حساب في التطبيق ؟",
     "registerLink": "تسجيل جديد",
     "passwordShow": "إظهار كلمة المرور",
-    "passwordHide": "إخفاء كلمة المرور"
+    "passwordHide": "إخفاء كلمة المرور",
+    "changePasswordTitle": "تغيير كلمة المرور",
+    "changePasswordSubtitle": "الرجاء إدخال رقم الجوال الخاص بك لإرسال كود التفعيل",
+    "next": "التالي",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "otpTitle": "أدخل رمز التفعيل",
+    "otpSubtitle": "أرسلنا رمزاً مكوناً من 6 أرقام إلى جوالك.",
+    "resendCode": "إعادة إرسال الرمز",
+    "verify": "تحقق",
+    "back": "رجوع"
   },
   "orders": {
     "title": "إدارة الطلبات",

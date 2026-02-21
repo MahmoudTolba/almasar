@@ -23,7 +23,16 @@
     "noAccount": "ایپ میں اکاؤنٹ نہیں ہے؟",
     "registerLink": "رجسٹر کریں",
     "passwordShow": "پاس ورڈ دکھائیں",
-    "passwordHide": "پاس ورڈ چھپائیں"
+    "passwordHide": "پاس ورڈ چھپائیں",
+    "changePasswordTitle": "پاس ورڈ تبدیل کریں",
+    "changePasswordSubtitle": "براہ کرم اپنا موبائل نمبر درج کریں تاکہ آپ کو ایکٹیویشن کوڈ بھیجا جا سکے۔",
+    "next": "اگلا",
+    "backToLogin": "لاگ ان پر واپس جائیں",
+    "otpTitle": "تصدیق کا کوڈ درج کریں",
+    "otpSubtitle": "ہم نے آپ کے فون پر 6 ہندسوں کا کوڈ بھیجا ہے۔",
+    "resendCode": "کوڈ دوبارہ بھیجیں",
+    "verify": "تصدیق کریں",
+    "back": "واپس"
   },
   "orders": {
     "title": "آرڈرز کا انتظام",

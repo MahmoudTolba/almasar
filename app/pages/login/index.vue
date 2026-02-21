@@ -33,48 +33,141 @@
         </div>
         <LanguageModal v-model="showLanguageModal" />
 
-     
-        <!-- Title -->
-         <div class="flex flex-col items-start mb-6">
-        <h1 class="text-xl font-bold text-gray-900 text-start mb-1">
-          {{ t('login.title') }}
-        </h1>
-        <p class="text-sm text-gray-500 text-start mb-6">
-          {{ t('login.subtitle') }}
-        </p>
-      </div>
-
-        <!-- Form -->
-        <form @submit.prevent="onSubmit" class="space-y-4">
-          <PhoneInput v-model="phone" />
-          <PasswordInput v-model="password" />
-
-          <!-- Forgot password -->
-          <div class="text-right">
-            <NuxtLink
-              to="#"
-              class="text-sm text-gray-600 hover:text-gray-900"
-            >
-              {{ t('login.forgotPassword') }}
-            </NuxtLink>
+        <!-- Login view -->
+        <template v-if="!showForgotPassword">
+          <div class="flex flex-col items-start mb-6">
+            <h1 class="text-xl font-bold text-gray-900 text-start mb-1">
+              {{ t('login.title') }}
+            </h1>
+            <p class="text-sm text-gray-500 text-start mb-6">
+              {{ t('login.subtitle') }}
+            </p>
           </div>
 
-          <!-- Submit -->
-          <button
-            type="submit"
-            class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
-          >
-            {{ t('login.submit') }}
-          </button>
-        </form>
+          <form @submit.prevent="onSubmit" class="space-y-4">
+            <PhoneInput v-model="phone" />
+            <PasswordInput v-model="password" />
 
-        <!-- Register link -->
-        <p class="text-center text-sm text-gray-600 mt-6">
-          {{ t('login.noAccount') }}
-          <NuxtLink to="/register" class="text-accent font-semibold hover:underline">
-            {{ t('login.registerLink') }}
-          </NuxtLink>
-        </p>
+            <div class="text-right">
+              <button
+                type="button"
+                class="text-sm text-gray-600 hover:text-gray-900"
+                @click.prevent="showForgotPassword = true"
+              >
+                {{ t('login.forgotPassword') }}
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
+            >
+              {{ t('login.submit') }}
+            </button>
+          </form>
+
+          <p class="text-center text-sm text-gray-600 mt-6">
+            {{ t('login.noAccount') }}
+            <NuxtLink to="/register" class="text-accent font-semibold hover:underline">
+              {{ t('login.registerLink') }}
+            </NuxtLink>
+          </p>
+        </template>
+
+        <!-- Forgot password (phone) view -->
+        <template v-else-if="showForgotPassword && forgotStep === 'phone'">
+          <div class="flex flex-col items-start mb-6">
+            <h1 class="text-xl font-bold text-gray-900 text-start mb-1">
+              {{ t('login.changePasswordTitle') }}
+            </h1>
+            <p class="text-sm text-gray-500 text-start mb-6">
+              {{ t('login.changePasswordSubtitle') }}
+            </p>
+          </div>
+
+          <form @submit.prevent="onForgotSubmit" class="space-y-4">
+            <PhoneInput v-model="phone" />
+            <button
+              type="submit"
+              class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
+            >
+              {{ t('login.next') }}
+            </button>
+          </form>
+
+          <p class="text-center text-sm text-gray-600 mt-6">
+            <button
+              type="button"
+              class="text-accent font-semibold hover:underline"
+              @click.prevent="backToLogin"
+            >
+              {{ t('login.backToLogin') }}
+            </button>
+          </p>
+        </template>
+
+        <!-- OTP view -->
+        <template v-else>
+          <div class="flex flex-col items-start mb-6">
+            <h1 class="text-xl font-bold text-gray-900 text-start mb-1" id="otp-title">
+              {{ t('login.otpTitle') }}
+            </h1>
+            <p class="text-sm text-gray-500 text-start mb-6" id="otp-subtitle">
+              {{ t('login.otpSubtitle') }}
+            </p>
+          </div>
+
+          <form @submit.prevent="onOtpVerify" class="space-y-4">
+            <div
+              ref="otpContainerRef"
+              class="flex gap-2 justify-center"
+              role="group"
+              aria-labelledby="otp-title"
+              aria-describedby="otp-subtitle"
+            >
+              <input
+                v-for="i in OTP_LENGTH"
+                :key="i"
+                :value="otp[i - 1]"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                class="w-11 h-12 text-center text-lg font-semibold rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
+                :aria-label="'Digit ' + i"
+                @input="(e) => setOtpDigit(i - 1, e.target.value)"
+                @keydown="(e) => onOtpKeydown(i - 1, e)"
+                @paste="onOtpPaste"
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
+            >
+              {{ t('login.verify') }}
+            </button>
+
+            <p class="text-center text-sm text-gray-600">
+              <button
+                type="button"
+                class="text-gray-600 hover:text-gray-900"
+                @click.prevent="onResendCode"
+              >
+                {{ t('login.resendCode') }}
+              </button>
+            </p>
+          </form>
+
+          <p class="text-center text-sm text-gray-600 mt-6">
+            <button
+              type="button"
+              class="text-accent font-semibold hover:underline"
+              @click.prevent="backToPhoneStep"
+            >
+              {{ t('login.back') }}
+            </button>
+          </p>
+        </template>
       </div>
     </div>
   </div>
@@ -88,9 +181,75 @@ const { t } = useI18n()
 const phone = ref('')
 const password = ref('')
 const showLanguageModal = ref(false)
+const showForgotPassword = ref(false)
+const forgotStep = ref('phone')
+const otp = ref('')
+const otpContainerRef = ref(null)
+
+const OTP_LENGTH = 6
 
 function onSubmit() {
-  // Placeholder: no API yet
   console.log('Login', { phone: phone.value, password: password.value })
+}
+
+function backToLogin() {
+  showForgotPassword.value = false
+  forgotStep.value = 'phone'
+}
+
+function backToPhoneStep() {
+  forgotStep.value = 'phone'
+  otp.value = ''
+}
+
+function setOtpDigit(index, value) {
+  const digit = value.replace(/\D/g, '').slice(-1)
+  const arr = otp.value.split('')
+  arr[index] = digit
+  otp.value = arr.join('').slice(0, OTP_LENGTH)
+  if (digit && index < OTP_LENGTH - 1) {
+    nextTick(() => {
+      const inputs = otpContainerRef.value?.querySelectorAll('input')
+      inputs?.[index + 1]?.focus()
+    })
+  }
+}
+
+function onOtpKeydown(index, e) {
+  if (e.key === 'Backspace' && !otp.value[index] && index > 0) {
+    const arr = otp.value.split('')
+    arr[index - 1] = ''
+    otp.value = arr.join('')
+    nextTick(() => {
+      const inputs = otpContainerRef.value?.querySelectorAll('input')
+      inputs?.[index - 1]?.focus()
+    })
+  }
+}
+
+function onOtpPaste(e) {
+  e.preventDefault()
+  const pasted = e.clipboardData?.getData('text').replace(/\D/g, '').slice(0, OTP_LENGTH) ?? ''
+  otp.value = pasted
+  const nextIndex = Math.min(pasted.length, OTP_LENGTH - 1)
+  nextTick(() => {
+    const inputs = otpContainerRef.value?.querySelectorAll('input')
+    inputs?.[nextIndex]?.focus()
+  })
+}
+
+async function onForgotSubmit() {
+  forgotStep.value = 'otp'
+  otp.value = ''
+  await nextTick()
+  otpContainerRef.value?.querySelector('input')?.focus()
+}
+
+function onOtpVerify() {
+  console.log('Verify OTP', { phone: phone.value, otp: otp.value })
+}
+
+function onResendCode() {
+  console.log('Resend code', { phone: phone.value })
 }
 </script>

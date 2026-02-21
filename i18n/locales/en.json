@@ -24,5 +24,31 @@
     "registerLink": "Register",
     "passwordShow": "Show password",
     "passwordHide": "Hide password"
+  },
+  "orders": {
+    "title": "Orders Management",
+    "subtitle": "You can track customer orders after the initial payment",
+    "searchPlaceholder": "Search by order number, customer name...",
+    "orderId": "Order ID",
+    "client": "Client",
+    "serviceType": "Service Type",
+    "peopleCount": "People",
+    "peopleSuffix": "people",
+    "amount": "Amount",
+    "date": "Date",
+    "status": "Status",
+    "actions": "Actions",
+    "currency": "SAR",
+    "orderDetails": "Order Details",
+    "noOrders": "No matching orders",
+    "tabNew": "New",
+    "tabConfirmed": "Confirmed",
+    "tabCompleted": "Completed",
+    "tabCancelled": "Cancelled",
+    "status_pending_payment": "Initial payment",
+    "status_confirmed": "Confirmed",
+    "status_completed": "Completed",
+    "status_rejected": "Rejected",
+    "status_cancelled": "Cancelled"
   }
 }

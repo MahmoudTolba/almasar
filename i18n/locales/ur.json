@@ -24,5 +24,31 @@
     "registerLink": "رجسٹر کریں",
     "passwordShow": "پاس ورڈ دکھائیں",
     "passwordHide": "پاس ورڈ چھپائیں"
+  },
+  "orders": {
+    "title": "آرڈرز کا انتظام",
+    "subtitle": "ابتدائی ادائیگی کے بعد آپ گاہکوں کے آرڈرز دیکھ سکتے ہیں",
+    "searchPlaceholder": "آرڈر نمبر، گاہک کے نام سے تلاش کریں...",
+    "orderId": "آرڈر نمبر",
+    "client": "گاہک",
+    "serviceType": "سروس کی قسم",
+    "peopleCount": "افراد",
+    "peopleSuffix": "افراد",
+    "amount": "رقم",
+    "date": "تاریخ",
+    "status": "حالت",
+    "actions": "اقدامات",
+    "currency": "ر.س",
+    "orderDetails": "آرڈر کی تفصیل",
+    "noOrders": "کوئی مماثل آرڈر نہیں",
+    "tabNew": "نئی",
+    "tabConfirmed": "تصدیق شدہ",
+    "tabCompleted": "مکمل",
+    "tabCancelled": "منسوخ",
+    "status_pending_payment": "ابتدائی ادائیگی",
+    "status_confirmed": "تصدیق شدہ",
+    "status_completed": "مکمل",
+    "status_rejected": "مسترد",
+    "status_cancelled": "منسوخ"
   }
 }

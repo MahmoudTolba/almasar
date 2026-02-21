@@ -5,6 +5,7 @@
         v-if="modelValue"
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40"
         @click.self="close"
+        
       >
         <div class="w-full max-w-md bg-white rounded-xl shadow-lg border border-gray-100 p-6">
           <h2 class="text-xl font-bold text-gray-900 text-center mb-1">
@@ -25,8 +26,10 @@
                 : 'bg-white border-gray-200 hover:border-gray-300'"
               @click="selectedId = opt.id"
             >
-              <span class="text-xl shrink-0" aria-hidden="true">{{ opt.flag }}</span>
-              <span class="flex-1 font-medium text-gray-900">{{ t(opt.labelKey) }}</span>
+              <span class="flex items-center gap-2 flex-1 font-medium text-gray-900">
+                {{ t(opt.labelKey) }}
+                <span class="text-xl shrink-0" aria-hidden="true">{{ opt.flag }}</span>
+              </span>
               <span
                 class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0"
                 :class="selectedId === opt.id ? 'border-accent bg-accent' : 'border-gray-300'"

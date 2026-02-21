@@ -77,6 +77,28 @@
 </template>
 
 <script setup>
+import logoutIcon from '~/assets/icons/logout-icon.svg'
+import borderIcon from '~/assets/icons/border-icon.svg'
+import gorderIcon from '~/assets/icons/gorder-icon.svg'
+import breportsIcon from '~/assets/icons/breports-icon.svg'
+import greportsIcon from '~/assets/icons/greports-icon.svg'
+import bratingIcon from '~/assets/icons/brating-icon.svg'
+import gratingIcons from '~/assets/icons/grating-icons.svg'
+import bsupIcon from '~/assets/icons/bsup-icon.svg'
+import gsupIcon from '~/assets/icons/gsup-icon.svg'
+import buserIcon from '~/assets/icons/buser-icon.svg'
+import guserIcon from '~/assets/icons/guser-icon.svg'
+import bsettingIcon from '~/assets/icons/bsetting-icon.svg'
+import gsettingIcon from '~/assets/icons/gsetting-icon.svg'
+import bcontactIcon from '~/assets/icons/bcontact-icon.svg'
+import gcontactIcon from '~/assets/icons/gcontact-icon.svg'
+import baboutIcon from '~/assets/icons/babout-icon.svg'
+import gaboutIcon from '~/assets/icons/gabout-icon.svg'
+import btermsIcon from '~/assets/icons/bterms-icon.svg'
+import gtermsIcon from '~/assets/icons/gterms-icon.svg'
+import bprivcyIcon from '~/assets/icons/bprivcy-icon.svg'
+import gprivcyIcon from '~/assets/icons/gprivcy-icon.svg'
+
 const { isOpen, close } = useSidebar()
 
 const hoveredItem = ref(null)
@@ -92,68 +114,16 @@ const onNavClick = (navigate) => {
   closeOnMobile()
 }
 
-const logoutIcon = new URL('../assets/icons/logout-icon.svg', import.meta.url).href
-
 const menuItems = [
-  { 
-    label: 'إدارة الطلبات', 
-    to: '/', 
-    bIcon: new URL('../assets/icons/border-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gorder-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'الإحصائيات والتقارير', 
-    to: '/stats', 
-    bIcon: new URL('../assets/icons/breports-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/greports-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'إدارة التقييمات', 
-    to: '/reviews', 
-    bIcon: new URL('../assets/icons/brating-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/grating-icons.svg', import.meta.url).href,
-  },
-  { 
-    label: 'الاشتراك والعمولة', 
-    to: '/subscription', 
-    bIcon: new URL('../assets/icons/bsup-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gsup-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'الملف الشخصي', 
-    to: '/profile', 
-    bIcon: new URL('../assets/icons/buser-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/guser-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'إعدادات عامة', 
-    to: '/settings', 
-    bIcon: new URL('../assets/icons/bsetting-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gsetting-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'التواصل مع الإدارة', 
-    to: '/contact', 
-    bIcon: new URL('../assets/icons/bcontact-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gcontact-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'من نحن', 
-    to: '/about', 
-    bIcon: new URL('../assets/icons/babout-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gabout-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'الشروط والأحكام', 
-    to: '/terms', 
-    bIcon: new URL('../assets/icons/bterms-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gterms-icon.svg', import.meta.url).href,
-  },
-  { 
-    label: 'سياسة الخصوصية', 
-    to: '/privacy', 
-    bIcon: new URL('../assets/icons/bprivcy-icon.svg', import.meta.url).href,
-    gIcon: new URL('../assets/icons/gprivcy-icon.svg', import.meta.url).href,
-  },
+  { label: 'إدارة الطلبات', to: '/', bIcon: borderIcon, gIcon: gorderIcon },
+  { label: 'الإحصائيات والتقارير', to: '/stats', bIcon: breportsIcon, gIcon: greportsIcon },
+  { label: 'إدارة التقييمات', to: '/reviews', bIcon: bratingIcon, gIcon: gratingIcons },
+  { label: 'الاشتراك والعمولة', to: '/subscription', bIcon: bsupIcon, gIcon: gsupIcon },
+  { label: 'الملف الشخصي', to: '/profile', bIcon: buserIcon, gIcon: guserIcon },
+  { label: 'إعدادات عامة', to: '/settings', bIcon: bsettingIcon, gIcon: gsettingIcon },
+  { label: 'التواصل مع الإدارة', to: '/contact', bIcon: bcontactIcon, gIcon: gcontactIcon },
+  { label: 'من نحن', to: '/about', bIcon: baboutIcon, gIcon: gaboutIcon },
+  { label: 'الشروط والأحكام', to: '/terms', bIcon: btermsIcon, gIcon: gtermsIcon },
+  { label: 'سياسة الخصوصية', to: '/privacy', bIcon: bprivcyIcon, gIcon: gprivcyIcon },
 ]
 </script>

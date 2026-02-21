@@ -24,5 +24,31 @@
     "registerLink": "تسجيل جديد",
     "passwordShow": "إظهار كلمة المرور",
     "passwordHide": "إخفاء كلمة المرور"
+  },
+  "orders": {
+    "title": "إدارة الطلبات",
+    "subtitle": "يمكنك متابعة طلبات العملاء بعد دفع المبلغ المبدئي",
+    "searchPlaceholder": "البحث برقم الطلب، اسم العميل...",
+    "orderId": "رقم الطلب",
+    "client": "العميل",
+    "serviceType": "نوع الخدمة",
+    "peopleCount": "عدد الأفراد",
+    "peopleSuffix": "أفراد",
+    "amount": "المبلغ",
+    "date": "التاريخ",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "currency": "ر.س",
+    "orderDetails": "تفاصيل الطلب",
+    "noOrders": "لا توجد طلبات مطابقة",
+    "tabNew": "جديدة",
+    "tabConfirmed": "مؤكدة",
+    "tabCompleted": "مكتملة",
+    "tabCancelled": "ملغاة",
+    "status_pending_payment": "مدفوع مبدئيا",
+    "status_confirmed": "مؤكدة",
+    "status_completed": "مكتملة",
+    "status_rejected": "مرفوضة",
+    "status_cancelled": "ملغاة"
   }
 }

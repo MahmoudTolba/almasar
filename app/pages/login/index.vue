@@ -14,32 +14,35 @@
       </svg>
     </div>
 
-    <div class="w-full max-w-md relative z-10">
+    <div class="w-full max-w-4xl relative z-10 flex flex-col items-center justify-center">
       <!-- Card -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 w-full max-w-xl">
         <!-- Language selector (top-right in RTL) -->
-        <div class="flex justify-start mb-6">
+          <div class="flex justify-between items-center mb-6">
+             <!-- Logo -->
+        <div class="flex flex-col items-start mb-6">
+          <img
+            src="~/assets/images/logo.png"
+            :alt="t('common.appName')"
+            class="h-28 sm:h-32 w-auto max-w-[200px] sm:max-w-[240px] object-contain"
+          />
+          <!-- <p class="text-lg font-semibold text-accent">{{ t('common.appName') }}</p> -->
+        </div>
+
           <LanguageButton @click="showLanguageModal = true" />
         </div>
         <LanguageModal v-model="showLanguageModal" />
 
-        <!-- Logo -->
-        <div class="flex flex-col items-center mb-6">
-          <img
-            src="~/assets/images/logo.png"
-            :alt="t('common.appName')"
-            class="h-16 w-auto max-w-[160px] object-contain mb-2"
-          />
-          <p class="text-lg font-semibold text-accent">{{ t('common.appName') }}</p>
-        </div>
-
+     
         <!-- Title -->
-        <h1 class="text-xl font-bold text-gray-900 text-center mb-1">
+         <div class="flex flex-col items-start mb-6">
+        <h1 class="text-xl font-bold text-gray-900 text-start mb-1">
           {{ t('login.title') }}
         </h1>
-        <p class="text-sm text-gray-500 text-center mb-6">
+        <p class="text-sm text-gray-500 text-start mb-6">
           {{ t('login.subtitle') }}
         </p>
+      </div>
 
         <!-- Form -->
         <form @submit.prevent="onSubmit" class="space-y-4">

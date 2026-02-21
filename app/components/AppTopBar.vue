@@ -29,7 +29,7 @@
     </div>
 
     <div class="flex items-center gap-3   px-3 py-1.5 rounded-lg">
-      <div class="w-7 h-7 lg:w-8 lg:h-8 rounded-md border border-[#AB8740] flex items-center justify-center text-white overflow-hidden ">
+      <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-md border border-[#AB8740] flex items-center justify-center text-white overflow-hidden ">
         <img src="~/assets/images/logo.png" alt="S" class="w-full h-full object-contain" />
       </div>
       <span class="text-xs sm:text-sm lg:text-sm font-semibold text-gray-900 truncate max-w-[100px] sm:max-w-[140px] lg:max-w-none">شركة الوالي</span>

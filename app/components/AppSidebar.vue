@@ -17,7 +17,7 @@
         <img
           src="~/assets/images/logo.png"
           alt="Al Masar"
-          class="h-30 w-auto max-w-[140px] object-contain"
+          class="h-24 sm:h-28 w-auto max-w-[180px] object-contain"
         />
         <!-- Close button mobile -->
         <button @click="close" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 lg:hidden text-gray-500">

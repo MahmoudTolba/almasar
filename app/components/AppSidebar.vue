@@ -65,6 +65,7 @@
       <div class="p-4 border-t pb-8">
         <button
           class="flex items-center px-6 py-3 w-full text-red-600 hover:bg-red-50 transition-colors rounded-lg"
+          
         >
           <span class="w-5 h-5 ml-3">
             <img :src="logoutIcon" alt="" class="w-full h-full" />

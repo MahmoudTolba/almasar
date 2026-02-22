@@ -157,5 +157,22 @@
     "typePaymentReceived": "ادائیگی موصول",
     "typeDocumentsUploaded": "دستاویزات اپ لوڈ",
     "typeCancelled": "منسوخ آرڈر"
+  },
+  "reviews": {
+    "title": "ریویوز",
+    "subtitle": "تمام ریویوز اور تبصرے دیکھیں",
+    "cardNeedsFollowUp": "متابعہ کی ضرورت",
+    "cardNeedsFollowUpSubtitle": "منفی ریویوز",
+    "cardPositiveReviews": "مثبت ریویوز",
+    "cardPositiveReviewsSubtitle": "کل ریویوز میں سے",
+    "cardTotalReviews": "کل ریویوز",
+    "cardTotalReviewsSubtitle": "گاہکوں کی طرف سے ریویوز",
+    "cardOverallRating": "مجموعی درجہ بندی",
+    "cardOverallRatingSubtitle": "5 ستاروں میں سے",
+    "quickStatsTitle": "فوری شماریات",
+    "excellentReviews": "بہترین ریویوز",
+    "goodReviews": "اچھے ریویوز",
+    "poorReviews": "کمزور ریویوز",
+    "distributionTitle": "ریویوز کی تقسیم"
   }
 }

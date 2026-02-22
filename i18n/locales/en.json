@@ -157,5 +157,22 @@
     "typePaymentReceived": "Payment received",
     "typeDocumentsUploaded": "Documents uploaded",
     "typeCancelled": "Cancelled order"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "subtitle": "Follow all reviews and comments",
+    "cardNeedsFollowUp": "Needs follow-up",
+    "cardNeedsFollowUpSubtitle": "Negative reviews",
+    "cardPositiveReviews": "Positive reviews",
+    "cardPositiveReviewsSubtitle": "of total reviews",
+    "cardTotalReviews": "Total reviews",
+    "cardTotalReviewsSubtitle": "reviews from customers",
+    "cardOverallRating": "Overall rating",
+    "cardOverallRatingSubtitle": "out of 5 stars",
+    "quickStatsTitle": "Quick statistics",
+    "excellentReviews": "Excellent reviews",
+    "goodReviews": "Good reviews",
+    "poorReviews": "Poor reviews",
+    "distributionTitle": "Reviews distribution"
   }
 }

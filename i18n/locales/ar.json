@@ -157,5 +157,22 @@
     "typePaymentReceived": "دفع مستلم",
     "typeDocumentsUploaded": "مستندات مرفوعة",
     "typeCancelled": "طلب ملغي"
+  },
+  "reviews": {
+    "title": "التقييمات",
+    "subtitle": "متابعة جميع التقييمات والمراجعات",
+    "cardNeedsFollowUp": "تحتاج متابعة",
+    "cardNeedsFollowUpSubtitle": "تقييمات سلبية",
+    "cardPositiveReviews": "التقييمات الإيجابية",
+    "cardPositiveReviewsSubtitle": "من إجمالي التقييمات",
+    "cardTotalReviews": "إجمالي التقييمات",
+    "cardTotalReviewsSubtitle": "تقييم من العملاء",
+    "cardOverallRating": "التقييم العام",
+    "cardOverallRatingSubtitle": "من 5 نجوم",
+    "quickStatsTitle": "إحصائيات سريعة",
+    "excellentReviews": "تقييمات ممتازة",
+    "goodReviews": "تقييمات جيدة",
+    "poorReviews": "تقييمات ضعيفة",
+    "distributionTitle": "توزيع التقييمات"
   }
 }

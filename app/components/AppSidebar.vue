@@ -122,7 +122,7 @@ const menuItems = [
   { label: 'الملف الشخصي', to: '/profile', bIcon: buserIcon, gIcon: guserIcon },
   { label: 'إعدادات عامة', to: '/settings', bIcon: bsettingIcon, gIcon: gsettingIcon },
   { label: 'التواصل مع الإدارة', to: '/contact', bIcon: bcontactIcon, gIcon: gcontactIcon },
-  { label: 'من نحن', to: '/about', bIcon: baboutIcon, gIcon: gaboutIcon },
+  { label: 'من نحن', to: '/AboutUs', bIcon: baboutIcon, gIcon: gaboutIcon },
   { label: 'الشروط والأحكام', to: '/terms', bIcon: btermsIcon, gIcon: gtermsIcon },
   { label: 'سياسة الخصوصية', to: '/privacy', bIcon: bprivcyIcon, gIcon: gprivcyIcon },
 ]

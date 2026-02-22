@@ -62,5 +62,29 @@
   },
   "register": {
     "title": "Register"
+  },
+  "aboutUs": {
+    "title": "About Us",
+    "subtitle": "We are Al-Masar Al-Dhaki, a company that provides smart services.",
+    "paragraph1": "This is example text that can be replaced in the same space. It has been generated from an Arabic text generator, where you can generate this text or many other texts in addition to increasing the number of characters the application generates. If you need a larger number of paragraphs, the Arabic text generator allows you to increase the number of paragraphs as you wish. The text will not look divided or contain linguistic errors. The Arabic text generator is useful for website designers in particular.",
+    "paragraph2": "This is example text that can be replaced in the same space. It has been generated from an Arabic text generator, where you can generate this text or many other texts in addition to increasing the number of characters the application generates. If you need a larger number of paragraphs, the Arabic text generator allows you to increase the number of paragraphs as you wish. The text will not look divided or contain linguistic errors. The Arabic text generator is useful for website designers in particular.",
+    "paragraph3": "This is example text that can be replaced in the same space. It has been generated from an Arabic text generator, where you can generate this text or many other texts in addition to increasing the number of characters the application generates. If you need a larger number of paragraphs, the Arabic text generator allows you to increase the number of paragraphs as you wish. The text will not look divided or contain linguistic errors. The Arabic text generator is useful for website designers in particular.",
+    "logoAlt": "About Us logo"
+  },
+  "terms": {
+    "title": "Terms and Conditions",
+    "subtitle": "Please read the terms and conditions carefully before using the service.",
+    "paragraph1": "This is example text that can be replaced in the same space. It has been generated for use in the terms and conditions section. You may use this text or replace it with your own content as needed.",
+    "paragraph2": "If you need a larger number of paragraphs, you can add as many as you wish. The text will not look divided or contain linguistic errors. This format is useful for legal and policy pages in particular.",
+    "paragraph3": "Customers often need to see a realistic preview of the page layout. Therefore, placeholder text is used on the design so that the customer can see the complete layout before the final content is added.",
+    "logoAlt": "Terms and Conditions logo"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Please read the privacy policy carefully before using the service.",
+    "paragraph1": "This is example text that can be replaced in the same space. It has been generated for use in the privacy policy section. You may use this text or replace it with your own content as needed.",
+    "paragraph2": "If you need a larger number of paragraphs, you can add as many as you wish. The text will not look divided or contain linguistic errors. This format is useful for legal and policy pages in particular.",
+    "paragraph3": "Customers often need to see a realistic preview of the page layout. Therefore, placeholder text is used on the design so that the customer can see the complete layout before the final content is added.",
+    "logoAlt": "Privacy Policy logo"
   }
 }

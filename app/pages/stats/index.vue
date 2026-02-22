@@ -261,22 +261,18 @@
 
     <!-- Summary cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-      <!-- Monthly Goal -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-s-4 border-s-blue-500 p-5 flex flex-col gap-3">
-        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 text-accent" aria-hidden="true">
+       <!-- Growth Rate -->
+       <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-s-4 border-s-green-500 p-5 flex flex-col gap-3">
+        <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center shrink-0 text-green-600" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
           </svg>
         </div>
-        <p class="text-sm font-medium text-gray-600">{{ t('stats.monthlyGoal') }}</p>
-        <p class="text-xl font-bold text-gray-900">{{ t('stats.monthlyGoalValue') }}</p>
-        <div class="flex flex-col gap-1.5 mt-1">
-          <span class="text-xs text-gray-500">{{ t('stats.monthlyGoalProgress') }}</span>
-          <div class="w-full bg-gray-200 rounded-full h-2">
-            <div class="bg-blue-500 rounded-full h-2" style="width: 83.8%" />
-          </div>
-        </div>
+        <p class="text-sm font-medium text-gray-600">{{ t('stats.growthRate') }}</p>
+        <p class="text-xl font-bold text-green-600">{{ t('stats.growthRateValue') }}</p>
+        <p class="text-xs text-gray-500">{{ t('stats.growthRateSubtitle') }}</p>
       </div>
+     
 
       <!-- Customer Satisfaction Rate -->
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-s-4 border-s-accent p-5 flex flex-col gap-3">
@@ -293,16 +289,22 @@
         <p class="text-xs text-gray-500">{{ t('stats.satisfactionSubtitle') }}</p>
       </div>
 
-      <!-- Growth Rate -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-s-4 border-s-green-500 p-5 flex flex-col gap-3">
-        <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center shrink-0 text-green-600" aria-hidden="true">
+     
+       <!-- Monthly Goal -->
+       <div class="bg-white rounded-xl shadow-sm border border-gray-100 border-s-4 border-s-blue-500 p-5 flex flex-col gap-3">
+        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 text-accent" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
           </svg>
         </div>
-        <p class="text-sm font-medium text-gray-600">{{ t('stats.growthRate') }}</p>
-        <p class="text-xl font-bold text-green-600">{{ t('stats.growthRateValue') }}</p>
-        <p class="text-xs text-gray-500">{{ t('stats.growthRateSubtitle') }}</p>
+        <p class="text-sm font-medium text-gray-600">{{ t('stats.monthlyGoal') }}</p>
+        <p class="text-xl font-bold text-gray-900">{{ t('stats.monthlyGoalValue') }}</p>
+        <div class="flex flex-col gap-1.5 mt-1">
+          <span class="text-xs text-gray-500">{{ t('stats.monthlyGoalProgress') }}</span>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-blue-500 rounded-full h-2" style="width: 83.8%" />
+          </div>
+        </div>
       </div>
     </div>
   </div>

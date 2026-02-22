@@ -410,6 +410,30 @@ const LINE_MONTH_KEYS = ['stats.monthJan', 'stats.monthFeb', 'stats.monthMar', '
 const REVENUE_VALUES = [120000, 160000, 200000, 260000, 300000, 360000]
 const BOOKINGS_VALUES = [80000, 110000, 140000, 180000, 220000, 270000]
 
+// const lineChartData = computed(() => {
+//   void locale.value
+//   return {
+//     labels: LINE_MONTH_KEYS.map((key) => t(key)),
+//     datasets: [
+//       {
+//         label: t('stats.revenue'),
+//         data: REVENUE_VALUES,
+//         borderColor: '#22C55E',
+//         backgroundColor: 'rgba(34, 197, 94, 0.15)',
+//         fill: true,
+//         tension: 0.3,
+//       },
+//       {
+//         label: t('stats.bookings'),
+//         data: BOOKINGS_VALUES,
+//         borderColor: '#3B82F6',
+//         backgroundColor: 'transparent',
+//         fill: false,
+//         tension: 0.3,
+//       },
+//     ],
+//   }
+// })
 const lineChartData = computed(() => {
   void locale.value
   return {
@@ -418,10 +442,12 @@ const lineChartData = computed(() => {
       {
         label: t('stats.revenue'),
         data: REVENUE_VALUES,
-        borderColor: '#22C55E',
-        backgroundColor: 'rgba(34, 197, 94, 0.15)',
+        borderColor: '#10B981',
+        backgroundColor: 'rgba(16,185,129,0.15)',
         fill: true,
-        tension: 0.3,
+        tension: 0.4,
+        borderWidth: 3,
+        pointRadius: 0,
       },
       {
         label: t('stats.bookings'),
@@ -429,39 +455,87 @@ const lineChartData = computed(() => {
         borderColor: '#3B82F6',
         backgroundColor: 'transparent',
         fill: false,
-        tension: 0.3,
+        tension: 0.4,
+        borderWidth: 2,
+        pointRadius: 0,
       },
     ],
   }
 })
-
-const lineChartOptions = computed(() => {
-  void locale.value
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: { display: false },
+const lineChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  interaction: {
+    mode: 'index',
+    intersect: false,
+  },
+  plugins: {
+    legend: {
+      position: 'bottom',
+      labels: {
+        usePointStyle: true,
+        pointStyle: 'circle',
+        padding: 20,
       },
-      y: {
-        min: 0,
-        max: 380000,
-        ticks: {
-          stepSize: 95000,
-          callback(value) {
-            return Number(value).toLocaleString()
-          },
+    },
+    tooltip: {
+      backgroundColor: '#111827',
+      titleColor: '#fff',
+      bodyColor: '#e5e7eb',
+      padding: 12,
+      borderWidth: 0,
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: '#6B7280',
+      },
+    },
+    y: {
+      grid: {
+        color: 'rgba(0,0,0,0.05)',
+      },
+      ticks: {
+        color: '#6B7280',
+        callback(value) {
+          return Number(value).toLocaleString()
         },
       },
     },
-    plugins: {
-      legend: {
-        position: 'bottom',
-      },
-    },
-  }
-})
+  },
+}
+
+// const lineChartOptions = computed(() => {
+//   void locale.value
+//   return {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     scales: {
+//       x: {
+//         grid: { display: false },
+//       },
+//       y: {
+//         min: 0,
+//         max: 380000,
+//         ticks: {
+//           stepSize: 95000,
+//           callback(value) {
+//             return Number(value).toLocaleString()
+//           },
+//         },
+//       },
+//     },
+//     plugins: {
+//       legend: {
+//         position: 'bottom',
+//       },
+//     },
+//   }
+// })
 
 // Chart 3: Order Status (horizontal bar)
 const ORDER_STATUS_DATA = [

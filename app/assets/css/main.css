@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Full height chain for fixed layout */
+html,
+body,
+#__nuxt {
+  height: 100%;
+}
+
 /* IBM Plex Sans Arabic font faces */
 @font-face {
   font-family: "IBMPlexSansArabic";

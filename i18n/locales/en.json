@@ -148,5 +148,14 @@
     "growthRate": "Growth Rate",
     "growthRateValue": "+12.5%",
     "growthRateSubtitle": "compared to last month"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Follow all order notifications and updates",
+    "newBadge": "{count} new",
+    "typeNewOrder": "New order",
+    "typePaymentReceived": "Payment received",
+    "typeDocumentsUploaded": "Documents uploaded",
+    "typeCancelled": "Cancelled order"
   }
 }

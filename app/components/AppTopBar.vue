@@ -10,22 +10,23 @@
         </span>
       </button>
 
-      <div class="relative border bg-[#AB87401A] rounded-md p-2 gap-2">
-        <button class="text-gray-400 hover:text-gray-600">
-          <span class="w-5 h-5 inline-block">
-            <img
-              src="~/assets/icons/notification-bing.svg"
-              alt="Bell"
-              class="w-full h-full object-contain"
-            />
-          </span>
-        </button>
+      <NuxtLink
+        to="/notifications"
+        class="relative border bg-[#AB87401A] rounded-md p-2 gap-2 flex items-center text-gray-400 hover:text-gray-600"
+      >
+        <span class="w-5 h-5 inline-block">
+          <img
+            src="~/assets/icons/notification-bing.svg"
+            alt="Bell"
+            class="w-full h-full object-contain"
+          />
+        </span>
         <span
           class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white"
         >
           2
         </span>
-      </div>
+      </NuxtLink>
     </div>
 
     <div class="flex items-center gap-3   px-3 py-1.5 rounded-lg">

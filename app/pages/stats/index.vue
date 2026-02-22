@@ -121,32 +121,7 @@
 
     <!-- Chart cards 2x2 -->
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
-      <!-- 1. Distribution by Destination (Pie) -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
-        <div class="flex flex-row justify-between items-center gap-2 mb-4">
-          <h2 class="text-base font-semibold text-gray-900 text-end">{{ t('stats.distributionByDestination') }}</h2>
-          <button
-            type="button"
-            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 border border-gray-200 transition-colors shrink-0"
-            @click="onExportExcel"
-          >
-            <span class="w-5 h-5 shrink-0 text-accent" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
-            </span>
-            {{ t('stats.exportExcel') }}
-          </button>
-        </div>
-        <div class="flex-1 min-h-[260px] flex items-center justify-center">
-          <ClientOnly>
-            <Chart type="pie" :data="pieChartData" :options="pieChartOptions" class="w-full max-w-[280px]" />
-            <template #fallback>
-              <div class="text-gray-400 text-sm">—</div>
-            </template>
-          </ClientOnly>
-        </div>
-      </div>
+     
 
       <!-- 2. Bookings and Revenue Growth (Line) -->
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
@@ -174,21 +149,34 @@
           </ClientOnly>
         </div>
       </div>
-
-      <!-- 3. Order Status (Horizontal bars) -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
+       <!-- 1. Distribution by Destination (Pie) -->
+       <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
         <div class="flex flex-row justify-between items-center gap-2 mb-4">
-          <h2 class="text-base font-semibold text-gray-900 text-end">{{ t('stats.orderStatus') }}</h2>
+          <h2 class="text-base font-semibold text-gray-900 text-end">{{ t('stats.distributionByDestination') }}</h2>
+          <button
+            type="button"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 border border-gray-200 transition-colors shrink-0"
+            @click="onExportExcel"
+          >
+            <span class="w-5 h-5 shrink-0 text-accent" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+            </span>
+            {{ t('stats.exportExcel') }}
+          </button>
         </div>
-        <div class="flex-1 min-h-[260px]">
+        <div class="flex-1 min-h-[260px] flex items-center justify-center">
           <ClientOnly>
-            <Chart type="bar" :data="orderStatusChartData" :options="orderStatusChartOptions" class="w-full h-full" />
+            <Chart type="pie" :data="pieChartData" :options="pieChartOptions" class="w-full max-w-[280px]" />
             <template #fallback>
-              <div class="h-full flex items-center justify-center text-gray-400 text-sm">—</div>
+              <div class="text-gray-400 text-sm">—</div>
             </template>
           </ClientOnly>
         </div>
       </div>
+
+     
 
       <!-- 4. Distribution by Service Type (Horizontal bars) -->
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
@@ -204,11 +192,25 @@
           </ClientOnly>
         </div>
       </div>
+       <!-- 3. Order Status (Horizontal bars) -->
+       <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
+        <div class="flex flex-row justify-between items-center gap-2 mb-4">
+          <h2 class="text-base font-semibold text-gray-900 text-end">{{ t('stats.orderStatus') }}</h2>
+        </div>
+        <div class="flex-1 min-h-[260px]">
+          <ClientOnly>
+            <Chart type="bar" :data="orderStatusChartData" :options="orderStatusChartOptions" class="w-full h-full" />
+            <template #fallback>
+              <div class="h-full flex items-center justify-center text-gray-400 text-sm">—</div>
+            </template>
+          </ClientOnly>
+        </div>
+      </div>
     </div>
 
     <!-- Most Requested Offers table -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 mt-8">
-      <h2 class="text-base font-semibold text-gray-900 text-end mb-4">{{ t('stats.mostRequestedOffers') }}</h2>
+      <h2 class="text-base font-semibold text-gray-900 text-start mb-4">{{ t('stats.mostRequestedOffers') }}</h2>
       <div class="overflow-x-auto">
         <table class="w-full min-w-[600px] text-start border-collapse">
           <thead>

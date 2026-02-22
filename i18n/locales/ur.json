@@ -148,5 +148,14 @@
     "growthRate": "ترقی کی شرح",
     "growthRateValue": "+12.5%",
     "growthRateSubtitle": "گزشتہ مہینے سے موازنہ"
+  },
+  "notifications": {
+    "title": "نوٹیفکیشنز",
+    "subtitle": "تمام آرڈر نوٹیفکیشنز اور اپ ڈیٹس دیکھیں",
+    "newBadge": "{count} نئی",
+    "typeNewOrder": "نیا آرڈر",
+    "typePaymentReceived": "ادائیگی موصول",
+    "typeDocumentsUploaded": "دستاویزات اپ لوڈ",
+    "typeCancelled": "منسوخ آرڈر"
   }
 }

@@ -173,6 +173,9 @@
     "excellentReviews": "تقييمات ممتازة",
     "goodReviews": "تقييمات جيدة",
     "poorReviews": "تقييمات ضعيفة",
-    "distributionTitle": "توزيع التقييمات"
+    "distributionTitle": "توزيع التقييمات",
+    "allReviewsTitle": "جميع التقييمات",
+    "sentimentPositive": "إيجابي",
+    "sentimentNegative": "سلبي"
   }
 }

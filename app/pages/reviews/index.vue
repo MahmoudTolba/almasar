@@ -66,11 +66,11 @@
     </div>
 
     <!-- Quick Statistics + Distribution -->
-    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
      
 
       <!-- Reviews Distribution -->
-      <div class="bg-white rounded-xl border border-[#0000000D] shadow-sm p-5 ">
+      <div class="bg-white rounded-xl border border-[#0000000D] shadow-sm p-5 lg:col-span-8">
         <h2 class="text-lg font-semibold text-gray-900 mb-4">
           {{ t('reviews.distributionTitle') }}
         </h2>
@@ -96,7 +96,7 @@
         </div>
       </div>
        <!-- Quick Statistics -->
-       <div class="bg-white rounded-xl border border-[#0000000D] shadow-sm p-5 flex flex-col gap-4">
+       <div class="bg-white rounded-xl border border-[#0000000D] shadow-sm p-5 flex flex-col gap-4 lg:col-span-4">
         <h2 class="text-lg font-semibold text-gray-900">
           {{ t('reviews.quickStatsTitle') }}
         </h2>
@@ -125,6 +125,135 @@
               <span v-else-if="stat.type === 'good'" aria-hidden="true">&#128528;</span>
               <span v-else aria-hidden="true">&#128577;</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Reviews -->
+    <div class="mt-8">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('reviews.allReviewsTitle') }}
+      </h2>
+      <div class="flex flex-col gap-4">
+        <div
+          v-for="review in allReviews"
+          :key="review.id"
+          class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex flex-col gap-3"
+        >
+          <!-- Reviewer + sentiment -->
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0 text-blue-600"
+                aria-hidden="true"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998-0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">{{ review.name }}</p>
+                <p class="text-sm text-gray-500">{{ review.phone }}</p>
+              </div>
+            </div>
+            <span
+              class="shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium"
+              :class="review.sentiment === 'positive' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
+            >
+              {{ review.sentiment === 'positive' ? t('reviews.sentimentPositive') : t('reviews.sentimentNegative') }}
+            </span>
+          </div>
+
+          <!-- Rating: number + stars -->
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-bold text-green-700">{{ review.rating }}</span>
+            <div class="flex items-center gap-0.5" aria-hidden="true">
+              <template v-for="n in 5" :key="n">
+                <svg
+                  v-if="n <= filledStars(review.rating)"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-5 h-5 text-amber-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5 text-amber-400"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                  />
+                </svg>
+              </template>
+            </div>
+          </div>
+
+          <!-- Review text -->
+          <p class="text-sm text-gray-700">
+            {{ review.text }}
+          </p>
+
+          <!-- Service + date -->
+          <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
+            <span class="flex items-center gap-1.5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4 shrink-0"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
+                />
+              </svg>
+              {{ t(review.serviceKey) }}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4 shrink-0"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+                />
+              </svg>
+              {{ review.date }}
+            </span>
           </div>
         </div>
       </div>
@@ -207,5 +336,52 @@ const distributionRows = [
   { stars: 3, count: 18, percent: 7 },
   { stars: 2, count: 12, percent: 5 },
   { stars: 1, count: 8, percent: 3 },
+]
+
+function filledStars(rating) {
+  return Math.round(Number(rating))
+}
+
+const allReviews = [
+  {
+    id: 1,
+    name: 'أحمد محمد العتيبي',
+    phone: '0501234567',
+    rating: 5.0,
+    text: 'خدمة ممتازة جداً، الفندق كان رائع والنقل مريح. فريق العمل محترف ومتعاون، أنصح بالتعامل معهم بشدة.',
+    sentiment: 'positive',
+    serviceKey: 'stats.offerUmrah7Vip',
+    date: '2024-01-15',
+  },
+  {
+    id: 2,
+    name: 'فاطمة حسن القرني',
+    phone: '0559876543',
+    rating: 4.0,
+    text: 'تجربة جيدة بشكل عام، البرنامج الاقتصادي يناسب الميزانية. كان بالإمكان تحسين وجبات الإفطار.',
+    sentiment: 'positive',
+    serviceKey: 'stats.offerUmrahEconomic5',
+    date: '2024-01-12',
+  },
+  {
+    id: 3,
+    name: 'خالد عبدالله الشهري',
+    phone: '0541122334',
+    rating: 5.0,
+    text: 'باقة العائلة مناسبة جداً، تنظيم ممتاز من الحجز حتى العودة. شكراً لفريق المسار الذكي.',
+    sentiment: 'positive',
+    serviceKey: 'stats.offerHajjFamily',
+    date: '2024-01-10',
+  },
+  {
+    id: 4,
+    name: 'نورة سعد الدوسري',
+    phone: '0535566778',
+    rating: 4.0,
+    text: 'رحلة الطائف جميلة والمناظر خلابة. السائقون مهذبون والوقت كان كافياً لزيارة المعالم.',
+    sentiment: 'positive',
+    serviceKey: 'stats.offerTaifMountain',
+    date: '2024-01-08',
+  },
 ]
 </script>

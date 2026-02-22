@@ -173,6 +173,9 @@
     "excellentReviews": "بہترین ریویوز",
     "goodReviews": "اچھے ریویوز",
     "poorReviews": "کمزور ریویوز",
-    "distributionTitle": "ریویوز کی تقسیم"
+    "distributionTitle": "ریویوز کی تقسیم",
+    "allReviewsTitle": "تمام ریویوز",
+    "sentimentPositive": "مثبت",
+    "sentimentNegative": "منفی"
   }
 }

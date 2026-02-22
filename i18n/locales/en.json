@@ -173,6 +173,9 @@
     "excellentReviews": "Excellent reviews",
     "goodReviews": "Good reviews",
     "poorReviews": "Poor reviews",
-    "distributionTitle": "Reviews distribution"
+    "distributionTitle": "Reviews distribution",
+    "allReviewsTitle": "All reviews",
+    "sentimentPositive": "Positive",
+    "sentimentNegative": "Negative"
   }
 }

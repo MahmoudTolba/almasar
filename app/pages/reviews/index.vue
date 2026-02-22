@@ -178,7 +178,6 @@
 
           <!-- Rating: number + stars -->
           <div class="flex items-center gap-2">
-            <span class="text-lg font-bold text-green-700">{{ review.rating }}</span>
             <div class="flex items-center gap-0.5" aria-hidden="true">
               <template v-for="n in 5" :key="n">
                 <svg
@@ -210,6 +209,8 @@
                   />
                 </svg>
               </template>
+              <span class="text-lg font-bold text-green-700">{{ review.rating }}</span>
+
             </div>
           </div>
 
@@ -221,20 +222,7 @@
           <!-- Service + date -->
           <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
             <span class="flex items-center gap-1.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-4 h-4 shrink-0"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
-                />
-              </svg>
+           <img src="~/assets/icons/location.svg" alt="Calendar" class="w-4 h-4 shrink-0">
               {{ t(review.serviceKey) }}
             </span>
             <span class="flex items-center gap-1.5">

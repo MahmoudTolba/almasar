@@ -87,6 +87,14 @@
     "paragraph3": "Customers often need to see a realistic preview of the page layout. Therefore, placeholder text is used on the design so that the customer can see the complete layout before the final content is added.",
     "logoAlt": "Privacy Policy logo"
   },
+  "contact": {
+    "title": "Contact Administration",
+    "subtitle": "Get in touch with us for inquiries and support.",
+    "paragraph1": "This is example text that can be replaced in the same space. It has been generated for use in the contact section. You may use this text or replace it with your own content as needed.",
+    "paragraph2": "If you need a larger number of paragraphs, you can add as many as you wish. The text will not look divided or contain linguistic errors. This format is useful for contact and information pages in particular.",
+    "paragraph3": "Customers often need to see a realistic preview of the page layout. Therefore, placeholder text is used on the design so that the customer can see the complete layout before the final content is added.",
+    "logoAlt": "Contact logo"
+  },
   "stats": {
     "title": "Statistics and Analytics",
     "subtitle": "Comprehensive analysis of the tourism office performance",
@@ -253,7 +261,40 @@
     "phone": "Phone",
     "address": "Address",
     "city": "City",
-    "description": "Description of the office and its services"
+    "description": "Description of the office and its services",
+    "editTitle": "Edit profile details",
+    "editSubtitle": "Manage office details, official documents, and bank information.",
+    "basicInfoSectionTitle": "Basic information",
+    "officialEmailLabel": "Official email (optional)",
+    "officialEmailPlaceholder": "Official email",
+    "officeNameLabel": "Office name",
+    "officeNamePlaceholder": "Office name",
+    "logoLabel": "Office logo (JPG, PNG)",
+    "logoHint": "Click to upload file (JPG, PNG)",
+    "uploadActionLabel": "Choose file",
+    "addressLabel": "Address",
+    "addressPlaceholder": "Enter office address",
+    "descriptionLabel": "Short description about the office and its services",
+    "descriptionPlaceholder": "Write a brief description about the office and the services it provides...",
+    "officialDocumentsSectionTitle": "Required official documents",
+    "commercialRegisterLabel": "Commercial register",
+    "commercialRegisterHint": "Click to upload file (PDF, JPG, PNG)",
+    "bankSectionTitle": "Bank account details (optional)",
+    "bankNameLabel": "Bank name",
+    "bankNamePlaceholder": "Bank name",
+    "bankAccountNameLabel": "Account holder name",
+    "bankAccountNamePlaceholder": "Account holder name",
+    "ibanLabel": "IBAN",
+    "ibanPlaceholder": "IBAN number",
+    "submitButton": "Confirm",
+    "submittingLabel": "Saving...",
+    "cancelButton": "Cancel",
+    "validation": {
+      "officeNameRequired": "Office name is required.",
+      "addressRequired": "Address is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "commercialRegisterRequired": "Please upload the commercial register document."
+    }
   },
   "settings": {
     "title": "General Settings",

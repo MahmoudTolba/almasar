@@ -1,7 +1,12 @@
 {
   "common": {
     "language": "اللغة",
-    "appName": "المسار الذكي"
+    "appName": "المسار الذكي",
+    "logout": "تسجيل الخروج"
+  },
+  "logout": {
+    "confirmMessage": "هل أنت متأكد من تسجيل الخروج؟",
+    "confirm": "تأكيد الخروج"
   },
   "languageModal": {
     "title": "اختيار اللغة",
@@ -304,6 +309,9 @@
     "changePassword": "تغيير كلمة المرور",
     "language": "اللغة",
     "enableNotifications": "تفعيل الاشعارات",
-    "deleteAccount": "حذف الحساب"
+    "deleteAccount": "حذف الحساب",
+    "deleteAccountConfirmMessage": "هل أنت متأكد من حذف الحساب؟",
+    "confirmDeletion": "تأكيد الحذف",
+    "cancel": "تراجع"
   }
 }

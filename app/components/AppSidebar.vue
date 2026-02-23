@@ -9,7 +9,7 @@
     ></div>
 
     <aside
-      class="fixed inset-y-0 right-0 w-64 bg-white border-l z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:h-screen lg:flex lg:flex-col sticky top-0 rounded-xl m-2"
+      class="fixed inset-y-0 right-0 w-64 h-screen flex flex-col bg-white border-l z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static rounded-xl m-2"
       :class="isOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'"
     >
       <!-- Logo area: tighter padding and controlled logo size to avoid big white frame -->
@@ -29,7 +29,7 @@
         </button>
       </div>
 
-      <nav class="flex-1 overflow-y-auto no-scrollbar py-4 rounded-xl m-2">
+      <nav class="flex-1 min-h-0 overflow-y-auto no-scrollbar py-4 rounded-xl m-2">
         <ul class="space-y-1">
           <li v-for="item in menuItems" :key="item.label">
             <NuxtLink
@@ -64,16 +64,23 @@
       <!-- add clear gap under the logout button -->
       <div class="p-4 border-t pb-8">
         <button
+          type="button"
           class="flex items-center px-6 py-3 w-full text-red-600 hover:bg-red-50 transition-colors rounded-lg"
-          
+          @click="showLogoutModal = true; closeOnMobile()"
         >
           <span class="w-5 h-5 ml-3">
             <img :src="logoutIcon" alt="" class="w-full h-full" />
           </span>
-          <span class="text-sm font-medium">تسجيل الخروج</span>
+          <span class="text-sm font-medium">{{ t('common.logout') }}</span>
         </button>
       </div>
     </aside>
+
+    <DeleteAccountModal
+      v-model="showLogoutModal"
+      variant="logout"
+      @confirm="onConfirmLogout"
+    />
   </div>
 </template>
 
@@ -101,8 +108,10 @@ import bprivcyIcon from '~/assets/icons/bprivcy-icon.svg'
 import gprivcyIcon from '~/assets/icons/gprivcy-icon.svg'
 
 const { isOpen, close } = useSidebar()
+const { t } = useI18n()
 
 const hoveredItem = ref(null)
+const showLogoutModal = ref(false)
 
 const closeOnMobile = () => {
   if (window.innerWidth < 1024) {
@@ -113,6 +122,12 @@ const closeOnMobile = () => {
 const onNavClick = (navigate) => {
   navigate()
   closeOnMobile()
+}
+
+function onConfirmLogout() {
+  showLogoutModal.value = false
+  // TODO: clear auth state when auth composable exists
+  navigateTo('/login')
 }
 
 const menuItems = [

@@ -89,9 +89,10 @@
 
         <!-- Delete Account card -->
         <div class="w-full bg-[#FFFFFF] rounded-xl border-b border-gray-100 overflow-hidden">
-          <NuxtLink
-            to="#"
+          <button
+            type="button"
             class="w-full flex flex-row gap-4 items-center p-4 hover:bg-red-50/50 transition-colors text-red-600"
+            @click="showDeleteAccountModal = true"
           >
             <div class="w-12 h-12 rounded-xl flex items-center justify-center border border-red-300 shrink-0 text-red-600">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -100,7 +101,7 @@
             </div>
             <span class="flex-1 text-base font-medium">{{ t('settings.deleteAccount') }}</span>
             <span class="text-red-600">«</span>
-          </NuxtLink>
+          </button>
         </div>
       </div>
 
@@ -111,6 +112,11 @@
         />
       </div>
     </Transition>
+
+    <DeleteAccountModal
+      v-model="showDeleteAccountModal"
+      @confirm="onConfirmDeleteAccount"
+    />
   </div>
 </template>
 
@@ -121,9 +127,15 @@ definePageMeta({ title: 'settings.title' })
 const { t } = useI18n()
 const notificationsEnabled = ref(true)
 const isEditingProfile = ref(false)
+const showDeleteAccountModal = ref(false)
 
 const handleProfileUpdateSuccess = () => {
   isEditingProfile.value = false
+}
+
+function onConfirmDeleteAccount() {
+  // TODO: call delete account API when backend is ready
+  showDeleteAccountModal.value = false
 }
 </script>
 

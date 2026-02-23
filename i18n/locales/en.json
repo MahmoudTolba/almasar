@@ -1,7 +1,12 @@
 {
   "common": {
     "language": "Language",
-    "appName": "Al-Masar Al-Dhaki"
+    "appName": "Al-Masar Al-Dhaki",
+    "logout": "Logout"
+  },
+  "logout": {
+    "confirmMessage": "Are you sure you want to logout?",
+    "confirm": "Confirm Logout"
   },
   "languageModal": {
     "title": "Language Selection",
@@ -304,6 +309,9 @@
     "changePassword": "Change Password",
     "language": "Language",
     "enableNotifications": "Enable Notifications",
-    "deleteAccount": "Delete Account"
+    "deleteAccount": "Delete Account",
+    "deleteAccountConfirmMessage": "Are you sure you want to delete the account?",
+    "confirmDeletion": "Confirm Deletion",
+    "cancel": "Cancel"
   }
 }

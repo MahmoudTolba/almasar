@@ -1,7 +1,12 @@
 {
   "common": {
     "language": "زبان",
-    "appName": "المسار الذكي"
+    "appName": "المسار الذكي",
+    "logout": "لاگ آؤٹ"
+  },
+  "logout": {
+    "confirmMessage": "کیا آپ واقعی لاگ آؤٹ کرنا چاہتے ہیں؟",
+    "confirm": "لاگ آؤٹ کی تصدیق کریں"
   },
   "languageModal": {
     "title": "زبان کا انتخاب",
@@ -304,6 +309,9 @@
     "changePassword": "پاس ورڈ تبدیل کریں",
     "language": "زبان",
     "enableNotifications": "نوٹیفکیشنز فعال کریں",
-    "deleteAccount": "اکاؤنٹ حذف کریں"
+    "deleteAccount": "اکاؤنٹ حذف کریں",
+    "deleteAccountConfirmMessage": "کیا آپ واقعی اکاؤنٹ حذف کرنا چاہتے ہیں؟",
+    "confirmDeletion": "حذف کی تصدیق کریں",
+    "cancel": "واپس جائیں"
   }
 }

@@ -243,5 +243,26 @@
     "netProfitLabel": "خالص منافع",
     "bestMonth": "بہترین مہینہ",
     "withProfits": "منافع کے ساتھ"
+  },
+  "profile": {
+    "title": "پروفائل",
+    "subtitle": "پروفائل کی حالت اور تبدیلیات کا متابعہ",
+    "companyName": "شرکت والی",
+    "name": "نام",
+    "email": "ای میل",
+    "phone": "فون",
+    "address": "پتہ",
+    "city": "شہر",
+    "description": "مکتب کا وصف اور اس کی خدمات"
+  },
+  "settings": {
+    "title": "عام ترتیبات",
+    "subtitle": "دفتر اور اکاؤنٹ کی معلومات کا انتظام کریں",
+    "editProfile": "پروفائل میں ترمیم کریں",
+    "changeMobile": "موبائل نمبر تبدیل کریں",
+    "changePassword": "پاس ورڈ تبدیل کریں",
+    "language": "زبان",
+    "enableNotifications": "نوٹیفکیشنز فعال کریں",
+    "deleteAccount": "اکاؤنٹ حذف کریں"
   }
 }

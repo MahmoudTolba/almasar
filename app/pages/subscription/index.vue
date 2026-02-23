@@ -349,23 +349,23 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-gradient-to-r from-[#22C55E] to-[#16A34A] rounded-xl border border-green-100 p-5 flex flex-col gap-2">
-          <div class="w-8 h-8 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-green-700 shrink-0">
+          <div class="w-8 h-8 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-green-700 shrink-0 p-2">
            <img src="~/assets/icons/arrow.svg" alt="Profit" class="w-full h-full object-contain">
           </div>
           <p class="text-sm font-medium text-gray-700">{{ t('subscription.avgMonthlyProfits') }}</p>
           <p class="text-xl font-bold text-green-700">21,966.667 {{ t('orders.currency') }}</p>
         </div>
       
-        <div class="bg-gradient-to-br from-[#F97316] to-[#EA580C] rounded-xl border border-orange-100 p-5 flex flex-col gap-2 p-4">
-            <div class="w-8 h-8 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-orange-700 shrink-0">
+        <div class="bg-gradient-to-br from-[#F97316] to-[#EA580C] rounded-xl border border-orange-100 p-5 flex flex-col gap-2 ">
+            <div class="w-8 h-8 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-orange-700 shrink-0 p-2">
 <img src="~/assets/icons/white-percent.svg" alt="Percent" class="w-8 h-8 shrink-0">  
 </div>
         <p class="text-sm font-medium text-gray-700">{{ t('subscription.avgMonthlyCommissions') }}</p>
           <p class="text-xl font-bold text-orange-700">3,295 {{ t('orders.currency') }}</p>
         </div>
         
-        <div class="bg-blue-50 rounded-xl border border-blue-100 p-5 flex flex-col gap-2">
-          <div class="w-10 h-10 rounded-lg bg-blue-200 flex items-center justify-center text-blue-700 shrink-0">
+        <div class="bg-gradient-to-br from-[#3B82F6] to-[#2563EB] rounded-xl border border-blue-100 p-5 flex flex-col gap-2">
+          <div class="w-10 h-10 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-blue-700 shrink-0 p-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
             </svg>
@@ -378,7 +378,7 @@
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <h3 class="text-base font-semibold text-gray-900 p-5 pb-0">{{ t('subscription.monthlyDetailsTitle') }}</h3>
         <div class="overflow-x-auto p-5">
-          <table class="w-full min-w-[600px] text-start border-collapse">
+          <table class="w-full min-w-[600px] text-center border-collapse">
             <thead>
               <tr class="bg-gray-50/50 border-b border-gray-100">
                 <th class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold text-gray-600">{{ t('subscription.month') }}</th>
@@ -406,21 +406,17 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-blue-50 rounded-xl border border-blue-100 p-5 flex flex-col gap-2">
-          <div class="w-10 h-10 rounded-lg bg-blue-200 flex items-center justify-center text-blue-700 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-            </svg>
+        <div class="bg-[#EFF6FF] rounded-xl border border-blue-100 p-5 flex flex-col gap-2">
+          <div class="w-10 h-10 rounded-lg bg-[#3B82F6] flex items-center justify-center text-blue-700 shrink-0">
+            <img src="~/assets/icons/target-icon.svg" alt="calendar-icon" class="w-6 h-6 object-contain">
           </div>
           <p class="text-sm font-medium text-gray-700">{{ t('subscription.totalFirstHalf') }}</p>
           <p class="text-2xl font-bold text-gray-900">131,800 {{ t('orders.currency') }}</p>
           <p class="text-xs text-gray-600">{{ t('subscription.netProfitLabel') }}: 112,030 {{ t('orders.currency') }}</p>
         </div>
-        <div class="bg-green-50 rounded-xl border border-green-100 p-5 flex flex-col gap-2">
-          <div class="w-10 h-10 rounded-lg bg-green-200 flex items-center justify-center text-green-700 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-1.5a3 3 0 013-3m-9 0V6.75" />
-            </svg>
+        <div class="bg-[#BBF7D0] rounded-xl border border-green-100 p-5 flex flex-col gap-2">
+          <div class="w-10 h-10 rounded-lg bg-[#22C55E] flex items-center justify-center text-green-700 shrink-0 p-1">
+            <img src="~/assets/icons/cup-icon.svg" alt="cup-icon" class="w-6 h-6 object-contain">
           </div>
           <p class="text-sm font-medium text-gray-700">{{ t('subscription.bestMonth') }}</p>
           <p class="text-2xl font-bold text-gray-900">{{ t('stats.monthApr') }}</p>

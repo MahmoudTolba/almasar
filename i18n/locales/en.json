@@ -243,5 +243,26 @@
     "netProfitLabel": "Net Profit",
     "bestMonth": "Best Month",
     "withProfits": "with profits"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Track your profile status and modifications",
+    "companyName": "Al-Wali Company",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "description": "Description of the office and its services"
+  },
+  "settings": {
+    "title": "General Settings",
+    "subtitle": "Manage office and account information",
+    "editProfile": "Edit Profile",
+    "changeMobile": "Change Mobile Number",
+    "changePassword": "Change Password",
+    "language": "Language",
+    "enableNotifications": "Enable Notifications",
+    "deleteAccount": "Delete Account"
   }
 }

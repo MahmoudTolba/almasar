@@ -243,5 +243,26 @@
     "netProfitLabel": "صافي الربح",
     "bestMonth": "افضل شهر",
     "withProfits": "بأرباح"
+  },
+  "profile": {
+    "title": "الحساب الشخصي",
+    "subtitle": "إدارة معلومات المكتب والحساب",
+    "companyName": "شركة الوالي",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "address": "العنوان",
+    "city": "المدينة",
+    "description": "وصف عن المكتب وخدماته"
+  },
+  "settings": {
+    "title": "إعدادات عامة",
+    "subtitle": "إدارة معلومات المكتب والحساب",
+    "editProfile": "تعديل الملف الشخصي",
+    "changeMobile": "تغيير رقم الجوال",
+    "changePassword": "تغيير كلمة المرور",
+    "language": "اللغة",
+    "enableNotifications": "تفعيل الاشعارات",
+    "deleteAccount": "حذف الحساب"
   }
 }

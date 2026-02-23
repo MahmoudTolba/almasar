@@ -8,6 +8,14 @@
     "confirmMessage": "کیا آپ واقعی لاگ آؤٹ کرنا چاہتے ہیں؟",
     "confirm": "لاگ آؤٹ کی تصدیق کریں"
   },
+  "changePassword": {
+    "oldPasswordLabel": "پرانا پاس ورڈ",
+    "newPasswordLabel": "نیا پاس ورڈ",
+    "confirmNewPasswordLabel": "نیا پاس ورڈ کی تصدیق کریں",
+    "confirmButton": "تصدیق کریں",
+    "required": "ضروری ہے",
+    "passwordMismatch": "پاس ورڈ مماثل نہیں ہیں"
+  },
   "languageModal": {
     "title": "زبان کا انتخاب",
     "subtitle": "براہ کرم اپنی پسندیدہ زبان منتخب کریں۔",

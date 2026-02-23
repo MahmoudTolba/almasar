@@ -8,6 +8,14 @@
     "confirmMessage": "هل أنت متأكد من تسجيل الخروج؟",
     "confirm": "تأكيد الخروج"
   },
+  "changePassword": {
+    "oldPasswordLabel": "كلمة المرور القديمة",
+    "newPasswordLabel": "كلمة المرور الجديدة",
+    "confirmNewPasswordLabel": "تأكيد كلمة المرور الجديدة",
+    "confirmButton": "تأكيد",
+    "required": "مطلوب",
+    "passwordMismatch": "كلمات المرور غير متطابقة"
+  },
   "languageModal": {
     "title": "اختيار اللغة",
     "subtitle": "يرجى اختيار اللغة التي تفضلها",

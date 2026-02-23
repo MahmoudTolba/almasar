@@ -8,6 +8,14 @@
     "confirmMessage": "Are you sure you want to logout?",
     "confirm": "Confirm Logout"
   },
+  "changePassword": {
+    "oldPasswordLabel": "Old Password",
+    "newPasswordLabel": "New Password",
+    "confirmNewPasswordLabel": "Confirm New Password",
+    "confirmButton": "Confirm",
+    "required": "Required",
+    "passwordMismatch": "Passwords do not match"
+  },
   "languageModal": {
     "title": "Language Selection",
     "subtitle": "Please choose your preferred language.",

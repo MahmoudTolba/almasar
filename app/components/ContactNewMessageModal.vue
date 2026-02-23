@@ -6,7 +6,7 @@
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40"
         @click.self="close"
       >
-        <div class="w-full max-w-4xl  bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col">
+        <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col">
           <h2 class="text-lg font-bold text-gray-900 mb-4">{{ t('contact.newMessage') }}</h2>
 
           <!-- Message type -->

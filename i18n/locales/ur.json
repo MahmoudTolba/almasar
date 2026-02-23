@@ -6,6 +6,18 @@
     "back": "واپس",
     "cancel": "منسوخ"
   },
+  "sidebar": {
+    "orders": "آرڈرز کا انتظام",
+    "stats": "شماریات اور رپورٹس",
+    "reviews": "جائزے کا انتظام",
+    "subscription": "سبسکرپشن اور کمیشن",
+    "profile": "پروفائل",
+    "settings": "عام ترتیبات",
+    "contact": "ایڈمن سے رابطہ",
+    "aboutUs": "ہمارے بارے میں",
+    "terms": "شرائط و ضوابط",
+    "privacy": "رازداری کی پالیسی"
+  },
   "logout": {
     "confirmMessage": "کیا آپ واقعی لاگ آؤٹ کرنا چاہتے ہیں؟",
     "confirm": "لاگ آؤٹ کی تصدیق کریں"
@@ -137,7 +149,8 @@
     "messageTitlePlaceholder": "پیغام کا عنوان درج کریں",
     "messageContent": "پیغام کا مواد",
     "messageContentPlaceholder": "اپنا پیغام یہاں لکھیں...",
-    "sendMessage": "پیغام بھیجیں"
+    "sendMessage": "پیغام بھیجیں",
+    "messageSentSuccess": "آپ کا پیغام بھیج دیا گیا ہے اور انتظامیہ جلد از جلد جواب دے گی۔"
   },
   "stats": {
     "title": "شماریات اور تجزیات",

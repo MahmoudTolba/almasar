@@ -6,6 +6,18 @@
     "back": "Back",
     "cancel": "Cancel"
   },
+  "sidebar": {
+    "orders": "Orders Management",
+    "stats": "Statistics & Reports",
+    "reviews": "Reviews Management",
+    "subscription": "Subscription & Commission",
+    "profile": "Profile",
+    "settings": "General Settings",
+    "contact": "Contact Administration",
+    "aboutUs": "About Us",
+    "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy"
+  },
   "logout": {
     "confirmMessage": "Are you sure you want to logout?",
     "confirm": "Confirm Logout"
@@ -137,7 +149,8 @@
     "messageTitlePlaceholder": "Enter message title",
     "messageContent": "Message Content",
     "messageContentPlaceholder": "Write your message here...",
-    "sendMessage": "Send Message"
+    "sendMessage": "Send Message",
+    "messageSentSuccess": "Your message has been sent and the administration will respond as soon as possible."
   },
   "stats": {
     "title": "Statistics and Analytics",

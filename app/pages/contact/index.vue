@@ -22,6 +22,7 @@
       v-model="showNewMessageModal"
       @submit="onNewMessageSubmit"
     />
+    <ContactSuccessModal v-model="showSuccessModal" />
 
     <!-- Filter cards -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
@@ -30,8 +31,8 @@
         :key="filter.id"
         type="button"
         @click="activeFilter = filter.id"
-        class="rounded-xl border p-4 text-start transition-colors"
-        :class="activeFilter === filter.id ? 'bg-amber-50 border-amber-200' : 'bg-white border-gray-100 shadow-sm'"
+        class="rounded-xl border-2 p-4 text-start transition-colors"
+        :class="activeFilter === filter.id ? 'bg-[#F9F6F0] border-[#AB8740]' : 'bg-white border-gray-100 shadow-sm'"
       >
         <p class="text-xl font-bold text-gray-800">{{ filter.count }}</p>
         <p class="text-sm text-gray-600 mt-1">{{ t(filter.labelKey) }}</p>
@@ -146,6 +147,7 @@ definePageMeta({
 })
 
 const showNewMessageModal = ref(false)
+const showSuccessModal = ref(false)
 const activeFilter = ref('all')
 
 function formatDateTime(date) {
@@ -169,7 +171,7 @@ function onNewMessageSubmit(payload) {
     senderKey: 'contact.msg1Sender',
     date: formatDateTime(new Date()),
   })
-  showNewMessageModal.value = false
+  showSuccessModal.value = true
 }
 
 const typeConfig = {

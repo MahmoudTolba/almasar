@@ -6,6 +6,18 @@
     "back": "رجوع",
     "cancel": "تراجع"
   },
+  "sidebar": {
+    "orders": "إدارة الطلبات",
+    "stats": "الإحصائيات والتقارير",
+    "reviews": "إدارة التقييمات",
+    "subscription": "الاشتراك والعمولة",
+    "profile": "الملف الشخصي",
+    "settings": "إعدادات عامة",
+    "contact": "التواصل مع الإدارة",
+    "aboutUs": "من نحن",
+    "terms": "الشروط والأحكام",
+    "privacy": "سياسة الخصوصية"
+  },
   "logout": {
     "confirmMessage": "هل أنت متأكد من تسجيل الخروج؟",
     "confirm": "تأكيد الخروج"
@@ -137,7 +149,8 @@
     "messageTitlePlaceholder": "أدخل عنوان الرسالة",
     "messageContent": "محتوى الرسالة",
     "messageContentPlaceholder": "اكتب رسالتك هنا...",
-    "sendMessage": "إرسال الرسالة"
+    "sendMessage": "إرسال الرسالة",
+    "messageSentSuccess": "تم إرسال رسالتك وستقوم الإدارة بالرد في أقرب وقت"
   },
   "stats": {
     "title": "الإحصائيات والتحليلات",

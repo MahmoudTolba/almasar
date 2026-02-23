@@ -212,13 +212,13 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 mt-8">
       <h2 class="text-base font-semibold text-gray-900 text-start mb-4">{{ t('stats.mostRequestedOffers') }}</h2>
       <div class="overflow-x-auto">
-        <table class="w-full min-w-[600px] text-start border-collapse">
+          <table class="w-full min-w-[600px] text-center border-collapse">
           <thead>
             <tr class="bg-gray-50/50 border-b border-gray-100">
-              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600">{{ t('stats.offerName') }}</th>
-              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600">{{ t('stats.numberOfBookings') }}</th>
-              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600">{{ t('stats.revenue') }}</th>
-              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600">{{ t('stats.marketShare') }}</th>
+              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 text-center">{{ t('stats.offerName') }}</th>
+              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 text-center">{{ t('stats.numberOfBookings') }}</th>
+              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 text-center">{{ t('stats.revenue') }}</th>
+              <th class="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 text-center">{{ t('stats.marketShare') }}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-50">
@@ -227,8 +227,8 @@
               :key="row.rank"
               class="hover:bg-gray-50 transition-colors"
             >
-              <td class="px-4 sm:px-6 py-4 sm:py-5">
-                <div class="flex items-center gap-2">
+              <td class="px-4 sm:px-6 py-4 sm:py-5 text-center">
+                <div class="flex items-center justify-center gap-2">
                   <span
                     class="w-7 h-7 rounded-full bg-orange-400 text-white flex items-center justify-center text-sm font-bold shrink-0"
                     aria-hidden="true"
@@ -238,12 +238,12 @@
                   <span class="text-sm font-medium text-gray-900">{{ t(row.nameKey) }}</span>
                 </div>
               </td>
-              <td class="px-4 sm:px-6 py-4 sm:py-5 text-sm text-gray-700">{{ row.bookings }}</td>
-              <td class="px-4 sm:px-6 py-4 sm:py-5 text-sm text-gray-700">
+              <td class="px-4 sm:px-6 py-4 sm:py-5 text-sm text-gray-700 text-center">{{ row.bookings }}</td>
+              <td class="px-4 sm:px-6 py-4 sm:py-5 text-sm text-gray-700 text-center">
                 {{ row.revenue.toLocaleString() }} {{ t('stats.currency') }}
               </td>
-              <td class="px-4 sm:px-6 py-4 sm:py-5">
-                <div class="flex flex-col gap-1.5">
+              <td class="px-4 sm:px-6 py-4 sm:py-5 text-center">
+                <div class="flex flex-col items-center gap-1.5">
                   <span class="text-sm text-gray-700">{{ row.marketShare }}%</span>
                   <div class="w-full bg-gray-200 rounded-full h-2 min-w-[80px]">
                     <div

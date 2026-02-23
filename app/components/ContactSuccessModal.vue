@@ -6,11 +6,11 @@
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40"
         @click.self="close"
       >
-        <div class="w-full max-w-sm bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col items-center">
+        <div class="w-full max-w-lg bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col items-center">
           <img
             src="~/assets/icons/done.gif"
             alt=""
-            class="w-16 h-16 object-contain mb-4"
+            class="w-24 h-24 object-contain mb-4"
           />
           <p class="text-center text-gray-700 text-sm font-medium mb-6">
             {{ t('contact.messageSentSuccess') }}

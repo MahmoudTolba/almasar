@@ -151,24 +151,72 @@
       </div>
        <!-- 1. Distribution by Destination (Pie) -->
        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col min-h-[320px]">
-        <div class="flex flex-row justify-between items-center gap-2 mb-4">
-          <h2 class="text-base font-semibold text-gray-900 text-end">{{ t('stats.distributionByDestination') }}</h2>
+        <div class="flex flex-row-reverse justify-between items-center gap-2 mb-8">
+          <h2 class="text-xl font-bold text-gray-800">{{ t('stats.distributionByDestination') }}</h2>
           <button
             type="button"
-            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 border border-gray-200 transition-colors shrink-0"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm transition-colors shrink-0"
             @click="onExportExcel"
           >
-            <span class="w-5 h-5 shrink-0 text-accent" aria-hidden="true">
+            <span class="w-4 h-4 shrink-0" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
               </svg>
             </span>
             {{ t('stats.exportExcel') }}
           </button>
         </div>
-        <div class="flex-1 min-h-[260px] flex items-center justify-center">
+        <div class="flex-1 min-h-[300px] flex items-center justify-center relative">
           <ClientOnly>
-            <Chart type="pie" :data="pieChartData" :options="pieChartOptions" class="w-full max-w-[280px]" />
+            <div class="relative w-full max-w-[320px] aspect-square flex items-center justify-center">
+              <Chart type="pie" :data="pieChartData" :options="pieChartOptions" class="w-full h-full" />
+              
+              <!-- Custom Labels to match screenshot exactly -->
+              <div class="absolute inset-0 pointer-events-none text-[10px] sm:text-xs font-bold whitespace-nowrap">
+                <!-- Makkah 33% (Top-rightish) -->
+                <div
+                  class="absolute top-[5%] left-[62%]"
+                  :style="{ color: getDestinationColor('stats.destMakkah') }"
+                >
+                  {{ t('stats.destMakkah') }} 33%
+                </div>
+                <!-- Madinah 22% (Mid-left) -->
+                <div
+                  class="absolute top-[35%] left-[-15%]"
+                  :style="{ color: getDestinationColor('stats.destMadinah') }"
+                >
+                  {{ t('stats.destMadinah') }} 22%
+                </div>
+                <!-- Jeddah 15% (Bottom-left) -->
+                <div
+                  class="absolute bottom-[20%] left-[-5%]"
+                  :style="{ color: getDestinationColor('stats.destJeddah') }"
+                >
+                  {{ t('stats.destJeddah') }} 15%
+                </div>
+                <!-- Riyadh 12% (Bottom-centerish) -->
+                <div
+                  class="absolute bottom-[2%] left-[52%] transform -translate-x-1/2"
+                  :style="{ color: getDestinationColor('stats.destRiyadh') }"
+                >
+                  {{ t('stats.destRiyadh') }} 12%
+                </div>
+                <!-- Abha 9% (Bottom-rightish) -->
+                <div
+                  class="absolute bottom-[20%] right-[-5%]"
+                  :style="{ color: getDestinationColor('stats.destAbha') }"
+                >
+                  {{ t('stats.destAbha') }} 9%
+                </div>
+                <!-- Taif 9% (Mid-right) -->
+                <div
+                  class="absolute top-[55%] right-[-15%]"
+                  :style="{ color: getDestinationColor('stats.destTaif') }"
+                >
+                  {{ t('stats.destTaif') }} 9%
+                </div>
+              </div>
+            </div>
             <template #fallback>
               <div class="text-gray-400 text-sm">—</div>
             </template>
@@ -197,13 +245,35 @@
         <div class="flex flex-row justify-between items-center gap-2 mb-4">
           <h2 class="text-base font-semibold text-gray-900 text-end">{{ t('stats.orderStatus') }}</h2>
         </div>
-        <div class="flex-1 min-h-[260px]">
-          <ClientOnly>
-            <Chart type="bar" :data="orderStatusChartData" :options="orderStatusChartOptions" class="w-full h-full" />
-            <template #fallback>
-              <div class="h-full flex items-center justify-center text-gray-400 text-sm">—</div>
-            </template>
-          </ClientOnly>
+        <div class="flex-1 min-h-[260px] flex flex-col justify-center gap-4">
+          <div
+            v-for="row in orderStatusProgressRows"
+            :key="row.labelKey"
+            class="flex items-center gap-3"
+          >
+            <!-- Value on the left -->
+            <div class="w-10 text-xs sm:text-sm text-gray-700">
+              {{ row.value }}
+            </div>
+
+            <!-- Progress bar track + fill -->
+            <div class="flex-1">
+              <div class="w-full h-2.5 sm:h-3 rounded-full bg-gray-200 overflow-hidden">
+                <div
+                  class="h-full rounded-full"
+                  :style="{ width: `${row.percent}%`, backgroundColor: row.color }"
+                />
+              </div>
+            </div>
+
+            <!-- Status label on the right -->
+            <div
+              class="w-24 text-xs sm:text-sm text-right font-medium"
+              :style="{ color: row.color }"
+            >
+              {{ t(row.labelKey) }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -371,12 +441,22 @@ const statCards = computed(() => {
 // Chart 1: Distribution by Destination (pie)
 const DESTINATION_DATA = [
   { labelKey: 'stats.destMakkah', value: 33, color: '#3B82F6' },
-  { labelKey: 'stats.destMadinah', value: 22, color: '#22C55E' },
-  { labelKey: 'stats.destJeddah', value: 15, color: '#F97316' },
+  { labelKey: 'stats.destMadinah', value: 22, color: '#10B981' },
+  { labelKey: 'stats.destJeddah', value: 15, color: '#F59E0B' },
   { labelKey: 'stats.destRiyadh', value: 12, color: '#EF4444' },
-  { labelKey: 'stats.destAbha', value: 9, color: '#A855F7' },
+  { labelKey: 'stats.destAbha', value: 9, color: '#8B5CF6' },
   { labelKey: 'stats.destTaif', value: 9, color: '#EC4899' },
 ]
+
+function getDestinationColor(labelKey) {
+  const entry = DESTINATION_DATA.find((d) => d.labelKey === labelKey)
+  return entry?.color ?? '#111827'
+}
+
+function getDestinationColorByIndex(index) {
+  const entry = DESTINATION_DATA[index]
+  return entry?.color ?? '#111827'
+}
 
 const pieChartData = computed(() => {
   void locale.value
@@ -397,10 +477,36 @@ const pieChartOptions = computed(() => {
   return {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: 30
+    },
     plugins: {
       legend: {
-        position: 'bottom',
+        display: false
       },
+      tooltip: {
+        enabled: true,
+        backgroundColor: '#FFFFFF',
+        borderColor: '#E5E7EB',
+        borderWidth: 1,
+        titleColor: '#111827',
+        bodyColor: '#111827',
+        callbacks: {
+          labelColor(context) {
+            const color = getDestinationColorByIndex(context.dataIndex)
+            return {
+              borderColor: color,
+              backgroundColor: color,
+            }
+          },
+          labelTextColor(context) {
+            return getDestinationColorByIndex(context.dataIndex)
+          },
+        },
+      },
+      // Since we don't have the datalabels plugin installed, 
+      // we'll rely on the default Chart.js or a simple approach.
+      // For a "perfect" match, labels would be rendered as SVGs or HTML overlays.
     },
   }
 })
@@ -545,41 +651,12 @@ const ORDER_STATUS_DATA = [
   { labelKey: 'stats.statusRejected', value: 12, color: '#EF4444' },
 ]
 
-const orderStatusChartData = computed(() => {
-  void locale.value
-  return {
-    labels: ORDER_STATUS_DATA.map((d) => t(d.labelKey)),
-    datasets: [
-      {
-        label: t('stats.orderStatus'),
-        data: ORDER_STATUS_DATA.map((d) => d.value),
-        backgroundColor: ORDER_STATUS_DATA.map((d) => d.color),
-        borderWidth: 0,
-      },
-    ],
-  }
-})
-
-const orderStatusChartOptions = computed(() => {
-  void locale.value
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    indexAxis: 'y',
-    scales: {
-      x: {
-        min: 0,
-        max: 300,
-        grid: { display: true },
-      },
-      y: {
-        grid: { display: false },
-      },
-    },
-    plugins: {
-      legend: { display: false },
-    },
-  }
+const orderStatusProgressRows = computed(() => {
+  const maxValue = Math.max(...ORDER_STATUS_DATA.map((d) => d.value)) || 1
+  return ORDER_STATUS_DATA.map((d) => ({
+    ...d,
+    percent: (d.value / maxValue) * 100,
+  }))
 })
 
 // Chart 4: Distribution by Service Type (horizontal bar)

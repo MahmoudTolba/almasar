@@ -10,7 +10,7 @@
           <img
             src="~/assets/icons/Logout.gif"
             alt=""
-            class="w-16 h-16 object-contain mb-4"
+            class="w-24 h-24 object-contain mb-4"
           >
           <p class="text-center text-gray-900 font-medium mb-6">
             {{ confirmMessage }}

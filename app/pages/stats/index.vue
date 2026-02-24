@@ -175,14 +175,14 @@
               <div class="absolute inset-0 pointer-events-none text-[10px] sm:text-xs font-bold whitespace-nowrap">
                 <!-- Makkah 33% (Top-rightish) -->
                 <div
-                  class="absolute top-[5%] left-[62%]"
+                  class="absolute top-[8%] left-[85%]"
                   :style="{ color: getDestinationColor('stats.destMakkah') }"
                 >
                   {{ t('stats.destMakkah') }} 33%
                 </div>
                 <!-- Madinah 22% (Mid-left) -->
                 <div
-                  class="absolute top-[35%] left-[-15%]"
+                  class="absolute top-[95%] left-[75%]"
                   :style="{ color: getDestinationColor('stats.destMadinah') }"
                 >
                   {{ t('stats.destMadinah') }} 22%
@@ -196,21 +196,21 @@
                 </div>
                 <!-- Riyadh 12% (Bottom-centerish) -->
                 <div
-                  class="absolute bottom-[2%] left-[52%] transform -translate-x-1/2"
+                  class="absolute bottom-[50%] left-[-2%] transform -translate-x-1/2"
                   :style="{ color: getDestinationColor('stats.destRiyadh') }"
                 >
                   {{ t('stats.destRiyadh') }} 12%
                 </div>
                 <!-- Abha 9% (Bottom-rightish) -->
                 <div
-                  class="absolute bottom-[20%] right-[-5%]"
+                  class="absolute bottom-[80%] right-[85%]"
                   :style="{ color: getDestinationColor('stats.destAbha') }"
                 >
                   {{ t('stats.destAbha') }} 9%
                 </div>
                 <!-- Taif 9% (Mid-right) -->
                 <div
-                  class="absolute top-[55%] right-[-15%]"
+                  class="absolute top-[4%] right-[55%]"
                   :style="{ color: getDestinationColor('stats.destTaif') }"
                 >
                   {{ t('stats.destTaif') }} 9%
@@ -233,7 +233,7 @@
         </div>
         <div class="flex-1 min-h-[260px]">
           <ClientOnly>
-            <Chart type="bar" :data="serviceTypeChartData" :options="serviceTypeChartOptions" class="w-full h-full" />
+            <Chart type="bar" :data="serviceTypeChartData" :options="serviceTypeChartOptions" class="w-full h-full rounded-lg" />
             <template #fallback>
               <div class="h-full flex items-center justify-center text-gray-400 text-sm">—</div>
             </template>

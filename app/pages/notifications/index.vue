@@ -30,27 +30,6 @@
         @click="markAsRead(item.id)"
         @keydown.enter.space.prevent="markAsRead(item.id)"
       >
-        <!-- Unread dot -->
-        <span
-          v-if="!item.read"
-          class="shrink-0 w-2 h-2 rounded-full bg-blue-500 mt-2"
-          aria-hidden="true"
-        />
-        <span v-else class="shrink-0 w-2" aria-hidden="true" />
-
-        <!-- Content -->
-        <div class="flex-1 min-w-0">
-          <p class="text-sm lg:text-base text-gray-900">
-            {{ item.message }}
-          </p>
-          <span
-            class="inline-block mt-2 px-2.5 py-1 rounded-lg text-xs font-medium"
-            :class="typeConfig[item.type].pillClass"
-          >
-            {{ t(typeConfig[item.type].labelKey) }}
-          </span>
-        </div>
-
         <!-- Icon -->
         <div
           class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
@@ -64,6 +43,29 @@
             :class="typeConfig[item.type].iconClass"
           />
         </div>
+      
+
+        <!-- Content -->
+        <div class="flex-1 min-w-0">
+          <p class="text-sm lg:text-base text-gray-900">
+            {{ item.message }}
+          </p>
+          <span
+            class="inline-block mt-2 px-2.5 py-1 rounded-lg text-xs font-medium"
+            :class="typeConfig[item.type].pillClass"
+          >
+            {{ t(typeConfig[item.type].labelKey) }}
+          </span>
+        </div>
+          <!-- Unread dot -->
+          <span
+          v-if="!item.read"
+          class="shrink-0 w-2 h-2 rounded-full bg-blue-500 mt-2"
+          aria-hidden="true"
+        />
+        <span v-else class="shrink-0 w-2" aria-hidden="true" />
+
+      
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
     ></div>
 
     <aside
-      class="fixed inset-y-0 end-0 w-64 h-screen flex flex-col bg-white border-s z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static rounded-xl m-2"
+      class="fixed inset-y-0 start-0 w-64 h-screen flex flex-col bg-white border-s z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static rounded-xl m-2"
       :class="[isOpen ? 'translate-x-0' : closedTranslateClass, 'lg:translate-x-0']"
     >
       <!-- Logo area: tighter padding and controlled logo size to avoid big white frame -->
@@ -20,7 +20,7 @@
           class="h-24 sm:h-28 w-auto max-w-[180px] object-contain"
         />
         <!-- Close button mobile -->
-        <button @click="close" class="absolute start-4 top-1/2 -translate-y-1/2 p-2 lg:hidden text-gray-500">
+        <button @click="close" class="absolute end-4 top-1/2 -translate-y-1/2 p-2 lg:hidden text-gray-500">
            <span class="w-6 h-6 inline-block">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -112,7 +112,7 @@ const { t, locale } = useI18n()
 
 const isRtl = computed(() => locale.value === 'ar' || locale.value === 'ur')
 const closedTranslateClass = computed(() =>
-  isRtl.value ? '-translate-x-full' : 'translate-x-full'
+  isRtl.value ? 'translate-x-full' : '-translate-x-full'
 )
 
 const hoveredItem = ref(null)

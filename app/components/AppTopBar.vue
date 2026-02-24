@@ -22,9 +22,10 @@
           />
         </span>
         <span
-          class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white"
+          v-if="unreadCount > 0"
+          class="absolute -top-1 -right-1 min-w-[16px] h-4 px-0.5 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white"
         >
-          2
+          {{ unreadCount }}
         </span>
       </NuxtLink>
     </div>
@@ -40,4 +41,5 @@
 
 <script setup>
 const { toggle } = useSidebar()
+const { unreadCount } = useNotifications()
 </script>

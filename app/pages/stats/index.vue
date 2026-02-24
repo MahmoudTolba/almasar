@@ -175,7 +175,7 @@
               <div class="absolute inset-0 pointer-events-none text-[10px] sm:text-xs font-bold whitespace-nowrap">
                 <!-- Makkah 33% (Top-rightish) -->
                 <div
-                  class="absolute top-[8%] left-[85%]"
+                  class="absolute top-[8%] left-[80%]"
                   :style="{ color: getDestinationColor('stats.destMakkah') }"
                 >
                   {{ t('stats.destMakkah') }} 33%

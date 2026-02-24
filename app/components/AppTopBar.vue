@@ -11,7 +11,7 @@
       </button>
 
       <NuxtLink
-        to="/notifications"
+        :to="localePath('/notifications')"
         class="relative border bg-[#AB87401A] rounded-md p-2 gap-2 flex items-center text-gray-400 hover:text-gray-600"
       >
         <span class="w-5 h-5 inline-block">
@@ -42,4 +42,5 @@
 <script setup>
 const { toggle } = useSidebar()
 const { unreadCount } = useNotifications()
+const localePath = useLocalePath()
 </script>

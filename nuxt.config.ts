@@ -23,5 +23,6 @@ export default defineNuxtConfig({
     ],
     defaultLocale: "ar",
     langDir: "locales",
+    strategy: "no_prefix",
   },
 });

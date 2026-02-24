@@ -68,7 +68,7 @@
 
           <p class="text-center text-sm text-gray-600 mt-6">
             {{ t('login.noAccount') }}
-            <NuxtLink to="/register" class="text-accent font-semibold hover:underline">
+            <NuxtLink :to="localePath('/register')" class="text-accent font-semibold hover:underline">
               {{ t('login.registerLink') }}
             </NuxtLink>
           </p>
@@ -177,6 +177,7 @@
 definePageMeta({ layout: 'blank', title: 'login.title' })
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const phone = ref('')
 const password = ref('')

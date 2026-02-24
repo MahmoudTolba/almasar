@@ -33,7 +33,7 @@
         <ul class="space-y-1">
           <li v-for="item in menuItems" :key="item.to">
             <NuxtLink
-              :to="item.to"
+              :to="localePath(item.to)"
               custom
               v-slot="{ href, navigate, isExactActive }"
             >
@@ -109,6 +109,7 @@ import gprivcyIcon from '~/assets/icons/gprivcy-icon.svg'
 
 const { isOpen, close } = useSidebar()
 const { t, locale } = useI18n()
+const localePath = useLocalePath()
 
 const isRtl = computed(() => locale.value === 'ar' || locale.value === 'ur')
 const closedTranslateClass = computed(() =>
@@ -132,7 +133,7 @@ const onNavClick = (navigate) => {
 function onConfirmLogout() {
   showLogoutModal.value = false
   // TODO: clear auth state when auth composable exists
-  navigateTo('/login')
+  navigateTo(localePath('/login'))
 }
 
 const menuItems = [

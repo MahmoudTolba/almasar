@@ -352,16 +352,16 @@
           <div class="w-8 h-8 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-green-700 shrink-0 p-2">
            <img src="~/assets/icons/arrow.svg" alt="Profit" class="w-full h-full object-contain">
           </div>
-          <p class="text-sm font-medium text-gray-700">{{ t('subscription.avgMonthlyProfits') }}</p>
-          <p class="text-xl font-bold text-green-700">21,966.667 {{ t('orders.currency') }}</p>
+          <p class="text-sm font-medium text-[#FFFFFF]">{{ t('subscription.avgMonthlyProfits') }}</p>
+          <p class="text-xl font-bold text-[#FFFFFF]">21,966.667 {{ t('orders.currency') }}</p>
         </div>
       
         <div class="bg-gradient-to-br from-[#F97316] to-[#EA580C] rounded-xl border border-orange-100 p-5 flex flex-col gap-2 ">
             <div class="w-8 h-8 rounded-lg bg-[#FFFFFF33] flex items-center justify-center text-orange-700 shrink-0 p-2">
 <img src="~/assets/icons/white-percent.svg" alt="Percent" class="w-8 h-8 shrink-0">  
 </div>
-        <p class="text-sm font-medium text-gray-700">{{ t('subscription.avgMonthlyCommissions') }}</p>
-          <p class="text-xl font-bold text-orange-700">3,295 {{ t('orders.currency') }}</p>
+        <p class="text-sm font-medium text-[#FFFFFF]">{{ t('subscription.avgMonthlyCommissions') }}</p>
+          <p class="text-xl font-bold text-[#FFFFFF]">3,295 {{ t('orders.currency') }}</p>
         </div>
         
         <div class="bg-gradient-to-br from-[#3B82F6] to-[#2563EB] rounded-xl border border-blue-100 p-5 flex flex-col gap-2">
@@ -370,8 +370,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
             </svg>
           </div>
-          <p class="text-sm font-medium text-gray-700">{{ t('subscription.monthlyNetProfits') }}</p>
-          <p class="text-xl font-bold text-blue-700">18,671.667 {{ t('orders.currency') }}</p>
+          <p class="text-sm font-medium text-[#FFFFFF]">{{ t('subscription.monthlyNetProfits') }}</p>
+          <p class="text-xl font-bold text-[#FFFFFF]">18,671.667 {{ t('orders.currency') }}</p>
         </div>
       </div>
 

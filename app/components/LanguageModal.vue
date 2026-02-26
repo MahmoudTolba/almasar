@@ -28,7 +28,11 @@
             >
               <span class="flex items-center gap-2 flex-1 font-medium text-gray-900">
                 {{ t(opt.labelKey) }}
-                <span class="text-xl shrink-0" aria-hidden="true">{{ opt.flag }}</span>
+                <img
+                  :src="opt.iconSrc"
+                  :alt="t(opt.labelKey)"
+                  class="w-5 h-5 shrink-0"
+                />
               </span>
               <span
                 class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0"
@@ -56,6 +60,10 @@
 </template>
 
 <script setup>
+import saFlagIcon from '~/assets/icons/sar-flag.svg'
+import usaFlagIcon from '~/assets/icons/usa-flag.svg'
+import urduFlagIcon from '~/assets/icons/urdo-flag.svg'
+
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
 })
@@ -67,9 +75,9 @@ const { locale, setLocale, t } = useI18n()
 const selectedId = ref('ar')
 
 const languageOptions = [
-  { id: 'ar', labelKey: 'languageModal.arabic', flag: '🇸🇦' },
-  { id: 'en', labelKey: 'languageModal.english', flag: '🇺🇸' },
-  { id: 'ur', labelKey: 'languageModal.urdu', flag: '🇵🇰' },
+  { id: 'ar', labelKey: 'languageModal.arabic', iconSrc: saFlagIcon },
+  { id: 'en', labelKey: 'languageModal.english', iconSrc: usaFlagIcon },
+  { id: 'ur', labelKey: 'languageModal.urdu', iconSrc: urduFlagIcon },
 ]
 
 watch(() => props.modelValue, (isOpen) => {

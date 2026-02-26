@@ -142,7 +142,7 @@
         </div>
         <div class="flex-1 min-h-[260px]">
           <ClientOnly>
-            <Chart type="line" :data="lineChartData" :options="lineChartOptions" class="w-full h-full" />
+            <Chart type="line" :data="lineChartData" :options="lineChartOptions" class="w-full h-full " />
             <template #fallback>
               <div class="h-full flex items-center justify-center text-gray-400 text-sm">—</div>
             </template>

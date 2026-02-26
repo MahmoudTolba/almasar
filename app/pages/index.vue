@@ -94,11 +94,12 @@
                 </span>
               </td>
               <td class="px-4 sm:px-6 py-4 sm:py-5 text-center">
-                <button
-                  class="px-3 sm:px-4 py-2 border border-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-50 transition-all"
+                <NuxtLink
+                  :to="localePath('/orders/' + order.id)"
+                  class="inline-block px-3 sm:px-4 py-2 border border-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-50 transition-all"
                 >
                   {{ t('orders.orderDetails') }}
-                </button>
+                </NuxtLink>
               </td>
             </tr>
             <tr v-if="filteredOrders.length === 0" class="text-center">
@@ -117,6 +118,8 @@
 definePageMeta({ title: 'orders.title' })
 
 const { t } = useI18n()
+const localePath = useLocalePath()
+const { orders } = useOrders()
 
 const activeTab = ref('new')
 const searchQuery = ref('')
@@ -165,67 +168,4 @@ const statusStyles = {
   rejected: 'bg-red-50 text-red-500',
   cancelled: 'bg-gray-50 text-gray-400',
 }
-
-const orders = [
-  {
-    id: 'ORD-2024-001',
-    clientName: 'أحمد محمد العتيبي',
-    clientPhone: '0501234567',
-    serviceType: 'عمرة - باقة VIP',
-    peopleCount: 2,
-    amount: 8500,
-    date: '2024-01-15',
-    time: '10:30',
-    status: 'pending_payment',
-    statusLabel: 'مدفوع مبدئيا',
-  },
-  {
-    id: 'ORD-2024-002',
-    clientName: 'فاطمة عبدالله السالم',
-    clientPhone: '0559876543',
-    serviceType: 'حج - باقة عائلية',
-    peopleCount: 4,
-    amount: 25000,
-    date: '2024-01-14',
-    time: '14:20',
-    status: 'confirmed',
-    statusLabel: 'مؤكدة',
-  },
-  {
-    id: 'ORD-2024-003',
-    clientName: 'خالد سعد الغامدي',
-    clientPhone: '0543216789',
-    serviceType: 'عمرة - باقة اقتصادية',
-    peopleCount: 1,
-    amount: 4200,
-    date: '2024-01-13',
-    time: '09:15',
-    status: 'completed',
-    statusLabel: 'مكتملة',
-  },
-  {
-    id: 'ORD-2024-004',
-    clientName: 'نورة حسن القحطاني',
-    clientPhone: '0567891234',
-    serviceType: 'عمرة - باقة مميزة',
-    peopleCount: 2,
-    amount: 6800,
-    date: '2024-01-12',
-    time: '16:45',
-    status: 'rejected',
-    statusLabel: 'مرفوضة',
-  },
-  {
-    id: 'ORD-2024-005',
-    clientName: 'عبدالرحمن علي الشهري',
-    clientPhone: '0512345678',
-    serviceType: 'حج - باقة فاخرة',
-    peopleCount: 3,
-    amount: 18500,
-    date: '2024-01-11',
-    time: '11:30',
-    status: 'cancelled',
-    statusLabel: 'ملغاة',
-  },
-]
 </script>

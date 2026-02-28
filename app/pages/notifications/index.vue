@@ -72,6 +72,7 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 import notificationBagIcon from '~/assets/icons/notification-bag.svg'
 import notificationCurrencyIcon from '~/assets/icons/notification-cuurncy.svg'
 import notificationDocumentIcon from '~/assets/icons/notification-document.svg'

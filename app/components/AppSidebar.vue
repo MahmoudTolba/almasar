@@ -106,6 +106,7 @@ import btermsIcon from '~/assets/icons/bterms-icon.svg'
 import gtermsIcon from '~/assets/icons/gterms-icon.svg'
 import bprivcyIcon from '~/assets/icons/bprivcy-icon.svg'
 import gprivcyIcon from '~/assets/icons/gprivcy-icon.svg'
+import { useAuthStore } from '~/stores/auth'
 
 const { isOpen, close } = useSidebar()
 const { t, locale } = useI18n()
@@ -132,7 +133,8 @@ const onNavClick = (navigate) => {
 
 function onConfirmLogout() {
   showLogoutModal.value = false
-  // TODO: clear auth state when auth composable exists
+  const authStore = useAuthStore()
+  authStore.logout()
   navigateTo(localePath('/login'))
 }
 

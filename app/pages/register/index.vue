@@ -2,6 +2,7 @@
   <div
     class="min-h-screen bg-[#F8F8F8] flex items-start sm:items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-4 relative overflow-hidden"
   >
+  
     <!-- Decorative shape (dome/arch) bottom-left -->
     <div
       class="absolute -bottom-24 sm:-bottom-20 left-0 w-40 h-40 sm:w-64 sm:h-64 opacity-[0.08] pointer-events-none"
@@ -32,6 +33,7 @@
         <RegisterStatusModal
           v-model="showRegisterModal"
           :state="registerModalState"
+          @closed="onRegisterModalClosed"
         />
 
         <!-- Step 1: Basic Info -->
@@ -428,11 +430,21 @@
 </template>
 
 <script setup>
+import { useAuthStore } from '~/stores/auth'
+
 definePageMeta({ layout: 'blank', title: 'register.title' })
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+const authStore = useAuthStore()
 const showLanguageModal = ref(false)
+
+function onRegisterModalClosed(state) {
+  if (state === 'success') {
+    authStore.login({ phone: form.phone })
+    navigateTo(localePath('/'))
+  }
+}
 
 const commercialRegisterInput = ref(null)
 

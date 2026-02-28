@@ -62,9 +62,10 @@
 
             <button
               type="submit"
-              class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
+              :disabled="loginLoading"
+              class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {{ t('login.submit') }}
+              {{ loginLoading ? t('common.loading') : t('login.submit') }}
             </button>
           </form>
 
@@ -176,13 +177,17 @@
 </template>
 
 <script setup>
+import { useAuthStore } from '~/stores/auth'
+
 definePageMeta({ layout: 'blank', title: 'login.title' })
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+const authStore = useAuthStore()
 
 const phone = ref('')
 const password = ref('')
+const loginLoading = ref(false)
 const showLanguageModal = ref(false)
 const showForgotPassword = ref(false)
 const forgotStep = ref('phone')
@@ -191,8 +196,16 @@ const otpContainerRef = ref(null)
 
 const OTP_LENGTH = 6
 
-function onSubmit() {
-  console.log('Login', { phone: phone.value, password: password.value })
+async function onSubmit() {
+  if (loginLoading.value) return
+  loginLoading.value = true
+  try {
+    // TODO: Replace with real API call; mock success for now
+    authStore.login({ phone: phone.value })
+    await navigateTo(localePath('/'))
+  } finally {
+    loginLoading.value = false
+  }
 }
 
 function backToLogin() {

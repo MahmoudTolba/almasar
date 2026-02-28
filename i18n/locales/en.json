@@ -4,7 +4,8 @@
     "appName": "Al-Masar Al-Dhaki",
     "logout": "Logout",
     "back": "Back",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "loading": "Loading..."
   },
   "sidebar": {
     "orders": "Orders Management",

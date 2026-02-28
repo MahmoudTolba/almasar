@@ -44,7 +44,8 @@
 </template>
 
 <script setup>
-defineProps({
+
+const props = defineProps({
   modelValue: { type: Boolean, default: false },
   state: {
     type: String,
@@ -53,12 +54,12 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
-
+const emit = defineEmits(['update:modelValue', 'closed'])
 const { t } = useI18n()
 
 function close() {
   emit('update:modelValue', false)
+  emit('closed', props.state)
 }
 </script>
 

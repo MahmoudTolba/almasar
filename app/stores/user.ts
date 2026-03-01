@@ -127,6 +127,17 @@ export const useUserStore = defineStore('user', {
       return updated
     },
 
+    deleteUser(phone: string): boolean {
+      const user = this.getUserByPhone(phone)
+      if (!user) return false
+      const key = user.phone
+      const { [key]: _, ...rest } = this.users
+      this.users = rest
+      saveToStorage(this.$state)
+      saveToCookie(this.$state)
+      return true
+    },
+
     hydrateFromCookie() {
       if (import.meta.client) {
         const fromStorage = loadFromStorage()

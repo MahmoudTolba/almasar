@@ -136,6 +136,7 @@ import ChangePasswordForm from '~/components/profile/ChangePasswordForm.vue'
 
 definePageMeta({ title: 'settings.title' })
 const { t } = useI18n()
+const localePath = useLocalePath()
 const notificationsEnabled = ref(true)
 const isEditingProfile = ref(false)
 const isChangingPassword = ref(false)
@@ -151,8 +152,18 @@ function onChangePasswordSuccess() {
 }
 
 function onConfirmDeleteAccount() {
-  // TODO: call delete account API when backend is ready
+  const authStore = useAuthStore()
+  const userStore = useUserStore()
+  const draftStore = useRegistrationDraftStore()
+  const phone = authStore.user?.phone
+
+  if (phone) {
+    userStore.deleteUser(phone)
+    draftStore.clear()
+  }
+  authStore.logout()
   showDeleteAccountModal.value = false
+  navigateTo(localePath('/login'))
 }
 </script>
 

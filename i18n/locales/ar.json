@@ -55,6 +55,7 @@
     "passwordHide": "إخفاء كلمة المرور",
     "changePasswordTitle": "تغيير كلمة المرور",
     "changePasswordSubtitle": "الرجاء إدخال رقم الجوال الخاص بك لإرسال كود التفعيل",
+    "changePasswordFormSubtitle": "الرجاء إدخال البيانات المطلوبة لتغيير كلمة المرور",
     "next": "التالي",
     "backToLogin": "العودة لتسجيل الدخول",
     "otpTitle": "أدخل رمز التفعيل",
@@ -63,7 +64,8 @@
     "otpResendLink": "إعادة ارسال",
     "resendCode": "إعادة إرسال الرمز",
     "verify": "تحقق",
-    "back": "رجوع"
+    "back": "رجوع",
+    "passwordChangeSuccess": "تم تغيير كلمة المرور بنجاح"
   },
   "orders": {
     "title": "إدارة الطلبات",

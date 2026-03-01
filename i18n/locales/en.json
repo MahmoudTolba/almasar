@@ -55,6 +55,7 @@
     "passwordHide": "Hide password",
     "changePasswordTitle": "Change Password",
     "changePasswordSubtitle": "Please enter your mobile number to send you the activation code.",
+    "changePasswordFormSubtitle": "Please enter the required data to change the password",
     "next": "Next",
     "backToLogin": "Back to login",
     "otpTitle": "Enter verification code",
@@ -63,7 +64,8 @@
     "otpResendLink": "Resend",
     "resendCode": "Resend code",
     "verify": "Verify",
-    "back": "Back"
+    "back": "Back",
+    "passwordChangeSuccess": "Password changed successfully"
   },
   "orders": {
     "title": "Orders Management",

@@ -35,6 +35,35 @@
         </div>
         <LanguageModal v-model="showLanguageModal" />
 
+        <!-- Password change success modal -->
+        <Teleport to="body">
+          <Transition name="modal">
+            <div
+              v-if="showPasswordSuccessModal"
+              class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40"
+              @click.self="closePasswordSuccessModal"
+            >
+              <div class="w-full max-w-lg bg-white rounded-xl shadow-lg border border-gray-100 p-8 flex flex-col items-center">
+                <img
+                  src="~/assets/icons/done.gif"
+                  alt=""
+                  class="w-24 h-24 object-contain mb-6"
+                />
+                <p class="text-center text-gray-900 font-medium mb-8">
+                  {{ t('login.passwordChangeSuccess') }}
+                </p>
+                <button
+                  type="button"
+                  class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
+                  @click="closePasswordSuccessModal"
+                >
+                  {{ t('login.backToLogin') }}
+                </button>
+              </div>
+            </div>
+          </Transition>
+        </Teleport>
+
         <!-- Login view -->
         <template v-if="!showForgotPassword">
           <div class="flex flex-col items-start mb-6">
@@ -95,6 +124,56 @@
               class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
             >
               {{ t('login.next') }}
+            </button>
+          </form>
+
+          <p class="text-center text-sm text-gray-600 mt-6">
+            <button
+              type="button"
+              class="text-accent font-semibold hover:underline"
+              @click.prevent="backToLogin"
+            >
+              {{ t('login.backToLogin') }}
+            </button>
+          </p>
+        </template>
+
+        <!-- Change password (after OTP) view -->
+        <template v-else-if="showForgotPassword && forgotStep === 'newPassword'">
+          <div class="flex flex-col items-start mb-6">
+            <h1 class="text-xl font-bold text-gray-900 text-start mb-1">
+              {{ t('login.changePasswordTitle') }}
+            </h1>
+            <p class="text-sm text-gray-500 text-start mb-6">
+              {{ t('login.changePasswordFormSubtitle') }}
+            </p>
+          </div>
+
+          <form @submit.prevent="onChangePasswordSubmit" class="space-y-4">
+            <PasswordInput
+              v-model="newPassword"
+              label-key="changePassword.newPasswordLabel"
+              placeholder-key="login.passwordPlaceholder"
+              input-id="forgot-new-password"
+            />
+            <div v-if="changePasswordErrors.newPassword" class="text-xs text-red-500 -mt-2">
+              {{ changePasswordErrors.newPassword }}
+            </div>
+            <PasswordInput
+              v-model="confirmNewPassword"
+              label-key="changePassword.confirmNewPasswordLabel"
+              placeholder-key="login.passwordPlaceholder"
+              input-id="forgot-confirm-password"
+            />
+            <div v-if="changePasswordErrors.confirmNewPassword" class="text-xs text-red-500 -mt-2">
+              {{ changePasswordErrors.confirmNewPassword }}
+            </div>
+            <button
+              type="submit"
+              :disabled="changePasswordLoading"
+              class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {{ changePasswordLoading ? t('common.loading') : t('login.next') }}
             </button>
           </form>
 
@@ -201,12 +280,17 @@ const phone = ref('')
 const password = ref('')
 const loginLoading = ref(false)
 const showLanguageModal = ref(false)
+const showPasswordSuccessModal = ref(false)
 const showForgotPassword = ref(false)
 const forgotStep = ref('phone')
 const otp = ref('')
 const otpContainerRef = ref(null)
 const resendCountdown = ref(0)
 const resendIntervalRef = ref(null)
+const newPassword = ref('')
+const confirmNewPassword = ref('')
+const changePasswordErrors = ref({ newPassword: '', confirmNewPassword: '' })
+const changePasswordLoading = ref(false)
 
 const OTP_LENGTH = 6
 
@@ -302,8 +386,41 @@ async function onForgotSubmit() {
   otpContainerRef.value?.querySelector('input')?.focus()
 }
 
-function onOtpVerify() {
-  console.log('Verify OTP', { phone: phone.value, otp: otp.value })
+async function onOtpVerify() {
+  // TODO: Replace with real API call; mock success for now
+  forgotStep.value = 'newPassword'
+  newPassword.value = ''
+  confirmNewPassword.value = ''
+  changePasswordErrors.value = {}
+}
+
+function validateChangePassword() {
+  const e = { newPassword: '', confirmNewPassword: '' }
+  if (!newPassword.value.trim()) e.newPassword = t('changePassword.required')
+  if (!confirmNewPassword.value.trim()) {
+    e.confirmNewPassword = t('changePassword.required')
+  } else if (newPassword.value !== confirmNewPassword.value) {
+    e.confirmNewPassword = t('changePassword.passwordMismatch')
+  }
+  changePasswordErrors.value = e
+  return !e.newPassword && !e.confirmNewPassword
+}
+
+async function onChangePasswordSubmit() {
+  if (!validateChangePassword()) return
+  changePasswordLoading.value = true
+  try {
+    // TODO: Replace with real API call
+    console.log('Change password', { phone: phone.value, newPassword: newPassword.value })
+    showPasswordSuccessModal.value = true
+  } finally {
+    changePasswordLoading.value = false
+  }
+}
+
+function closePasswordSuccessModal() {
+  showPasswordSuccessModal.value = false
+  backToLogin()
 }
 
 function onResendCode() {
@@ -327,3 +444,22 @@ onUnmounted(() => {
   }
 })
 </script>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.2s ease;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+.modal-enter-active .bg-white,
+.modal-leave-active .bg-white {
+  transition: transform 0.2s ease;
+}
+.modal-enter-from .bg-white,
+.modal-leave-to .bg-white {
+  transform: scale(0.95);
+}
+</style>

@@ -55,6 +55,7 @@
     "passwordHide": "پاس ورڈ چھپائیں",
     "changePasswordTitle": "پاس ورڈ تبدیل کریں",
     "changePasswordSubtitle": "براہ کرم اپنا موبائل نمبر درج کریں تاکہ آپ کو ایکٹیویشن کوڈ بھیجا جا سکے۔",
+    "changePasswordFormSubtitle": "پاس ورڈ تبدیل کرنے کے لیے درکار ڈیٹا درج کریں",
     "next": "اگلا",
     "backToLogin": "لاگ ان پر واپس جائیں",
     "otpTitle": "تصدیق کا کوڈ درج کریں",
@@ -63,7 +64,8 @@
     "otpResendLink": "دوبارہ بھیجیں",
     "resendCode": "کوڈ دوبارہ بھیجیں",
     "verify": "تصدیق کریں",
-    "back": "واپس"
+    "back": "واپس",
+    "passwordChangeSuccess": "پاس ورڈ کامیابی سے تبدیل ہو گیا"
   },
   "orders": {
     "title": "آرڈرز کا انتظام",

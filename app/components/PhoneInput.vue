@@ -4,7 +4,7 @@
       {{ t(labelKey) }}
     </label>
     <div
-      class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary"
+      class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
     >
       <span class="flex items-center gap-2 flex-1 min-w-0">
         <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">

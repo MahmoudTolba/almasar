@@ -4,7 +4,7 @@
       {{ t(labelKey) }}
     </label>
     <div
-      class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary"
+      class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
     >
       <span class="w-5 h-5 text-gray-900 shrink-0 inline-flex" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" shape-rendering="geometricPrecision" class="w-5 h-5">

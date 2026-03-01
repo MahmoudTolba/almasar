@@ -25,7 +25,7 @@
                 v-model="form.officialEmail"
                 type="email"
                 :placeholder="t('profile.officialEmailPlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               >
               <p v-if="errors.officialEmail" class="text-xs text-red-500 mt-1">
                 {{ errors.officialEmail }}
@@ -40,7 +40,7 @@
                 v-model="form.officeName"
                 type="text"
                 :placeholder="t('profile.officeNamePlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               >
               <p v-if="errors.officeName" class="text-xs text-red-500 mt-1">
                 {{ errors.officeName }}
@@ -82,7 +82,7 @@
                 v-model="form.address"
                 type="text"
                 :placeholder="t('profile.addressPlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               >
               <p v-if="errors.address" class="text-xs text-red-500 mt-1">
                 {{ errors.address }}
@@ -97,7 +97,7 @@
                 v-model="form.description"
                 rows="3"
                 :placeholder="t('profile.descriptionPlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent resize-none"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
               />
               <p v-if="errors.description" class="text-xs text-red-500 mt-1">
                 {{ errors.description }}
@@ -154,7 +154,7 @@
                 v-model="form.bankName"
                 type="text"
                 :placeholder="t('profile.bankNamePlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               >
             </div>
 
@@ -166,7 +166,7 @@
                 v-model="form.bankAccountName"
                 type="text"
                 :placeholder="t('profile.bankAccountNamePlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               >
             </div>
 
@@ -178,7 +178,7 @@
                 v-model="form.iban"
                 type="text"
                 :placeholder="t('profile.ibanPlaceholder')"
-                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#CEA04D] focus:border-transparent ltr:text-left rtl:text-right"
+                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent ltr:text-left rtl:text-right"
               >
             </div>
           </div>

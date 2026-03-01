@@ -26,7 +26,7 @@
           v-model="searchQuery"
           type="text"
           :placeholder="t('orders.searchPlaceholder')"
-          class="w-full pe-10 ps-4 py-3 rounded-xl bg-white border border-gray-100 shadow-sm focus:ring-2 focus:ring-gray-900 outline-none transition-all placeholder:text-gray-400 text-sm lg:text-base"
+          class="w-full pe-10 ps-4 py-3 rounded-xl bg-white border border-gray-100 shadow-sm focus:ring-2 focus:ring-accent outline-none transition-all placeholder:text-gray-400 text-sm lg:text-base"
         />
         <div class="absolute end-3 top-1/2 -translate-y-1/2 text-gray-400">
           <span class="w-5 h-5 inline-block">

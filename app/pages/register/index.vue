@@ -57,7 +57,7 @@
                   {{ t('register.officeNameLabel') }}
                 </label>
                 <div
-                  class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary"
+                  class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
                   :class="{ 'border-red-500': errors.officeName }"
                 >
                   <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
@@ -84,7 +84,7 @@
                   {{ t('register.officialEmailLabel') }}
                 </label>
                 <div
-                  class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary"
+                  class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
                   :class="{ 'border-red-500': errors.officialEmail }"
                 >
                   <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
@@ -140,7 +140,7 @@
                   {{ t('register.addressLabel') }}
                 </label>
                 <div
-                  class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary"
+                  class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
                   :class="{ 'border-red-500': errors.address }"
                 >
                   <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
@@ -183,7 +183,7 @@
               {{ t('register.descriptionLabel') }}
             </label>
             <div
-              class="rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary"
+              class="rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
             >
               <div class="flex gap-2">
                 <span class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" aria-hidden="true">
@@ -278,7 +278,7 @@
                   <label for="bankName" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
                     {{ t('profile.bankNameLabel') }}
                   </label>
-                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary">
+                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent">
                     <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008H17.25v-.008Zm0 3h.008v.008H17.25v-.008Z" />
@@ -297,7 +297,7 @@
                   <label for="bankAccountName" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
                     {{ t('profile.bankAccountNameLabel') }}
                   </label>
-                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary">
+                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent">
                     <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008H17.25v-.008Zm0 3h.008v.008H17.25v-.008Z" />
@@ -316,7 +316,7 @@
                   <label for="iban" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
                     {{ t('profile.ibanLabel') }}
                   </label>
-                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary">
+                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent">
                     <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008H17.25v-.008Zm0 3h.008v.008H17.25v-.008Z" />

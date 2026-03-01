@@ -71,7 +71,7 @@
             id="contact-modal-title"
             v-model="form.title"
             type="text"
-            class="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent mb-4"
+            class="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent mb-4"
             :placeholder="t('contact.messageTitlePlaceholder')"
           >
 
@@ -82,7 +82,7 @@
             v-model="form.body"
             rows="4"
             maxlength="500"
-            class="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-y"
+            class="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-y"
             :placeholder="t('contact.messageContentPlaceholder')"
           />
           <p class="text-xs text-gray-500 mt-1">{{ form.body.length }}/500</p>

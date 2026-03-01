@@ -135,7 +135,7 @@
                 type="text"
                 inputmode="numeric"
                 maxlength="1"
-                class="w-11 h-12 text-center text-lg font-semibold rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
+                class="w-11 h-12 text-center text-lg font-semibold rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
                 :aria-label="'Digit ' + i"
                 @input="(e) => setOtpDigit(i - 1, e.target.value)"
                 @keydown="(e) => onOtpKeydown(i - 1, e)"

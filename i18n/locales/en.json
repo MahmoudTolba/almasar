@@ -65,7 +65,9 @@
     "resendCode": "Resend code",
     "verify": "Verify",
     "back": "Back",
-    "passwordChangeSuccess": "Password changed successfully"
+    "passwordChangeSuccess": "Password changed successfully",
+    "userNotFound": "No account found with this phone number. Please register first.",
+    "passwordIncorrect": "Incorrect password. Please try again."
   },
   "orders": {
     "title": "Orders Management",
@@ -406,6 +408,7 @@
     "officialDocumentsSectionTitle": "Required official documents",
     "commercialRegisterLabel": "Commercial register",
     "commercialRegisterHint": "Click to upload file (PDF, JPG, PNG)",
+    "bankAccount": "Bank account details",
     "bankSectionTitle": "Bank account details (optional)",
     "bankNameLabel": "Bank name",
     "bankNamePlaceholder": "Bank name",
@@ -416,11 +419,15 @@
     "submitButton": "Confirm",
     "submittingLabel": "Saving...",
     "cancelButton": "Cancel",
+    "copy": "Copy",
+    "copied": "Copied!",
     "validation": {
       "officeNameRequired": "Office name is required.",
       "addressRequired": "Address is required.",
       "emailInvalid": "Please enter a valid email address.",
-      "commercialRegisterRequired": "Please upload the commercial register document."
+      "commercialRegisterRequired": "Please upload the commercial register document.",
+      "logoInvalidType": "Please upload a PNG or JPG image.",
+      "logoTooLarge": "Image must be 500KB or smaller."
     }
   },
   "settings": {

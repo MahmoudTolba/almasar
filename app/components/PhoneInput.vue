@@ -122,6 +122,16 @@ function emitE164() {
 
 function onInput(e) {
   const value = e.target && e.target.value != null ? e.target.value : ''
+  if (value.trim().startsWith('+')) {
+    const parsed = parseE164(value)
+    if (parsed) {
+      const country = PHONE_COUNTRIES.find((c) => c.dialCode === parsed.dialCode) ?? selectedCountry.value
+      selectedCountry.value = country
+      nationalNumber.value = parsed.nationalNumber
+      emitE164()
+      return
+    }
+  }
   nationalNumber.value = value.replace(/\D/g, '')
   emitE164()
 }

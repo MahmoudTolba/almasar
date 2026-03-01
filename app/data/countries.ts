@@ -72,3 +72,12 @@ export function parseE164(value: string): { dialCode: string; nationalNumber: st
   }
   return null
 }
+
+/** Normalize phone to canonical E.164 format for consistent storage and lookup */
+export function normalizePhoneToE164(phone: string): string {
+  const trimmed = (phone || '').trim()
+  if (!trimmed) return ''
+  const withPlus = trimmed.startsWith('+') ? trimmed : `+${trimmed.replace(/\D/g, '')}`
+  const parsed = parseE164(withPlus)
+  return parsed ? `+${parsed.dialCode}${parsed.nationalNumber}` : trimmed
+}

@@ -52,24 +52,39 @@
             <label class="text-xs font-medium text-[#4B5563]">
               {{ t('profile.logoLabel') }}
             </label>
-            <button
-              type="button"
-              @click="triggerFileInput('logo')"
-              class="flex w-full items-center justify-between rounded-xl border border-dashed border-gray-200 bg-gray-50 px-4 py-3 text-sm text-[#4B5563] hover:border-[#AB8740] hover:bg-amber-50 transition-colors"
-            >
-              <span class="truncate">
-                {{ logoFileName || t('profile.logoHint') }}
-              </span>
-              <span class="text-xs font-medium text-[#AB8740]">
-                {{ t('profile.uploadActionLabel') }}
-              </span>
-            </button>
+            <div class="flex items-center gap-3">
+              <div
+                v-if="logoPreviewUrl"
+                class="w-16 h-16 rounded-lg border border-gray-200 overflow-hidden shrink-0"
+              >
+                <img
+                  :src="logoPreviewUrl"
+                  alt="Logo preview"
+                  class="w-full h-full object-cover"
+                >
+              </div>
+              <button
+                type="button"
+                @click="triggerFileInput('logo')"
+                class="flex flex-1 items-center justify-between rounded-xl border border-dashed border-gray-200 bg-gray-50 px-4 py-3 text-sm text-[#4B5563] hover:border-[#AB8740] hover:bg-amber-50 transition-colors"
+              >
+                <span class="truncate">
+                  {{ logoFileName || t('profile.logoHint') }}
+                </span>
+                <span class="text-xs font-medium text-[#AB8740] shrink-0">
+                  {{ t('profile.uploadActionLabel') }}
+                </span>
+              </button>
+            </div>
+            <p v-if="errors.logo" class="text-xs text-red-500 mt-1">
+              {{ errors.logo }}
+            </p>
             <input
               ref="logoInput"
               type="file"
               class="hidden"
               accept="image/png,image/jpeg"
-              @change="onFileChange('logo', $event)"
+              @change="onLogoChange"
             >
           </div>
 
@@ -212,9 +227,14 @@
 </template>
 
 <script setup>
+import { useAuthStore } from '~/stores/auth'
+import { useUserStore } from '~/stores/user'
+
 const emit = defineEmits(['submit-success', 'cancel'])
 
 const { t } = useI18n()
+const authStore = useAuthStore()
+const userStore = useUserStore()
 
 const form = reactive({
   officialEmail: '',
@@ -226,6 +246,23 @@ const form = reactive({
   iban: ''
 })
 
+// Initialize form from auth store
+watch(
+  () => authStore.user,
+  (user) => {
+    if (user) {
+      form.officialEmail = user.officialEmail ?? ''
+      form.officeName = user.officeName ?? ''
+      form.address = user.address ?? ''
+      form.description = user.description ?? ''
+      form.bankName = user.bankName ?? ''
+      form.bankAccountName = user.bankAccountName ?? ''
+      form.iban = user.iban ?? ''
+    }
+  },
+  { immediate: true }
+)
+
 const files = reactive({
   logo: null,
   commercialRegister: null
@@ -236,8 +273,12 @@ const errors = reactive({
   officeName: '',
   address: '',
   description: '',
-  commercialRegister: ''
+  commercialRegister: '',
+  logo: ''
 })
+
+const MAX_LOGO_SIZE_BYTES = 500 * 1024 // 500KB
+const avatarDataUrl = ref('')
 
 const loading = ref(false)
 
@@ -247,12 +288,18 @@ const commercialRegisterInput = ref(null)
 const logoFileName = computed(() => (files.logo && files.logo.name) || '')
 const commercialRegisterFileName = computed(() => (files.commercialRegister && files.commercialRegister.name) || '')
 
+const logoPreviewUrl = computed(() => {
+  if (avatarDataUrl.value) return avatarDataUrl.value
+  return authStore.user?.avatarUrl || ''
+})
+
 const clearErrors = () => {
   errors.officialEmail = ''
   errors.officeName = ''
   errors.address = ''
   errors.description = ''
   errors.commercialRegister = ''
+  errors.logo = ''
 }
 
 const validate = () => {
@@ -274,7 +321,9 @@ const validate = () => {
     valid = false
   }
 
-  if (!files.commercialRegister) {
+  // Commercial register required only if user doesn't already have one
+  const hasExistingDoc = !!authStore.user?.commercialRegisterFileName
+  if (!hasExistingDoc && !files.commercialRegister) {
     errors.commercialRegister = t('profile.validation.commercialRegisterRequired')
     valid = false
   }
@@ -289,6 +338,37 @@ const onFileChange = (key, event) => {
     return
   }
   files[key] = target.files[0]
+}
+
+const onLogoChange = (event) => {
+  const target = event.target
+  if (!target?.files?.length) {
+    files.logo = null
+    avatarDataUrl.value = ''
+    errors.logo = ''
+    return
+  }
+  const file = target.files[0]
+  if (!/^image\/(png|jpeg)$/.test(file.type)) {
+    errors.logo = t('profile.validation.logoInvalidType')
+    files.logo = null
+    avatarDataUrl.value = ''
+    return
+  }
+  if (file.size > MAX_LOGO_SIZE_BYTES) {
+    errors.logo = t('profile.validation.logoTooLarge')
+    files.logo = null
+    avatarDataUrl.value = ''
+    return
+  }
+  errors.logo = ''
+  files.logo = file
+  const reader = new FileReader()
+  reader.onload = () => {
+    avatarDataUrl.value = reader.result || ''
+  }
+  reader.readAsDataURL(file)
+  target.value = ''
 }
 
 const triggerFileInput = (key) => {
@@ -307,6 +387,23 @@ const handleSubmit = async () => {
   loading.value = true
 
   try {
+    const user = authStore.user
+    if (user?.phone) {
+      const updated = userStore.updateProfile(user.phone, {
+        officialEmail: form.officialEmail,
+        officeName: form.officeName,
+        address: form.address,
+        description: form.description,
+        bankName: form.bankName,
+        bankAccountName: form.bankAccountName,
+        iban: form.iban,
+        avatarUrl: avatarDataUrl.value || user.avatarUrl || '',
+        commercialRegisterFileName: files.commercialRegister?.name ?? user.commercialRegisterFileName ?? '',
+      })
+      if (updated) {
+        authStore.setUser(updated)
+      }
+    }
     emit('submit-success')
   } finally {
     loading.value = false

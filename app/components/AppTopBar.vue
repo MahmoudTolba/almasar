@@ -30,17 +30,29 @@
       </NuxtLink>
     </div>
 
-    <div class="flex items-center gap-3   px-3 py-1.5 rounded-lg">
-      <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-md border border-[#AB8740] flex items-center justify-center text-white overflow-hidden ">
-        <img src="~/assets/images/logo.png" alt="S" class="w-full h-full object-contain" />
+    <div class="flex items-center gap-3 px-3 py-1.5 rounded-lg">
+      <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-md border border-[#AB8740] flex items-center justify-center overflow-hidden shrink-0 bg-white">
+        <img
+          :src="avatarSrc"
+          :alt="displayName"
+          class="w-full h-full object-cover"
+        >
       </div>
-      <span class="text-xs sm:text-sm lg:text-sm font-semibold text-gray-900 truncate max-w-[100px] sm:max-w-[140px] lg:max-w-none">شركة الوالي</span>
+      <span class="text-xs sm:text-sm lg:text-sm font-semibold text-gray-900 truncate max-w-[100px] sm:max-w-[140px] lg:max-w-none">{{ displayName }}</span>
     </div>
   </header>
 </template>
 
 <script setup>
+import defaultLogo from '~/assets/images/logo.png'
+
 const { toggle } = useSidebar()
 const { unreadCount } = useNotifications()
 const localePath = useLocalePath()
+const authStore = useAuthStore()
+const { t } = useI18n()
+
+const user = computed(() => authStore.user)
+const displayName = computed(() => user.value?.officeName || t('profile.companyName') || '—')
+const avatarSrc = computed(() => user.value?.avatarUrl || defaultLogo)
 </script>

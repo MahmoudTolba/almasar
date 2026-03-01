@@ -65,7 +65,9 @@
     "resendCode": "کوڈ دوبارہ بھیجیں",
     "verify": "تصدیق کریں",
     "back": "واپس",
-    "passwordChangeSuccess": "پاس ورڈ کامیابی سے تبدیل ہو گیا"
+    "passwordChangeSuccess": "پاس ورڈ کامیابی سے تبدیل ہو گیا",
+    "userNotFound": "اس فون نمبر کے ساتھ کوئی اکاؤنٹ نہیں ملا۔ براہ کرم پہلے رجسٹر کریں۔",
+    "passwordIncorrect": "پاس ورڈ غلط ہے۔ براہ کرم دوبارہ کوشش کریں۔"
   },
   "orders": {
     "title": "آرڈرز کا انتظام",
@@ -406,6 +408,7 @@
     "officialDocumentsSectionTitle": "ضروری سرکاری دستاویزات",
     "commercialRegisterLabel": "تجارتی رجسٹر",
     "commercialRegisterHint": "فائل اپ لوڈ کرنے کے لیے دبائیں (PDF, JPG, PNG)",
+    "bankAccount": "بینک اکاؤنٹ کی تفصیلات",
     "bankSectionTitle": "بینک اکاؤنٹ کی تفصیلات (اختیاری)",
     "bankNameLabel": "بینک کا نام",
     "bankNamePlaceholder": "بینک کا نام",
@@ -416,11 +419,15 @@
     "submitButton": "تصدیق کریں",
     "submittingLabel": "محفوظ کیا جا رہا ہے...",
     "cancelButton": "منسوخ کریں",
+    "copy": "کاپی کریں",
+    "copied": "کاپی ہو گیا!",
     "validation": {
       "officeNameRequired": "دفتر کا نام ضروری ہے۔",
       "addressRequired": "پتہ ضروری ہے۔",
       "emailInvalid": "براہ کرم درست ای میل درج کریں۔",
-      "commercialRegisterRequired": "براہ کرم تجارتی رجسٹر دستاویز اپ لوڈ کریں۔"
+      "commercialRegisterRequired": "براہ کرم تجارتی رجسٹر دستاویز اپ لوڈ کریں۔",
+      "logoInvalidType": "براہ کرم PNG یا JPG تصویر اپ لوڈ کریں۔",
+      "logoTooLarge": "تصویر 500KB یا اس سے کم ہونی چاہیے۔"
     }
   },
   "settings": {

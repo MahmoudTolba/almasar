@@ -1,5 +1,6 @@
 export const useRegisterForm = () => {
   const { t } = useI18n()
+  const draftStore = useRegistrationDraftStore()
 
   const step = ref(1)
 
@@ -19,6 +20,29 @@ export const useRegisterForm = () => {
     bankAccountName: '',
     iban: '',
   })
+
+  // Hydrate from draft on init
+  if (import.meta.client) {
+    const loaded = draftStore.load()
+    if (loaded.step1) {
+      form.officeName = loaded.step1.officeName ?? ''
+      form.officialEmail = loaded.step1.officialEmail ?? ''
+      form.phone = loaded.step1.phone ?? ''
+      form.address = loaded.step1.address ?? ''
+      form.password = loaded.step1.password ?? ''
+      form.confirmPassword = loaded.step1.confirmPassword ?? ''
+      form.description = loaded.step1.description ?? ''
+    }
+    if (loaded.step2) {
+      formStep2.bankName = loaded.step2.bankName ?? ''
+      formStep2.bankAccountName = loaded.step2.bankAccountName ?? ''
+      formStep2.iban = loaded.step2.iban ?? ''
+      // commercialRegisterFile stays null - File cannot be restored from storage
+    }
+    if (loaded.step >= 1 && loaded.step <= 3) {
+      step.value = loaded.step
+    }
+  }
 
   const errors = reactive({
     officeName: '',
@@ -120,6 +144,15 @@ export const useRegisterForm = () => {
 
   const onSubmit = async (): Promise<void> => {
     if (!validate() || loading.value) return
+    draftStore.saveStep1({
+      officeName: form.officeName,
+      officialEmail: form.officialEmail,
+      phone: form.phone,
+      address: form.address,
+      password: form.password,
+      confirmPassword: form.confirmPassword,
+      description: form.description,
+    })
     step.value = 2
   }
 
@@ -231,15 +264,12 @@ export const useRegisterForm = () => {
 
     loading.value = true
     try {
-      // TODO: Call registration API with combined data
-      const payload = {
-        ...form,
-        commercialRegisterFile: formStep2.commercialRegisterFile,
+      draftStore.saveStep2({
         bankName: formStep2.bankName,
         bankAccountName: formStep2.bankAccountName,
         iban: formStep2.iban,
-      }
-      console.log('Register (complete)', payload)
+        commercialRegisterFileName: formStep2.commercialRegisterFile?.name ?? '',
+      })
       step.value = 3
       otp.value = ''
       await nextTick()

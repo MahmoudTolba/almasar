@@ -78,7 +78,9 @@
           <form @submit.prevent="onSubmit" class="space-y-4">
             <PhoneInput v-model="phone" />
             <PasswordInput v-model="password" />
-
+            <p v-if="loginError" class="text-xs text-red-500">
+              {{ loginError }}
+            </p>
             <div class="text-left">
               <button
                 type="button"
@@ -268,6 +270,7 @@
 
 <script setup>
 import { useAuthStore } from '~/stores/auth'
+import { useUserStore } from '~/stores/user'
 import { parseE164 } from '~/data/countries'
 
 definePageMeta({ layout: 'blank', title: 'login.title' })
@@ -275,8 +278,10 @@ definePageMeta({ layout: 'blank', title: 'login.title' })
 const { t } = useI18n()
 const localePath = useLocalePath()
 const authStore = useAuthStore()
+const userStore = useUserStore()
 
 const phone = ref('')
+const loginError = ref('')
 const password = ref('')
 const loginLoading = ref(false)
 const showLanguageModal = ref(false)
@@ -310,10 +315,17 @@ const resendCountdownFormatted = computed(() => {
 async function onSubmit() {
   if (loginLoading.value) return
   loginLoading.value = true
+  loginError.value = ''
   try {
-    // TODO: Replace with real API call; mock success for now
-    authStore.login({ phone: phone.value })
-    await navigateTo(localePath('/'))
+    const user = userStore.getUserByPhone(phone.value)
+    if (!user) {
+      loginError.value = t('login.userNotFound')
+    } else if (user.password && user.password !== password.value) {
+      loginError.value = t('login.passwordIncorrect')
+    } else {
+      authStore.login(user)
+      await navigateTo(localePath('/'))
+    }
   } finally {
     loginLoading.value = false
   }

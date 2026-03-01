@@ -52,7 +52,7 @@
             <!-- Right column (RTL): Office Name, Official Email, Password -->
             <div class="flex flex-col gap-4">
               <!-- Office Name -->
-              <div class="flex flex-col gap-1">
+              <div class="flex flex-col">
                 <label for="officeName" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
                   {{ t('register.officeNameLabel') }}
                 </label>
@@ -79,7 +79,7 @@
               </div>
 
               <!-- Official Email (optional) -->
-              <div class="flex flex-col gap-1">
+              <div class="flex flex-col">
                 <label for="officialEmail" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
                   {{ t('register.officialEmailLabel') }}
                 </label>
@@ -106,7 +106,7 @@
               </div>
 
               <!-- Password -->
-              <div>
+              <div class="flex flex-col">
                 <PasswordInput
                   v-model="form.password"
                   label-key="register.passwordLabel"
@@ -122,7 +122,7 @@
             <!-- Left column (RTL): Phone, Address, Confirm Password -->
             <div class="flex flex-col gap-4">
               <!-- Phone -->
-              <div>
+              <div class="flex flex-col">
                 <PhoneInput
                   v-model="form.phone"
                   label-key="register.phoneLabel"
@@ -135,7 +135,7 @@
               </div>
 
               <!-- Address -->
-              <div class="flex flex-col gap-1">
+              <div class="flex flex-col">
                 <label for="address" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
                   {{ t('register.addressLabel') }}
                 </label>
@@ -163,7 +163,7 @@
               </div>
 
               <!-- Confirm Password -->
-              <div>
+              <div class="flex flex-col">
                 <PasswordInput
                   v-model="form.confirmPassword"
                   label-key="register.confirmPasswordLabel"
@@ -431,17 +431,37 @@
 
 <script setup>
 import { useAuthStore } from '~/stores/auth'
+import { useUserStore } from '~/stores/user'
+import { useRegistrationDraftStore } from '~/stores/registrationDraft'
 
 definePageMeta({ layout: 'blank', title: 'register.title' })
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 const authStore = useAuthStore()
+const userStore = useUserStore()
+const registrationDraftStore = useRegistrationDraftStore()
 const showLanguageModal = ref(false)
 
 function onRegisterModalClosed(state) {
   if (state === 'success') {
-    authStore.login({ phone: form.phone })
+    registrationDraftStore.clear()
+    const profile = {
+      officeName: form.officeName,
+      officialEmail: form.officialEmail,
+      phone: form.phone,
+      address: form.address,
+      description: form.description,
+      password: form.password,
+      bankName: formStep2.bankName,
+      bankAccountName: formStep2.bankAccountName,
+      iban: formStep2.iban,
+      commercialRegisterFileName: formStep2.commercialRegisterFile?.name ?? '',
+    }
+    const user = userStore.registerUser(profile)
+    if (user) {
+      authStore.login(user)
+    }
     navigateTo(localePath('/'))
   }
 }

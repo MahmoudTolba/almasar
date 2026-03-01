@@ -1,12 +1,9 @@
 import { defineStore } from 'pinia'
+import type { UserProfile } from './user'
 
 const STORAGE_KEY = 'almasar-auth'
 
-export interface AuthUser {
-  id?: string
-  phone?: string
-  name?: string
-}
+export type AuthUser = UserProfile
 
 interface AuthState {
   isAuthenticated: boolean

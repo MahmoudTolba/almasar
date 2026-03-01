@@ -16,9 +16,11 @@
           :id="inputId"
           :value="nationalNumber"
           type="tel"
+          inputmode="numeric"
           :placeholder="t(placeholderKey)"
           class="flex-1 min-w-0 bg-transparent border-none py-0.5 text-sm placeholder:text-gray-400 focus:outline-none text-right"
           @input="onInput($event)"
+          @keydown="onKeydown"
         >
       </span>
       <div class="relative shrink-0">
@@ -118,6 +120,13 @@ function emitE164() {
   const digits = nationalNumber.value.replace(/\D/g, '')
   const e164 = digits ? `+${selectedCountry.value.dialCode}${digits}` : ''
   emit('update:modelValue', e164)
+}
+
+function onKeydown(e) {
+  if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter'].includes(e.key)) return
+  if (e.ctrlKey || e.metaKey) return
+  if (['Home', 'End', 'Left', 'Right'].includes(e.key)) return
+  if (!/^\d$/.test(e.key)) e.preventDefault()
 }
 
 function onInput(e) {

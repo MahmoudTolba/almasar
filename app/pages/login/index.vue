@@ -115,8 +115,11 @@
             <h1 class="text-xl font-bold text-gray-900 text-start mb-1" id="otp-title">
               {{ t('login.otpTitle') }}
             </h1>
-            <p class="text-sm text-gray-500 text-start mb-6" id="otp-subtitle">
+            <p class="text-sm text-gray-500 text-start mb-2" id="otp-subtitle">
               {{ t('login.otpSubtitle') }}
+            </p>
+            <p v-if="formattedPhone" class="text-sm text-gray-400 text-start mt-1 mb-6">
+              {{ formattedPhone }}
             </p>
           </div>
 
@@ -134,6 +137,7 @@
                 :value="otp[i - 1]"
                 type="text"
                 inputmode="numeric"
+                placeholder="-"
                 maxlength="1"
                 class="w-11 h-12 text-center text-lg font-semibold rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
                 :aria-label="'Digit ' + i"
@@ -150,15 +154,22 @@
               {{ t('login.verify') }}
             </button>
 
-            <p class="text-center text-sm text-gray-600">
-              <button
-                type="button"
-                class="text-gray-600 hover:text-gray-900"
-                @click.prevent="onResendCode"
-              >
-                {{ t('login.resendCode') }}
-              </button>
-            </p>
+            <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-600">
+              <span>{{ t('login.otpResendPrompt') }}</span>
+              <span class="flex items-center gap-2">
+                <span v-if="resendCountdown > 0" class="tabular-nums text-accent">
+                  {{ resendCountdownFormatted }}
+                </span>
+                <button
+                  v-else
+                  type="button"
+                  class="text-accent font-semibold hover:underline"
+                  @click.prevent="onResendCode"
+                >
+                  {{ t('login.otpResendLink') }}
+                </button>
+              </span>
+            </div>
           </form>
 
           <p class="text-center text-sm text-gray-600 mt-6">
@@ -178,6 +189,7 @@
 
 <script setup>
 import { useAuthStore } from '~/stores/auth'
+import { parseE164 } from '~/data/countries'
 
 definePageMeta({ layout: 'blank', title: 'login.title' })
 
@@ -193,8 +205,23 @@ const showForgotPassword = ref(false)
 const forgotStep = ref('phone')
 const otp = ref('')
 const otpContainerRef = ref(null)
+const resendCountdown = ref(0)
+const resendIntervalRef = ref(null)
 
 const OTP_LENGTH = 6
+
+const formattedPhone = computed(() => {
+  const parsed = parseE164(phone.value)
+  if (!parsed) return ''
+  return `+${parsed.dialCode} ${parsed.nationalNumber}`
+})
+
+const resendCountdownFormatted = computed(() => {
+  const s = resendCountdown.value
+  const mins = Math.floor(s / 60)
+  const secs = s % 60
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+})
 
 async function onSubmit() {
   if (loginLoading.value) return
@@ -216,6 +243,11 @@ function backToLogin() {
 function backToPhoneStep() {
   forgotStep.value = 'phone'
   otp.value = ''
+  if (resendIntervalRef.value) {
+    clearInterval(resendIntervalRef.value)
+    resendIntervalRef.value = null
+  }
+  resendCountdown.value = 0
 }
 
 function setOtpDigit(index, value) {
@@ -257,6 +289,15 @@ function onOtpPaste(e) {
 async function onForgotSubmit() {
   forgotStep.value = 'otp'
   otp.value = ''
+  resendCountdown.value = 60
+  if (resendIntervalRef.value) clearInterval(resendIntervalRef.value)
+  resendIntervalRef.value = setInterval(() => {
+    resendCountdown.value--
+    if (resendCountdown.value <= 0 && resendIntervalRef.value) {
+      clearInterval(resendIntervalRef.value)
+      resendIntervalRef.value = null
+    }
+  }, 1000)
   await nextTick()
   otpContainerRef.value?.querySelector('input')?.focus()
 }
@@ -266,6 +307,23 @@ function onOtpVerify() {
 }
 
 function onResendCode() {
+  if (resendCountdown.value > 0) return
+  // TODO: Call resend OTP API
   console.log('Resend code', { phone: phone.value })
+  resendCountdown.value = 60
+  if (resendIntervalRef.value) clearInterval(resendIntervalRef.value)
+  resendIntervalRef.value = setInterval(() => {
+    resendCountdown.value--
+    if (resendCountdown.value <= 0 && resendIntervalRef.value) {
+      clearInterval(resendIntervalRef.value)
+      resendIntervalRef.value = null
+    }
+  }, 1000)
 }
+
+onUnmounted(() => {
+  if (resendIntervalRef.value) {
+    clearInterval(resendIntervalRef.value)
+  }
+})
 </script>

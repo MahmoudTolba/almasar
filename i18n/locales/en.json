@@ -59,6 +59,8 @@
     "backToLogin": "Back to login",
     "otpTitle": "Enter verification code",
     "otpSubtitle": "We sent a 6-digit code to your phone.",
+    "otpResendPrompt": "Didn't receive the activation code?",
+    "otpResendLink": "Resend",
     "resendCode": "Resend code",
     "verify": "Verify",
     "back": "Back"

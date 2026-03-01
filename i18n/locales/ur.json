@@ -5,7 +5,8 @@
     "logout": "لاگ آؤٹ",
     "back": "واپس",
     "cancel": "منسوخ",
-    "loading": "لوڈ ہو رہا ہے..."
+    "loading": "لوڈ ہو رہا ہے...",
+    "selectCountry": "ملک منتخب کریں"
   },
   "sidebar": {
     "orders": "آرڈرز کا انتظام",

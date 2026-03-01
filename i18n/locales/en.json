@@ -5,7 +5,8 @@
     "logout": "Logout",
     "back": "Back",
     "cancel": "Cancel",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "selectCountry": "Select country"
   },
   "sidebar": {
     "orders": "Orders Management",

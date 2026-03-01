@@ -46,8 +46,9 @@ export const useRegisterForm = () => {
   )
 
   const formattedPhone = computed(() => {
-    const p = form.phone.replace(/\D/g, '')
-    return p ? `+966 ${p}` : '+966 '
+    const raw = form.phone || ''
+    const match = raw.match(/^(\+\d{1,4})(\d+)$/)
+    return match ? `${match[1]} ${match[2]}` : raw
   })
 
   const resendCountdownFormatted = computed(() => {

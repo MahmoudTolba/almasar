@@ -50,10 +50,10 @@
             <PhoneInput v-model="phone" />
             <PasswordInput v-model="password" />
 
-            <div class="text-right">
+            <div class="text-left">
               <button
                 type="button"
-                class="text-sm text-gray-600 hover:text-gray-900"
+                class="text-md text-gray-600 hover:text-gray-900"
                 @click.prevent="showForgotPassword = true"
               >
                 {{ t('login.forgotPassword') }}

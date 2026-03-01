@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { normalizePhoneToE164 } from '~/data/countries'
 
 const STORAGE_KEY = 'almasar-users'
+const USERS_COOKIE = 'almasar-users'
 
 export interface UserProfile {
   id?: string
@@ -46,8 +47,39 @@ function saveToStorage(state: UsersState) {
   }
 }
 
+function saveToCookie(state: UsersState) {
+  try {
+    const cookie = useCookie(USERS_COOKIE, {
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+      sameSite: 'lax',
+    })
+    const slim = { users: state.users }
+    const json = JSON.stringify(slim)
+    if (json.length > 4000) return
+    cookie.value = json
+  } catch {
+    // ignore - cookie may exceed size limit
+  }
+}
+
+function loadFromCookie(): UsersState {
+  try {
+    const cookie = useCookie(USERS_COOKIE)
+    const stored = cookie.value
+    if (stored && typeof stored === 'string') {
+      const parsed = JSON.parse(stored) as UsersState
+      if (parsed?.users && typeof parsed.users === 'object') {
+        return { users: parsed.users }
+      }
+    }
+  } catch {
+    // ignore parse errors
+  }
+  return { users: {} }
+}
+
 export const useUserStore = defineStore('user', {
-  state: (): UsersState => loadFromStorage(),
+  state: (): UsersState => ({ users: {} }),
 
   getters: {
     getUserByPhone: (state) => (phone: string) => {
@@ -80,6 +112,7 @@ export const useUserStore = defineStore('user', {
 
       this.users = { ...this.users, [phone]: user }
       saveToStorage(this.$state)
+      saveToCookie(this.$state)
       return user
     },
 
@@ -90,7 +123,22 @@ export const useUserStore = defineStore('user', {
       const updated: UserProfile = { ...existing, ...updates }
       this.users = { ...this.users, [phone]: updated }
       saveToStorage(this.$state)
+      saveToCookie(this.$state)
       return updated
+    },
+
+    hydrateFromCookie() {
+      if (import.meta.client) {
+        const fromStorage = loadFromStorage()
+        if (Object.keys(fromStorage.users).length > 0) {
+          this.users = fromStorage.users
+          return
+        }
+      }
+      const fromCookie = loadFromCookie()
+      if (Object.keys(fromCookie.users).length > 0) {
+        this.users = fromCookie.users
+      }
     },
   },
 })

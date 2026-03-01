@@ -148,7 +148,6 @@ const handleProfileUpdateSuccess = () => {
 
 function onChangePasswordSuccess() {
   isChangingPassword.value = false
-  // TODO: call change-password API when backend is ready
 }
 
 function onConfirmDeleteAccount() {

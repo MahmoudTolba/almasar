@@ -79,31 +79,62 @@ const confirmNewPassword = ref('')
 const loading = ref(false)
 const errors = ref({ oldPassword: '', newPassword: '', confirmNewPassword: '' })
 
+const authStore = useAuthStore()
+const userStore = useUserStore()
+
 function validate() {
   const e = {
     oldPassword: '',
     newPassword: '',
     confirmNewPassword: '',
   }
-  if (!oldPassword.value.trim()) e.oldPassword = t('changePassword.required')
-  if (!newPassword.value.trim()) e.newPassword = t('changePassword.required')
+  const user = authStore.user
+  const hasExistingPassword = user?.password && user.password.length > 0
+
+  if (hasExistingPassword && !oldPassword.value.trim()) {
+    e.oldPassword = t('changePassword.required')
+  } else if (hasExistingPassword && oldPassword.value !== user?.password) {
+    e.oldPassword = t('login.passwordIncorrect')
+  }
+
+  if (!newPassword.value.trim()) {
+    e.newPassword = t('changePassword.required')
+  } else if (newPassword.value.length < 8) {
+    e.newPassword = t('register.validation.passwordMin')
+  }
+
   if (!confirmNewPassword.value.trim()) {
     e.confirmNewPassword = t('changePassword.required')
   } else if (newPassword.value !== confirmNewPassword.value) {
     e.confirmNewPassword = t('changePassword.passwordMismatch')
   }
+
   errors.value = e
   return !e.oldPassword && !e.newPassword && !e.confirmNewPassword
 }
 
-function handleSubmit() {
+async function handleSubmit() {
   if (!validate()) return
   loading.value = true
-  // TODO: call change-password API when backend is ready
-  emit('submit-success', {
-    oldPassword: oldPassword.value,
-    newPassword: newPassword.value,
-  })
+  errors.value = { oldPassword: '', newPassword: '', confirmNewPassword: '' }
+
+  const phone = authStore.user?.phone
+  if (!phone) {
+    errors.value.oldPassword = t('login.userNotFound')
+    loading.value = false
+    return
+  }
+
+  const updated = userStore.updateProfile(phone, { password: newPassword.value })
+  if (updated) {
+    authStore.setUser(updated)
+    oldPassword.value = ''
+    newPassword.value = ''
+    confirmNewPassword.value = ''
+    emit('submit-success')
+  } else {
+    errors.value.oldPassword = t('login.userNotFound')
+  }
   loading.value = false
 }
 </script>

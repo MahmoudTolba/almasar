@@ -30,8 +30,9 @@
       </NuxtLink>
     </div>
 
-    <div class="flex items-center gap-3 px-3 py-1.5 rounded-lg">
-      <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-md border border-[#AB8740] flex items-center justify-center overflow-hidden shrink-0 bg-white">
+    <div class="flex items-center gap-3 px-3 py-1.5 rounded-lg cursor-pointer" @click="navigateTo(localePath('/profile'))">
+      <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-md border border-[#AB8740] flex items-center justify-center overflow-hidden shrink-0 bg-white"
+      >
         <img
           :src="avatarSrc"
           :alt="displayName"

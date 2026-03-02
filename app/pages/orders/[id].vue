@@ -20,14 +20,13 @@
         <p class="text-xs lg:text-base text-gray-500 mb-4">
           {{ t('orderDetails.subtitle') }}
         </p>
-        <div class="flex flex-wrap items-center gap-3">
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-[#Ffffff] p-4 rounded-xl shadow-sm border border-gray-100">
           <div class="flex items-center gap-2">
+            <img src="~/assets/icons/time-02.svg" alt="order-number" class="w-5 h-5 object-contain"></img>
             <span class="text-sm font-medium text-gray-600">{{ t('orderDetails.orderNumber') }}</span>
             <span class="text-sm font-bold text-orange-500">{{ order.id }}</span>
             <span class="w-5 h-5 text-gray-400" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-              </svg>
+           
             </span>
           </div>
           <span
@@ -72,7 +71,7 @@
         </div>
 
         <!-- Payment Details (gold/brown card) -->
-        <div class="bg-amber-900/95 rounded-xl shadow-sm border border-amber-800/50 p-4 sm:p-6 text-amber-50">
+        <div class="bg-gradient-to-br from-[#AB8740] to-[#B58C3A] rounded-xl shadow-sm border border-amber-800/50 p-4 sm:p-6 text-amber-50">
           <h2 class="text-sm font-semibold mb-4 flex items-center gap-2">
             {{ t('orderDetails.paymentDetails') }}
             <span class="w-4 h-4 text-amber-200/80" aria-hidden="true">

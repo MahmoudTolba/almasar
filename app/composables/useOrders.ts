@@ -33,7 +33,7 @@ const orders: Order[] = [
     date: '2024-01-15',
     time: '10:30',
     status: 'pending_payment',
-    statusLabel: 'مدفوع مبدئيا',
+    statusLabel: 'مدفوع ',
     roomType: 'غرفة مزدوجة فاخرة',
     hotel: 'فندق رويال بلاس',
     stayDuration: '15 يوم',

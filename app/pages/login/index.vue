@@ -76,8 +76,18 @@
           </div>
 
           <form @submit.prevent="onSubmit" class="space-y-4">
-            <PhoneInput v-model="phone" />
-            <PasswordInput v-model="password" />
+            <div>
+              <PhoneInput v-model="phone" />
+              <p v-if="loginErrors.phone" class="text-xs text-red-500 mt-1">
+                {{ loginErrors.phone }}
+              </p>
+            </div>
+            <div>
+              <PasswordInput v-model="password" />
+              <p v-if="loginErrors.password" class="text-xs text-red-500 mt-1">
+                {{ loginErrors.password }}
+              </p>
+            </div>
             <p v-if="loginError" class="text-xs text-red-500">
               {{ loginError }}
             </p>
@@ -120,7 +130,12 @@
           </div>
 
           <form @submit.prevent="onForgotSubmit" class="space-y-4">
-            <PhoneInput v-model="phone" />
+            <div>
+              <PhoneInput v-model="phone" />
+              <p v-if="forgotPhoneError" class="text-xs text-red-500 mt-1">
+                {{ forgotPhoneError }}
+              </p>
+            </div>
             <button
               type="submit"
               class="w-full py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:bg-gray-800 transition-colors"
@@ -220,7 +235,7 @@
                 inputmode="numeric"
                 placeholder="-"
                 maxlength="1"
-                class="w-11 h-12 text-center text-lg font-semibold rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
+                class="w-11 h-12 text-center text-lg font-semibold text-accent rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
                 :aria-label="'Digit ' + i"
                 @input="(e) => setOtpDigit(i - 1, e.target.value)"
                 @keydown="(e) => onOtpKeydown(i - 1, e)"
@@ -279,9 +294,12 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const authStore = useAuthStore()
 const userStore = useUserStore()
+const { validateForm, loginSchema, forgotPasswordPhoneSchema, changePasswordSchema } = useValidationSchemas()
 
 const phone = ref('')
 const loginError = ref('')
+const loginErrors = ref({ phone: '', password: '' })
+const forgotPhoneError = ref('')
 const password = ref('')
 const loginLoading = ref(false)
 const showLanguageModal = ref(false)
@@ -313,6 +331,15 @@ const resendCountdownFormatted = computed(() => {
 })
 
 async function onSubmit() {
+  const result = validateForm(
+    { phone: phone.value, password: password.value },
+    loginSchema
+  )
+  if (!result.valid) {
+    loginErrors.value = result.errors
+    return
+  }
+  loginErrors.value = { phone: '', password: '' }
   if (loginLoading.value) return
   loginLoading.value = true
   loginError.value = ''
@@ -334,6 +361,7 @@ async function onSubmit() {
 function backToLogin() {
   showForgotPassword.value = false
   forgotStep.value = 'phone'
+  forgotPhoneError.value = ''
 }
 
 function backToPhoneStep() {
@@ -383,6 +411,12 @@ function onOtpPaste(e) {
 }
 
 async function onForgotSubmit() {
+  const result = validateForm({ phone: phone.value }, forgotPasswordPhoneSchema)
+  if (!result.valid) {
+    forgotPhoneError.value = result.errors.phone ?? ''
+    return
+  }
+  forgotPhoneError.value = ''
   forgotStep.value = 'otp'
   otp.value = ''
   resendCountdown.value = 60
@@ -406,20 +440,23 @@ async function onOtpVerify() {
   changePasswordErrors.value = {}
 }
 
-function validateChangePassword() {
-  const e = { newPassword: '', confirmNewPassword: '' }
-  if (!newPassword.value.trim()) e.newPassword = t('changePassword.required')
-  if (!confirmNewPassword.value.trim()) {
-    e.confirmNewPassword = t('changePassword.required')
-  } else if (newPassword.value !== confirmNewPassword.value) {
-    e.confirmNewPassword = t('changePassword.passwordMismatch')
-  }
-  changePasswordErrors.value = e
-  return !e.newPassword && !e.confirmNewPassword
-}
-
 async function onChangePasswordSubmit() {
-  if (!validateChangePassword()) return
+  const schema = changePasswordSchema({ requiresOldPassword: false })
+  const result = validateForm(
+    {
+      newPassword: newPassword.value,
+      confirmNewPassword: confirmNewPassword.value,
+    },
+    schema
+  )
+  if (!result.valid) {
+    changePasswordErrors.value = {
+      newPassword: result.errors.newPassword ?? '',
+      confirmNewPassword: result.errors.confirmNewPassword ?? '',
+    }
+    return
+  }
+  changePasswordErrors.value = { newPassword: '', confirmNewPassword: '' }
   changePasswordLoading.value = true
   try {
     // TODO: Replace with real API call

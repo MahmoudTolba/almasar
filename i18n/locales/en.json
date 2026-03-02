@@ -67,7 +67,11 @@
     "back": "Back",
     "passwordChangeSuccess": "Password changed successfully",
     "userNotFound": "No account found with this phone number. Please register first.",
-    "passwordIncorrect": "Incorrect password. Please try again."
+    "passwordIncorrect": "Incorrect password. Please try again.",
+    "validation": {
+      "phoneRequired": "Phone number is required.",
+      "passwordRequired": "Password is required."
+    }
   },
   "orders": {
     "title": "Orders Management",
@@ -156,6 +160,7 @@
       "officeNameRequired": "Office name is required.",
       "addressRequired": "Address is required.",
       "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Please enter a valid phone number in international format (e.g. +966501234567).",
       "emailInvalid": "Please enter a valid email address.",
       "passwordRequired": "Password is required.",
       "passwordMin": "Password must be at least 8 characters.",
@@ -222,7 +227,11 @@
     "messageContent": "Message Content",
     "messageContentPlaceholder": "Write your message here...",
     "sendMessage": "Send Message",
-    "messageSentSuccess": "Your message has been sent and the administration will respond as soon as possible."
+    "messageSentSuccess": "Your message has been sent and the administration will respond as soon as possible.",
+    "validation": {
+      "bodyRequired": "Message content is required.",
+      "bodyMinLength": "Message must be at least 10 characters."
+    }
   },
   "stats": {
     "title": "Statistics and Analytics",

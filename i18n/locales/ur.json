@@ -67,7 +67,11 @@
     "back": "واپس",
     "passwordChangeSuccess": "پاس ورڈ کامیابی سے تبدیل ہو گیا",
     "userNotFound": "اس فون نمبر کے ساتھ کوئی اکاؤنٹ نہیں ملا۔ براہ کرم پہلے رجسٹر کریں۔",
-    "passwordIncorrect": "پاس ورڈ غلط ہے۔ براہ کرم دوبارہ کوشش کریں۔"
+    "passwordIncorrect": "پاس ورڈ غلط ہے۔ براہ کرم دوبارہ کوشش کریں۔",
+    "validation": {
+      "phoneRequired": "فون نمبر ضروری ہے۔",
+      "passwordRequired": "پاس ورڈ ضروری ہے۔"
+    }
   },
   "orders": {
     "title": "آرڈرز کا انتظام",
@@ -156,6 +160,7 @@
       "officeNameRequired": "دفتر کا نام ضروری ہے۔",
       "addressRequired": "پتہ ضروری ہے۔",
       "phoneRequired": "فون نمبر ضروری ہے۔",
+      "phoneInvalid": "براہ کرم بین الاقوامی فارمیٹ میں درست فون نمبر درج کریں (مثال: 966501234567+).",
       "emailInvalid": "براہ کرم درست ای میل ایڈریس درج کریں۔",
       "passwordRequired": "پاس ورڈ ضروری ہے۔",
       "passwordMin": "پاس ورڈ کم از کم 8 حروف کا ہونا چاہیے۔",
@@ -222,7 +227,11 @@
     "messageContent": "پیغام کا مواد",
     "messageContentPlaceholder": "اپنا پیغام یہاں لکھیں...",
     "sendMessage": "پیغام بھیجیں",
-    "messageSentSuccess": "آپ کا پیغام بھیج دیا گیا ہے اور انتظامیہ جلد از جلد جواب دے گی۔"
+    "messageSentSuccess": "آپ کا پیغام بھیج دیا گیا ہے اور انتظامیہ جلد از جلد جواب دے گی۔",
+    "validation": {
+      "bodyRequired": "پیغام کا مواد ضروری ہے۔",
+      "bodyMinLength": "پیغام کم از کم 10 حروف کا ہونا چاہیے۔"
+    }
   },
   "stats": {
     "title": "شماریات اور تجزیات",

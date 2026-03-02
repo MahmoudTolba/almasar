@@ -7,9 +7,7 @@
       class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent"
     >
       <span class="w-5 h-5 text-gray-900 shrink-0 inline-flex" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" shape-rendering="geometricPrecision" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-        </svg>
+       <img src="~/assets/icons/lock-key.svg" alt="lock">
       </span>
       <input
         :id="inputId"
@@ -23,6 +21,7 @@
         @mousedown="onMouseDown"
         @mouseup="onMouseUp"
         @mouseleave="resetSwipeState"
+        autocomplete="current-password"
       >
       <button
         type="button"

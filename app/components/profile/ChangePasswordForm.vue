@@ -72,6 +72,9 @@
 const emit = defineEmits(['cancel', 'submit-success'])
 
 const { t } = useI18n()
+const authStore = useAuthStore()
+const userStore = useUserStore()
+const { validateForm, changePasswordSchema } = useValidationSchemas()
 
 const oldPassword = ref('')
 const newPassword = ref('')
@@ -79,44 +82,39 @@ const confirmNewPassword = ref('')
 const loading = ref(false)
 const errors = ref({ oldPassword: '', newPassword: '', confirmNewPassword: '' })
 
-const authStore = useAuthStore()
-const userStore = useUserStore()
-
-function validate() {
-  const e = {
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
-  }
+const hasExistingPassword = computed(() => {
   const user = authStore.user
-  const hasExistingPassword = user?.password && user.password.length > 0
-
-  if (hasExistingPassword && !oldPassword.value.trim()) {
-    e.oldPassword = t('changePassword.required')
-  } else if (hasExistingPassword && oldPassword.value !== user?.password) {
-    e.oldPassword = t('login.passwordIncorrect')
-  }
-
-  if (!newPassword.value.trim()) {
-    e.newPassword = t('changePassword.required')
-  } else if (newPassword.value.length < 8) {
-    e.newPassword = t('register.validation.passwordMin')
-  }
-
-  if (!confirmNewPassword.value.trim()) {
-    e.confirmNewPassword = t('changePassword.required')
-  } else if (newPassword.value !== confirmNewPassword.value) {
-    e.confirmNewPassword = t('changePassword.passwordMismatch')
-  }
-
-  errors.value = e
-  return !e.oldPassword && !e.newPassword && !e.confirmNewPassword
-}
+  return !!(user?.password && user.password.length > 0)
+})
 
 async function handleSubmit() {
-  if (!validate()) return
-  loading.value = true
+  const schema = changePasswordSchema({ requiresOldPassword: hasExistingPassword.value })
+  const payload = {
+    oldPassword: oldPassword.value,
+    newPassword: newPassword.value,
+    confirmNewPassword: confirmNewPassword.value,
+  }
+  const result = validateForm(payload, schema)
+  if (!result.valid) {
+    errors.value = {
+      oldPassword: result.errors.oldPassword ?? '',
+      newPassword: result.errors.newPassword ?? '',
+      confirmNewPassword: result.errors.confirmNewPassword ?? '',
+    }
+    return
+  }
+
+  if (hasExistingPassword.value && oldPassword.value !== authStore.user?.password) {
+    errors.value = {
+      oldPassword: t('login.passwordIncorrect'),
+      newPassword: '',
+      confirmNewPassword: '',
+    }
+    return
+  }
+
   errors.value = { oldPassword: '', newPassword: '', confirmNewPassword: '' }
+  loading.value = true
 
   const phone = authStore.user?.phone
   if (!phone) {

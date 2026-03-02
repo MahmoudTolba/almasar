@@ -1,6 +1,6 @@
 export const useRegisterForm = () => {
-  const { t } = useI18n()
   const draftStore = useRegistrationDraftStore()
+  const { validateForm, registerStep1Schema, registerStep2Schema } = useValidationSchemas()
 
   const step = ref(1)
 
@@ -82,6 +82,16 @@ export const useRegisterForm = () => {
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
   })
 
+  const applyStep1Errors = (errs: Record<string, string>) => {
+    errors.officeName = errs.officeName ?? ''
+    errors.officialEmail = errs.officialEmail ?? ''
+    errors.phone = errs.phone ?? ''
+    errors.address = errs.address ?? ''
+    errors.password = errs.password ?? ''
+    errors.confirmPassword = errs.confirmPassword ?? ''
+    errors.description = errs.description ?? ''
+  }
+
   const clearErrors = () => {
     errors.officeName = ''
     errors.officialEmail = ''
@@ -93,57 +103,25 @@ export const useRegisterForm = () => {
     errors.commercialRegister = ''
   }
 
-  const validate = (): boolean => {
-    clearErrors()
-    let valid = true
-
-    if (!form.officeName.trim()) {
-      errors.officeName = t('register.validation.officeNameRequired')
-      valid = false
-    }
-
-    if (form.officialEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.officialEmail)) {
-      errors.officialEmail = t('register.validation.emailInvalid')
-      valid = false
-    }
-
-    if (!form.phone.trim()) {
-      errors.phone = t('register.validation.phoneRequired')
-      valid = false
-    }
-
-    if (!form.address.trim()) {
-      errors.address = t('register.validation.addressRequired')
-      valid = false
-    }
-
-    if (!form.password) {
-      errors.password = t('register.validation.passwordRequired')
-      valid = false
-    } else if (form.password.length < 8) {
-      errors.password = t('register.validation.passwordMin')
-      valid = false
-    }
-
-    if (form.password !== form.confirmPassword) {
-      errors.confirmPassword = t('register.validation.passwordMismatch')
-      valid = false
-    }
-
-    return valid
-  }
-
-  const validateStep2 = (): boolean => {
-    errors.commercialRegister = ''
-    if (!formStep2.commercialRegisterFile) {
-      errors.commercialRegister = t('profile.validation.commercialRegisterRequired')
-      return false
-    }
-    return true
-  }
-
   const onSubmit = async (): Promise<void> => {
-    if (!validate() || loading.value) return
+    const result = validateForm(
+      {
+        officeName: form.officeName,
+        officialEmail: form.officialEmail,
+        phone: form.phone,
+        address: form.address,
+        password: form.password,
+        confirmPassword: form.confirmPassword,
+        description: form.description,
+      },
+      registerStep1Schema
+    )
+    if (!result.valid) {
+      applyStep1Errors(result.errors)
+      return
+    }
+    if (loading.value) return
+    clearErrors()
     draftStore.saveStep1({
       officeName: form.officeName,
       officialEmail: form.officialEmail,
@@ -260,7 +238,16 @@ export const useRegisterForm = () => {
   })
 
   const onSubmitStep2 = async (): Promise<void> => {
-    if (!validateStep2() || loading.value) return
+    const result = validateForm(
+      { commercialRegister: formStep2.commercialRegisterFile },
+      registerStep2Schema
+    )
+    if (!result.valid) {
+      errors.commercialRegister = result.errors.commercialRegister ?? ''
+      return
+    }
+    if (loading.value) return
+    errors.commercialRegister = ''
 
     loading.value = true
     try {
@@ -295,9 +282,7 @@ export const useRegisterForm = () => {
     formattedPhone,
     resendCountdown,
     resendCountdownFormatted,
-    validate,
     onSubmit,
-    validateStep2,
     goBackToStep1,
     goBackToStep2,
     onFileChange,

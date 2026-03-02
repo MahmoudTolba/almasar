@@ -67,7 +67,11 @@
     "back": "رجوع",
     "passwordChangeSuccess": "تم تغيير كلمة المرور بنجاح",
     "userNotFound": "لا يوجد حساب بهذا الرقم. يرجى التسجيل أولاً.",
-    "passwordIncorrect": "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
+    "passwordIncorrect": "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "phoneRequired": "رقم الجوال مطلوب.",
+      "passwordRequired": "كلمة المرور مطلوبة."
+    }
   },
   "orders": {
     "title": "إدارة الطلبات",
@@ -156,6 +160,7 @@
       "officeNameRequired": "اسم المكتب مطلوب.",
       "addressRequired": "العنوان مطلوب.",
       "phoneRequired": "رقم الجوال مطلوب.",
+      "phoneInvalid": "يرجى إدخال رقم جوال صحيح بالتنسيق الدولي (مثال: 966501234567+).",
       "emailInvalid": "يرجى إدخال بريد إلكتروني صالح.",
       "passwordRequired": "كلمة المرور مطلوبة.",
       "passwordMin": "كلمة المرور يجب أن تكون 8 أحرف على الأقل.",
@@ -222,7 +227,11 @@
     "messageContent": "محتوى الرسالة",
     "messageContentPlaceholder": "اكتب رسالتك هنا...",
     "sendMessage": "إرسال الرسالة",
-    "messageSentSuccess": "تم إرسال رسالتك وستقوم الإدارة بالرد في أقرب وقت"
+    "messageSentSuccess": "تم إرسال رسالتك وستقوم الإدارة بالرد في أقرب وقت",
+    "validation": {
+      "bodyRequired": "محتوى الرسالة مطلوب.",
+      "bodyMinLength": "يجب أن تتكون الرسالة من 10 أحرف على الأقل."
+    }
   },
   "stats": {
     "title": "الإحصائيات والتحليلات",

@@ -82,10 +82,12 @@
             v-model="form.body"
             rows="4"
             maxlength="500"
-            class="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-y"
+            class="w-full rounded-xl border px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-y"
+            :class="bodyError ? 'border-red-500' : 'border-gray-200'"
             :placeholder="t('contact.messageContentPlaceholder')"
           />
-          <p class="text-xs text-gray-500 mt-1">{{ form.body.length }}/500</p>
+          <p v-if="bodyError" class="text-xs text-red-500 mt-1">{{ bodyError }}</p>
+          <p v-else class="text-xs text-gray-500 mt-1">{{ form.body.length }}/500</p>
 
           <!-- Actions -->
           <div class="flex flex-row gap-3 mt-6">
@@ -118,12 +120,15 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'submit'])
 
 const { t } = useI18n()
+const { validateForm, contactMessageSchema } = useValidationSchemas()
 
 const form = ref({
   type: 'inquiry',
   title: '',
   body: '',
 })
+
+const bodyError = ref('')
 
 const typeOptions = [
   { id: 'inquiry', labelKey: 'contact.typeInquiry', iconBgClass: 'bg-blue-500' },
@@ -136,9 +141,14 @@ function close() {
 }
 
 function onSubmit() {
+  const result = validateForm({ body: form.value.body }, contactMessageSchema)
+  if (!result.valid) {
+    bodyError.value = result.errors.body ?? ''
+    return
+  }
+  bodyError.value = ''
   const title = form.value.title.trim()
   const body = form.value.body.trim()
-  if (!body) return
   emit('submit', { type: form.value.type, title, body })
   form.value = { type: 'inquiry', title: '', body: '' }
   close()
@@ -147,6 +157,7 @@ function onSubmit() {
 watch(() => props.modelValue, (open) => {
   if (open) {
     form.value = { type: 'inquiry', title: '', body: '' }
+    bodyError.value = ''
   }
 })
 </script>

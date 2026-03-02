@@ -235,6 +235,7 @@ const emit = defineEmits(['submit-success', 'cancel'])
 const { t } = useI18n()
 const authStore = useAuthStore()
 const userStore = useUserStore()
+const { validateForm, profileSchema } = useValidationSchemas()
 
 const form = reactive({
   officialEmail: '',
@@ -302,35 +303,6 @@ const clearErrors = () => {
   errors.logo = ''
 }
 
-const validate = () => {
-  clearErrors()
-  let valid = true
-
-  if (!form.officeName.trim()) {
-    errors.officeName = t('profile.validation.officeNameRequired')
-    valid = false
-  }
-
-  if (!form.address.trim()) {
-    errors.address = t('profile.validation.addressRequired')
-    valid = false
-  }
-
-  if (form.officialEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.officialEmail)) {
-    errors.officialEmail = t('profile.validation.emailInvalid')
-    valid = false
-  }
-
-  // Commercial register required only if user doesn't already have one
-  const hasExistingDoc = !!authStore.user?.commercialRegisterFileName
-  if (!hasExistingDoc && !files.commercialRegister) {
-    errors.commercialRegister = t('profile.validation.commercialRegisterRequired')
-    valid = false
-  }
-
-  return valid
-}
-
 const onFileChange = (key, event) => {
   const target = event.target
   if (!target || !target.files || !target.files.length) {
@@ -380,10 +352,30 @@ const triggerFileInput = (key) => {
 }
 
 const handleSubmit = async () => {
-  if (!validate() || loading.value) {
+  const requiresCommercialRegister = !authStore.user?.commercialRegisterFileName
+  const schema = profileSchema({ requiresCommercialRegister })
+  const result = validateForm(
+    {
+      officeName: form.officeName,
+      officialEmail: form.officialEmail,
+      address: form.address,
+      description: form.description,
+      commercialRegister: files.commercialRegister,
+      logo: files.logo,
+    },
+    schema
+  )
+  if (!result.valid) {
+    errors.officialEmail = result.errors.officialEmail ?? ''
+    errors.officeName = result.errors.officeName ?? ''
+    errors.address = result.errors.address ?? ''
+    errors.description = result.errors.description ?? ''
+    errors.commercialRegister = result.errors.commercialRegister ?? ''
+    errors.logo = result.errors.logo ?? ''
     return
   }
-
+  if (loading.value) return
+  clearErrors()
   loading.value = true
 
   try {

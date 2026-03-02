@@ -1,5 +1,8 @@
 <template>
   <div :dir="dir">
+    <Transition name="splash">
+      <SplashScreen v-if="showSplash" />
+    </Transition>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -10,6 +13,18 @@
 const route = useRoute()
 const { locale, t } = useI18n()
 const dir = computed(() => (locale.value === 'ar' || locale.value === 'ur' ? 'rtl' : 'ltr'))
+
+const showSplash = ref(true)
+
+let splashTimer
+onMounted(() => {
+  splashTimer = setTimeout(() => {
+    showSplash.value = false
+  }, 2500)
+})
+onBeforeUnmount(() => {
+  if (splashTimer) clearTimeout(splashTimer)
+})
 
 useHead({
   title: computed(() => {

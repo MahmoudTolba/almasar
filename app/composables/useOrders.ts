@@ -144,3 +144,10 @@ export const useOrders = () => {
     getOrderById,
   }
 }
+
+// Force full reload when this composable changes (fixes HMR not picking up data changes)
+if (import.meta.hot) {
+  import.meta.hot.accept(() => {
+    import.meta.hot?.invalidate()
+  })
+}

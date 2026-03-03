@@ -90,7 +90,7 @@
                   class="px-3 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-bold inline-block"
                   :class="statusStyles[order.status]"
                 >
-                  {{ t('orders.status_' + order.status) }}
+                  {{ order.statusLabel }}
                 </span>
               </td>
               <td class="px-4 sm:px-6 py-4 sm:py-5 text-center">

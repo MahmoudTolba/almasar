@@ -190,10 +190,7 @@ const order = computed(() => {
 
 const statusLabel = computed(() => {
   if (!order.value) return ''
-  if (order.value.status === 'pending_payment') {
-    return t('orderDetails.status_pending_payment_long')
-  }
-  return t('orders.status_' + order.value.status)
+  return order.value.statusLabel
 })
 
 const statusTagClass = computed(() => {

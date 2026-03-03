@@ -12,7 +12,10 @@ export const useRegisterForm = () => {
     password: '',
     confirmPassword: '',
     description: '',
+    logoFile: null as File | null,
   })
+
+  const logoPreviewUrl = ref('')
 
   const formStep2 = reactive({
     commercialRegisterFile: null as File | null,
@@ -20,6 +23,9 @@ export const useRegisterForm = () => {
     bankAccountName: '',
     iban: '',
   })
+
+  const { t } = useI18n()
+  const MAX_LOGO_SIZE_BYTES = 500 * 1024
 
   // Hydrate from draft on init
   if (import.meta.client) {
@@ -32,6 +38,8 @@ export const useRegisterForm = () => {
       form.password = loaded.step1.password ?? ''
       form.confirmPassword = loaded.step1.confirmPassword ?? ''
       form.description = loaded.step1.description ?? ''
+      logoPreviewUrl.value = loaded.step1.logoPreviewUrl ?? ''
+      // logoFile stays null - File cannot be restored from storage
     }
     if (loaded.step2) {
       formStep2.bankName = loaded.step2.bankName ?? ''
@@ -52,6 +60,7 @@ export const useRegisterForm = () => {
     password: '',
     confirmPassword: '',
     description: '',
+    logo: '',
     commercialRegister: '',
   })
 
@@ -90,6 +99,7 @@ export const useRegisterForm = () => {
     errors.password = errs.password ?? ''
     errors.confirmPassword = errs.confirmPassword ?? ''
     errors.description = errs.description ?? ''
+    errors.logo = errs.logo ?? ''
   }
 
   const clearErrors = () => {
@@ -100,6 +110,7 @@ export const useRegisterForm = () => {
     errors.password = ''
     errors.confirmPassword = ''
     errors.description = ''
+    errors.logo = ''
     errors.commercialRegister = ''
   }
 
@@ -130,6 +141,7 @@ export const useRegisterForm = () => {
       password: form.password,
       confirmPassword: form.confirmPassword,
       description: form.description,
+      logoPreviewUrl: logoPreviewUrl.value || undefined,
     })
     step.value = 2
   }
@@ -150,6 +162,37 @@ export const useRegisterForm = () => {
       return
     }
     formStep2.commercialRegisterFile = target.files[0] ?? null
+  }
+
+  const onLogoChange = (event: Event) => {
+    const target = event.target as HTMLInputElement | null
+    if (!target?.files?.length) {
+      form.logoFile = null
+      logoPreviewUrl.value = ''
+      errors.logo = ''
+      return
+    }
+    const file = target.files[0]
+    if (!/^image\/(png|jpeg)$/.test(file.type)) {
+      errors.logo = t('profile.validation.logoInvalidType')
+      form.logoFile = null
+      logoPreviewUrl.value = ''
+      return
+    }
+    if (file.size > MAX_LOGO_SIZE_BYTES) {
+      errors.logo = t('profile.validation.logoTooLarge')
+      form.logoFile = null
+      logoPreviewUrl.value = ''
+      return
+    }
+    errors.logo = ''
+    form.logoFile = file
+    const reader = new FileReader()
+    reader.onload = () => {
+      logoPreviewUrl.value = (reader.result as string) || ''
+    }
+    reader.readAsDataURL(file)
+    target.value = ''
   }
 
   const focusFirstOtpInput = () => {
@@ -276,6 +319,8 @@ export const useRegisterForm = () => {
     registerModalState,
     closeRegisterModal,
     commercialRegisterFileName,
+    logoPreviewUrl,
+    onLogoChange,
     otp,
     otpContainerRef,
     OTP_LENGTH,

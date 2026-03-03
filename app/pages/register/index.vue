@@ -48,6 +48,46 @@
           </div>
 
           <form @submit.prevent="onSubmit" class="space-y-4">
+          <!-- Top center: Logo/Profile image uploader -->
+          <div class="flex flex-col items-center gap-2">
+            <label class="block text-sm font-medium text-gray-700 text-center">
+              {{ t('profile.logoLabel') }}
+            </label>
+            <button
+              type="button"
+              @click="logoInput?.click()"
+              class="flex flex-col items-center justify-center w-24 h-24 rounded-full border-2 border-dashed border-gray-200 bg-gray-50 hover:border-accent hover:bg-amber-50/50 transition-colors overflow-hidden shrink-0"
+              :class="{ 'border-red-500': errors.logo }"
+            >
+              <img
+                v-if="logoPreviewUrl"
+                :src="logoPreviewUrl"
+                alt="Logo preview"
+                class="w-full h-full object-cover"
+              >
+              <template v-else>
+                <img
+                  src="~/assets/icons/cloud-upload.svg"
+                  alt="Upload"
+                  class="w-8 h-8 text-gray-400 mb-1"
+                >
+                <span class="text-xs text-gray-500 text-center px-1">
+                  {{ t('profile.logoHint') }}
+                </span>
+              </template>
+            </button>
+            <input
+              ref="logoInput"
+              type="file"
+              class="hidden"
+              accept="image/png,image/jpeg"
+              @change="onLogoChange"
+            >
+            <p v-if="errors.logo" class="text-xs text-red-500 text-center">
+              {{ errors.logo }}
+            </p>
+          </div>
+
           <div class="grid gap-4 md:grid-cols-2 md:gap-x-6">
             <!-- Right column (RTL): Office Name, Official Email, Password -->
             <div class="flex flex-col gap-4">
@@ -436,6 +476,7 @@ function onRegisterModalClosed(state) {
       address: form.address,
       description: form.description,
       password: form.password,
+      avatarUrl: logoPreviewUrl?.value ?? '',
       bankName: formStep2.bankName,
       bankAccountName: formStep2.bankAccountName,
       iban: formStep2.iban,
@@ -450,6 +491,7 @@ function onRegisterModalClosed(state) {
 }
 
 const commercialRegisterInput = ref(null)
+const logoInput = ref(null)
 
 function getInputValue(e) {
   const target = e?.target
@@ -465,6 +507,8 @@ const {
   showRegisterModal,
   registerModalState,
   commercialRegisterFileName,
+  logoPreviewUrl,
+  onLogoChange,
   otp,
   otpContainerRef,
   OTP_LENGTH,

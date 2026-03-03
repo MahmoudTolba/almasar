@@ -10,6 +10,7 @@ export interface Step1Draft {
   password: string
   confirmPassword: string
   description: string
+  logoPreviewUrl?: string
 }
 
 export interface Step2Draft {
@@ -33,6 +34,7 @@ const emptyStep1: Step1Draft = {
   password: '',
   confirmPassword: '',
   description: '',
+  logoPreviewUrl: '',
 }
 
 const emptyStep2: Step2Draft = {

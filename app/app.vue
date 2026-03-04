@@ -1,5 +1,6 @@
 <template>
   <div :dir="dir">
+    <Toast />
     <Transition name="splash">
       <SplashScreen v-if="showSplash" />
     </Transition>

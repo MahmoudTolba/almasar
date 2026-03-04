@@ -17,6 +17,7 @@ export interface Step2Draft {
   bankName: string
   bankAccountName: string
   iban: string
+  accountNumber: string
   commercialRegisterFileName: string
 }
 
@@ -41,6 +42,7 @@ const emptyStep2: Step2Draft = {
   bankName: '',
   bankAccountName: '',
   iban: '',
+  accountNumber: '',
   commercialRegisterFileName: '',
 }
 

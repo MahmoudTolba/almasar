@@ -354,6 +354,23 @@
                     >
                   </div>
                 </div>
+                <div class="flex flex-col gap-1">
+                  <label for="iban" class="block text-sm font-medium text-gray-700 mb-1.5 text-right">
+                    {{ t('profile.accountNumberLabel') }}
+                  </label>
+                  <div class="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent">
+                    <span class="w-5 h-5 text-gray-400 shrink-0" aria-hidden="true">
+                      <img src="~/assets/icons/bank.svg" alt="bank">
+                    </span>
+                    <input
+                      id="accountNumber"
+                      v-model="formStep2.accountNumber"
+                      type="text"
+                        :placeholder="t('profile.accountNumberPlaceholder')"
+                      class="flex-1 min-w-0 bg-transparent border-none py-0.5 text-sm placeholder:text-gray-400 focus:outline-none ltr:text-left rtl:text-right"
+                    >
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -526,4 +543,5 @@ const {
   onOtpVerify,
   onResendCode,
 } = useRegisterForm()
+
 </script>

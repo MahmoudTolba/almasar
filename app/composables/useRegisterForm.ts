@@ -1,6 +1,9 @@
+import { parseE164 } from '~/data/countries'
+
 export const useRegisterForm = () => {
   const draftStore = useRegistrationDraftStore()
   const { validateForm, registerStep1Schema, registerStep2Schema } = useValidationSchemas()
+  const { apiFetch } = useApi()
 
   const step = ref(1)
 
@@ -72,7 +75,7 @@ export const useRegisterForm = () => {
   const resendCountdown = ref(0)
   const resendIntervalRef = ref<ReturnType<typeof setInterval> | null>(null)
 
-  const OTP_LENGTH = 6
+  const OTP_LENGTH = 4
 
   const commercialRegisterFileName = computed(
     () => (formStep2.commercialRegisterFile && formStep2.commercialRegisterFile.name) || ''
@@ -91,6 +94,39 @@ export const useRegisterForm = () => {
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
   })
 
+  const buildRegisterFormData = () => {
+    const formData = new FormData()
+
+    const rawPhone = form.phone || ''
+    const parsedPhone = parseE164(rawPhone)
+    const countryCode = parsedPhone ? parsedPhone.dialCode : ''
+    const phoneNumber = parsedPhone ? parsedPhone.nationalNumber : rawPhone
+
+    formData.append('name', form.officeName)
+    formData.append('email', form.officialEmail)
+    formData.append('country_code', countryCode)
+    formData.append('phone', phoneNumber)
+    formData.append('address', form.address)
+    formData.append('password', form.password)
+    formData.append('password_confirmation', form.confirmPassword)
+    formData.append('description', form.description)
+
+    if (form.logoFile) {
+      formData.append('logo', form.logoFile)
+    }
+
+    if (formStep2.commercialRegisterFile) {
+      formData.append('commercial_register', formStep2.commercialRegisterFile)
+    }
+
+    formData.append('bank_name', formStep2.bankName)
+    formData.append('account_holder_name', formStep2.bankAccountName)
+    formData.append('account_number', formStep2.accountNumber)
+    formData.append('iban', formStep2.iban)
+
+    return formData
+  }
+
   const applyStep1Errors = (errs: Record<string, string>) => {
     errors.officeName = errs.officeName ?? ''
     errors.officialEmail = errs.officialEmail ?? ''
@@ -100,6 +136,21 @@ export const useRegisterForm = () => {
     errors.confirmPassword = errs.confirmPassword ?? ''
     errors.description = errs.description ?? ''
     errors.logo = errs.logo ?? ''
+  }
+
+  const applyBackendErrors = (backendErrors: Record<string, string[] | string | undefined>) => {
+    const firstError = (value: string[] | string | undefined) =>
+      Array.isArray(value) ? value[0] ?? '' : value ?? ''
+
+    errors.officeName = firstError(backendErrors.name)
+    errors.officialEmail = firstError(backendErrors.email)
+    errors.phone = firstError(backendErrors.phone)
+    errors.address = firstError(backendErrors.address)
+    errors.password = firstError(backendErrors.password)
+    errors.confirmPassword = firstError(backendErrors.password_confirmation)
+    errors.description = firstError(backendErrors.description)
+    errors.logo = firstError(backendErrors.logo)
+    errors.commercialRegister = firstError(backendErrors.commercial_register)
   }
 
   const clearErrors = () => {
@@ -248,11 +299,26 @@ export const useRegisterForm = () => {
     loading.value = true
     showRegisterModal.value = true
     registerModalState.value = 'loading'
+
     try {
-      // TODO: Call verify OTP API; simulate with delay for now
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const { error } = await apiFetch('/auth/check-code', {
+        method: 'POST',
+        body: {
+          phone: form.phone,
+          code: otp.value,
+        },
+        immediate: true,
+        watch: false,
+      })
+
+      if (error.value) {
+        // OTP invalid or server error; keep UX simple for now
+        console.error('Verify OTP API error', error.value)
+        showRegisterModal.value = false
+        return
+      }
+
       registerModalState.value = 'success'
-      // console.log('Verify OTP', { phone: form.phone, otp: otp.value })
     } finally {
       loading.value = false
     }
@@ -261,7 +327,7 @@ export const useRegisterForm = () => {
   const onResendCode = () => {
     if (resendCountdown.value > 0) return
     resendCountdown.value = 60
-    // TODO: Call resend OTP API
+    // TODO: Call resend OTP API provided by backend when endpoint is available
     console.log('Resend OTP', { phone: form.phone })
     if (resendIntervalRef.value) clearInterval(resendIntervalRef.value)
     resendIntervalRef.value = setInterval(() => {
@@ -290,10 +356,33 @@ export const useRegisterForm = () => {
       return
     }
     if (loading.value) return
-    errors.commercialRegister = ''
-
+    clearErrors()
     loading.value = true
     try {
+      const formData = buildRegisterFormData()
+      const { data, error } = await apiFetch('/auth/register', {
+        method: 'POST',
+        body: formData,
+        immediate: true,
+        watch: false,
+      })
+
+      if (error.value) {
+        const errorValue = error.value as unknown as { data?: any; message?: string }
+        const errorData = errorValue?.data as { errors?: Record<string, string[] | string> } | undefined
+        const validationErrors = errorData?.errors
+
+        if (validationErrors && typeof validationErrors === 'object') {
+          applyBackendErrors(validationErrors)
+        } else {
+          // Non-validation error; keep UX simple for now
+          console.error('Register API error', errorValue)
+        }
+        return
+      }
+
+      void data
+
       draftStore.saveStep2({
         bankName: formStep2.bankName,
         bankAccountName: formStep2.bankAccountName,

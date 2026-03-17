@@ -10,8 +10,9 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css"],
   runtimeConfig: {
+    apiBaseUrl: 'https://admin.almasar-elzaky.com/api/provider',
     public: {
-      apiUrl: 'https://admin.almasar-elzaky.com/api/provider',
+      apiUrl: '/api/provider',
     },
   },
 

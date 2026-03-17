@@ -30,30 +30,8 @@ export const useRegisterForm = () => {
   const { t } = useI18n()
   const MAX_LOGO_SIZE_BYTES = 500 * 1024
 
-  // Hydrate from draft on init
-  if (import.meta.client) {
-    const loaded = draftStore.load()
-    if (loaded.step1) {
-      form.officeName = loaded.step1.officeName ?? ''
-      form.officialEmail = loaded.step1.officialEmail ?? ''
-      form.phone = loaded.step1.phone ?? ''
-      form.address = loaded.step1.address ?? ''
-      form.password = loaded.step1.password ?? ''
-      form.confirmPassword = loaded.step1.confirmPassword ?? ''
-      form.description = loaded.step1.description ?? ''
-      logoPreviewUrl.value = loaded.step1.logoPreviewUrl ?? ''
-      // logoFile stays null - File cannot be restored from storage
-    }
-    if (loaded.step2) {
-      formStep2.bankName = loaded.step2.bankName ?? ''
-      formStep2.bankAccountName = loaded.step2.bankAccountName ?? ''
-      formStep2.iban = loaded.step2.iban ?? ''
-      // commercialRegisterFile stays null - File cannot be restored from storage
-    }
-    if (loaded.step >= 1 && loaded.step <= 3) {
-      step.value = loaded.step
-    }
-  }
+  // Do not hydrate from draft on init so "create a new account" always shows a fresh form.
+  // Draft is still saved when advancing steps so it can be cleared on success (see register page).
 
   const errors = reactive({
     officeName: '',
